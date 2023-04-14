@@ -11,26 +11,51 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    backgroundColor: colors.HomeScreenBackGroundColor,
-    margin: moderateScale(5),
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
-  subMain: {
-    flexDirection: 'row',
-    backgroundColor: colors.HomeScreenViewColor,
-    padding: moderateScale(10),
-    borderRadius: moderateScale(10),
-    justifyContent: 'space-between',
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  MapTopscreen: {
+    backgroundColor: colors.white,
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.32,
-    shadowRadius: 5.46,
-
-    elevation: 9,
+    flexDirection: 'row',
+    borderRadius: moderateScale(10),
+    padding: moderateScale(10),
+    backgroundColor: 'white',
+  },
+  MapShopImg: {
+    height: moderateScale(40),
+    width: moderateScale(40),
+  },
+  TextTopTitle: {
+    fontSize: scale(14),
+    fontFamily: 'NunitoSans-bold',
+    margin: moderateScale(10),
+  },
+  MapTopscreenSecondView: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  ratingStyle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  CalloutArrow: {
+    position: 'absolute',
+    bottom: -8,
+    alignSelf: 'center',
+    width: 5,
+    height: 5,
+    borderLeftWidth: 8,
+    borderRightWidth: 8,
+    borderTopWidth: 8,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderTopColor: colors.white,
   },
 });
 

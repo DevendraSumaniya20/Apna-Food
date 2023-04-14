@@ -81,15 +81,15 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <View style={styles.main}>
-      {myData?.isLoading && <ActivityIndicator color="#005566" />}
+      {/* {myData?.isLoading && <ActivityIndicator color="#005566" />}
       {myData?.error && <Text>{myData?.error}</Text>}
-      {!myData?.isLoading && !myData?.error && (
-        <FlatList
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={item => item.id.toString()}
-        />
-      )}
+      {!myData?.isLoading && !myData?.error && ( */}
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={item => item.id.toString()}
+      />
+      {/* )} */}
     </View>
   );
 };
