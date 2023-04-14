@@ -1,3 +1,5 @@
+import MapViewDirections from 'react-native-maps-directions';
+
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import MapView, {Callout, Circle, Marker, Polyline} from 'react-native-maps';
@@ -38,8 +40,9 @@ const MapScreen = ({route}) => {
         <Circle
           center={{latitude: 23.0122822, longitude: 72.5059498}}
           radius={10}
-          // fillColor={colors.mainThemesColor}
-          strokeColor={colors.color2Home}
+          fillColor={colors.whiteOpacity50}
+          strokeColor={colors.mainThemesColor}
+          zIndex={1}
         />
 
         <Polyline
