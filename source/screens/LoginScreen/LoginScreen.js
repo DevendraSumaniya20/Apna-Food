@@ -102,12 +102,12 @@ const LoginScreen = ({navigation}) => {
           />
         </View>
         <View style={styles.bottomView}>
+          <Text style={styles.newAccountText}>Don't have an account? </Text>
           <TouchableOpacity
             onPress={() => {
               navigation.navigate(navigationStrings.HOME);
             }}>
             <View style={styles.bottomSubView}>
-              <Text style={styles.newAccountText}>Don't have an account? </Text>
               <Text style={styles.signUpText}>Sign up</Text>
             </View>
           </TouchableOpacity>

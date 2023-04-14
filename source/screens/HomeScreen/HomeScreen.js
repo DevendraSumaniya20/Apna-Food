@@ -48,7 +48,13 @@ const HomeScreen = ({navigation}) => {
           </View>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate(navigationStrings.MAP);
+              navigation.navigate(navigationStrings.MAP, {
+                longitude: item.longitude,
+                latitude: item.latitude,
+                title: item.title,
+                rating: item.rating,
+                image: item.image,
+              });
             }}>
             <View style={styles.imageView}>
               <Image

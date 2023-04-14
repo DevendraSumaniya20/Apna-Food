@@ -53,8 +53,8 @@
 		00E356EE1AD99517003FC87E /* Apna_FoodTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Apna_FoodTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* Apna_FoodTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Apna_FoodTests.m; sourceTree = "<group>"; };
-		0BAC99895CEF4F99AE347FB9 /* NunitoSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Bold.ttf"; path = "../source/assets/fonts/NunitoSans-Bold.ttf"; sourceTree = "<group>"; };
-		0FD65630D5834A40AAD922C1 /* FiraMono-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraMono-Regular.ttf"; path = "../source/assets/fonts/FiraMono-Regular.ttf"; sourceTree = "<group>"; };
+		0BAC99895CEF4F99AE347FB9 /* NunitoSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Bold.ttf"; path = "../source/assets/fonts/NunitoSans-Bold.ttf"; sourceTree = "<group>"; };
+		0FD65630D5834A40AAD922C1 /* FiraMono-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraMono-Regular.ttf"; path = "../source/assets/fonts/FiraMono-Regular.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Apna_Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Apna_Food.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Apna_Food/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = Apna_Food/AppDelegate.mm; sourceTree = "<group>"; };
@@ -62,34 +62,34 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Apna_Food/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Apna_Food/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Apna_Food-Apna_FoodTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Apna_Food-Apna_FoodTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		270B1FE68DAB43BFBDAFD1A3 /* Montserrat-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Italic-VariableFont_wght.ttf"; path = "../source/assets/fonts/Montserrat-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
-		2D153383B21D48DC996FD57B /* NunitoSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-BoldItalic.ttf"; path = "../source/assets/fonts/NunitoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		270B1FE68DAB43BFBDAFD1A3 /* Montserrat-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Italic-VariableFont_wght.ttf"; path = "../source/assets/fonts/Montserrat-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		2D153383B21D48DC996FD57B /* NunitoSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-BoldItalic.ttf"; path = "../source/assets/fonts/NunitoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-Apna_Food.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apna_Food.debug.xcconfig"; path = "Target Support Files/Pods-Apna_Food/Pods-Apna_Food.debug.xcconfig"; sourceTree = "<group>"; };
-		4BC46EC4C7C04A1FBD8D1770 /* NunitoSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-LightItalic.ttf"; path = "../source/assets/fonts/NunitoSans-LightItalic.ttf"; sourceTree = "<group>"; };
-		516AD50877304FE9B89019A1 /* TiroDevanagariHindi-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "TiroDevanagariHindi-Regular.ttf"; path = "../source/assets/fonts/TiroDevanagariHindi-Regular.ttf"; sourceTree = "<group>"; };
+		4BC46EC4C7C04A1FBD8D1770 /* NunitoSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-LightItalic.ttf"; path = "../source/assets/fonts/NunitoSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		516AD50877304FE9B89019A1 /* TiroDevanagariHindi-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "TiroDevanagariHindi-Regular.ttf"; path = "../source/assets/fonts/TiroDevanagariHindi-Regular.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-Apna_Food.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apna_Food.release.xcconfig"; path = "Target Support Files/Pods-Apna_Food/Pods-Apna_Food.release.xcconfig"; sourceTree = "<group>"; };
-		58FCAD1736AC49C087040D1F /* NunitoSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraBoldItalic.ttf"; path = "../source/assets/fonts/NunitoSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
-		590F764D05524CB384FE3E89 /* FiraMono-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraMono-Medium.ttf"; path = "../source/assets/fonts/FiraMono-Medium.ttf"; sourceTree = "<group>"; };
-		59C39373E9AE41F9907A04E8 /* NunitoSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-SemiBold.ttf"; path = "../source/assets/fonts/NunitoSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		58FCAD1736AC49C087040D1F /* NunitoSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraBoldItalic.ttf"; path = "../source/assets/fonts/NunitoSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		590F764D05524CB384FE3E89 /* FiraMono-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraMono-Medium.ttf"; path = "../source/assets/fonts/FiraMono-Medium.ttf"; sourceTree = "<group>"; };
+		59C39373E9AE41F9907A04E8 /* NunitoSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-SemiBold.ttf"; path = "../source/assets/fonts/NunitoSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-Apna_Food-Apna_FoodTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apna_Food-Apna_FoodTests.debug.xcconfig"; path = "Target Support Files/Pods-Apna_Food-Apna_FoodTests/Pods-Apna_Food-Apna_FoodTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-Apna_Food.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Apna_Food.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		63085C0CD69B4D00A6C05F6E /* Montserrat-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-VariableFont_wght.ttf"; path = "../source/assets/fonts/Montserrat-VariableFont_wght.ttf"; sourceTree = "<group>"; };
-		76A5F073FDB6402D80BCD427 /* JosefinSans-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "JosefinSans-VariableFont_wght.ttf"; path = "../source/assets/fonts/JosefinSans-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		63085C0CD69B4D00A6C05F6E /* Montserrat-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-VariableFont_wght.ttf"; path = "../source/assets/fonts/Montserrat-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		76A5F073FDB6402D80BCD427 /* JosefinSans-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "JosefinSans-VariableFont_wght.ttf"; path = "../source/assets/fonts/JosefinSans-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Apna_Food/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Apna_Food-Apna_FoodTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apna_Food-Apna_FoodTests.release.xcconfig"; path = "Target Support Files/Pods-Apna_Food-Apna_FoodTests/Pods-Apna_Food-Apna_FoodTests.release.xcconfig"; sourceTree = "<group>"; };
-		983DAE47B689464E9464C951 /* NunitoSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Regular.ttf"; path = "../source/assets/fonts/NunitoSans-Regular.ttf"; sourceTree = "<group>"; };
-		98A9CEA075204D9E87F00C9E /* NunitoSans-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-BlackItalic.ttf"; path = "../source/assets/fonts/NunitoSans-BlackItalic.ttf"; sourceTree = "<group>"; };
-		A34B25C75EE54AB3B9206396 /* NunitoSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraBold.ttf"; path = "../source/assets/fonts/NunitoSans-ExtraBold.ttf"; sourceTree = "<group>"; };
-		A86BED09F71848B4A9F5DC77 /* NunitoSans-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Black.ttf"; path = "../source/assets/fonts/NunitoSans-Black.ttf"; sourceTree = "<group>"; };
-		B32660A6F9774A8DB33EDF60 /* JosefinSans-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "JosefinSans-Italic-VariableFont_wght.ttf"; path = "../source/assets/fonts/JosefinSans-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
-		B653A20714534C6590CB56F6 /* NunitoSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Light.ttf"; path = "../source/assets/fonts/NunitoSans-Light.ttf"; sourceTree = "<group>"; };
-		B8E7FFF491594076835371C6 /* NunitoSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Italic.ttf"; path = "../source/assets/fonts/NunitoSans-Italic.ttf"; sourceTree = "<group>"; };
-		B9E9D6B0BD824E2F894EFBBF /* NunitoSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraLight.ttf"; path = "../source/assets/fonts/NunitoSans-ExtraLight.ttf"; sourceTree = "<group>"; };
-		C8EA465F3B83425BBA84ADC5 /* NunitoSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraLightItalic.ttf"; path = "../source/assets/fonts/NunitoSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
-		CFDE789F98114253A391B895 /* FiraMono-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraMono-Bold.ttf"; path = "../source/assets/fonts/FiraMono-Bold.ttf"; sourceTree = "<group>"; };
+		983DAE47B689464E9464C951 /* NunitoSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Regular.ttf"; path = "../source/assets/fonts/NunitoSans-Regular.ttf"; sourceTree = "<group>"; };
+		98A9CEA075204D9E87F00C9E /* NunitoSans-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-BlackItalic.ttf"; path = "../source/assets/fonts/NunitoSans-BlackItalic.ttf"; sourceTree = "<group>"; };
+		A34B25C75EE54AB3B9206396 /* NunitoSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraBold.ttf"; path = "../source/assets/fonts/NunitoSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		A86BED09F71848B4A9F5DC77 /* NunitoSans-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Black.ttf"; path = "../source/assets/fonts/NunitoSans-Black.ttf"; sourceTree = "<group>"; };
+		B32660A6F9774A8DB33EDF60 /* JosefinSans-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "JosefinSans-Italic-VariableFont_wght.ttf"; path = "../source/assets/fonts/JosefinSans-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		B653A20714534C6590CB56F6 /* NunitoSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Light.ttf"; path = "../source/assets/fonts/NunitoSans-Light.ttf"; sourceTree = "<group>"; };
+		B8E7FFF491594076835371C6 /* NunitoSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Italic.ttf"; path = "../source/assets/fonts/NunitoSans-Italic.ttf"; sourceTree = "<group>"; };
+		B9E9D6B0BD824E2F894EFBBF /* NunitoSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraLight.ttf"; path = "../source/assets/fonts/NunitoSans-ExtraLight.ttf"; sourceTree = "<group>"; };
+		C8EA465F3B83425BBA84ADC5 /* NunitoSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraLightItalic.ttf"; path = "../source/assets/fonts/NunitoSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		CFDE789F98114253A391B895 /* FiraMono-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraMono-Bold.ttf"; path = "../source/assets/fonts/FiraMono-Bold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F018A196945F4A8F9F5C7E18 /* TiroDevanagariHindi-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "TiroDevanagariHindi-Italic.ttf"; path = "../source/assets/fonts/TiroDevanagariHindi-Italic.ttf"; sourceTree = "<group>"; };
-		F38A5E1D0281454F958FF82B /* NunitoSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-SemiBoldItalic.ttf"; path = "../source/assets/fonts/NunitoSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		F018A196945F4A8F9F5C7E18 /* TiroDevanagariHindi-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "TiroDevanagariHindi-Italic.ttf"; path = "../source/assets/fonts/TiroDevanagariHindi-Italic.ttf"; sourceTree = "<group>"; };
+		F38A5E1D0281454F958FF82B /* NunitoSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-SemiBoldItalic.ttf"; path = "../source/assets/fonts/NunitoSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,7 +212,6 @@
 				76A5F073FDB6402D80BCD427 /* JosefinSans-VariableFont_wght.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -586,9 +585,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Apna_Food/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -613,8 +613,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0;
 				INFOPLIST_FILE = Apna_Food/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
