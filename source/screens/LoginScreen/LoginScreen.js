@@ -14,7 +14,6 @@ import TextinputWithLabel from '../../components/TextinputWithLabel';
 import ButtonCustomComponents from '../../components/ButtonCustomComponents';
 import colors from '../../assets/color/colors';
 import navigationStrings from '../../constant/navigationStrings';
-import DeviceInfo from 'react-native-device-info';
 
 const LoginScreen = ({navigation}) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -23,8 +22,6 @@ const LoginScreen = ({navigation}) => {
   const [password, setPassword] = useState();
   const [emailError, setEmailError] = useState();
   const [passwordError, setPasswordError] = useState();
-
-  let hasNotch = DeviceInfo.hasNotch();
 
   const LoginValidation = () => {
     const emailRegex = /\S+@\S+\.\S+/;

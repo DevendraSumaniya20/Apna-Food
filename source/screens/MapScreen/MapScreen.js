@@ -36,7 +36,7 @@ const MapScreen = ({route, navigation}) => {
       <CustomHeaderComponents
         label={'Map View'}
         onPress={() => {
-          navigation.navigate(navigationStrings.LOGIN);
+          navigation.navigate(navigationStrings.TABHOME);
         }}
       />
       <View style={styles.main}>

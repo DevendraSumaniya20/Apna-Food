@@ -1,5 +1,5 @@
 export default {
-  FoodApp: require('../assets/images/FoodApp.jpeg'),
+  FoodApp: require('../assets/images/FoodIcon.jpg'),
   showEye: require('../assets/images/showEye.png'),
   hideEye: require('../assets/images/hideEye.jpeg'),
   FoodIcon: require('../assets/images/FoodIcon.png'),

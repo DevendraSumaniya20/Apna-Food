@@ -1,13 +1,10 @@
 import {
-  StyleSheet,
   Text,
   View,
   Image,
   FlatList,
   ActivityIndicator,
   TouchableOpacity,
-  ScrollView,
-  StatusBar,
 } from 'react-native';
 
 import React, {useEffect, useState} from 'react';
@@ -82,16 +79,15 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <View style={styles.main}>
-      <TouchableOpacity>
-        <CustomHeaderComponents
-          label={'Restaurant List'}
-          onPress={() => {
-            navigation.navigate(navigationStrings.LOGIN);
-          }}
-        />
-      </TouchableOpacity>
+      <CustomHeaderComponents
+        label={'Restaurant List'}
+        onPress={() => {
+          navigation.navigate(navigationStrings.LOGIN);
+        }}
+      />
       {myData?.isLoading && <ActivityIndicator color="#005566" />}
       {myData?.error && <Text>{myData?.error}</Text>}
+
       {!myData?.isLoading && !myData?.error && (
         <FlatList
           data={data}
