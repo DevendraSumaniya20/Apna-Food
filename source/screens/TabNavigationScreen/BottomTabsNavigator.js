@@ -23,7 +23,6 @@ const BottomTabNavigator = () => {
         name="TabHome"
         component={HomeScreen}
         options={{
-          tabBarLabel: 'Home',
           tabBarIcon: ({color}) => (
             <Ionicons name="home" color={color} size={26} />
           ),
@@ -33,7 +32,6 @@ const BottomTabNavigator = () => {
         name="Map"
         component={MapScreen}
         options={{
-          tabBarLabel: 'Map',
           tabBarIcon: ({color}) => (
             <Ionicons name="map" color={color} size={26} />
           ),

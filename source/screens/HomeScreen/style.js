@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     backgroundColor: colors.HomeScreenBackGroundColor,
-    margin: moderateScale(5),
   },
   image: {
     height: moderateScale(70),
@@ -34,6 +33,7 @@ const styles = StyleSheet.create({
 
   subMain: {
     flexDirection: 'row',
+    margin: moderateScale(10),
     backgroundColor: colors.HomeScreenViewColor,
     padding: moderateScale(10),
     borderRadius: moderateScale(15),

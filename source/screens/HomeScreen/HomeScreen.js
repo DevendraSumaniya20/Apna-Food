@@ -5,9 +5,9 @@ import {
   Image,
   FlatList,
   ActivityIndicator,
-  SafeAreaView,
   TouchableOpacity,
   ScrollView,
+  StatusBar,
 } from 'react-native';
 
 import React, {useEffect, useState} from 'react';
@@ -19,7 +19,8 @@ import {Rating} from 'react-native-ratings';
 import styles from './style';
 import navigationStrings from '../../constant/navigationStrings';
 import {moderateScale, scale} from 'react-native-size-matters';
-import colors from '../../assets/color/colors';
+
+import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 
 const HomeScreen = ({navigation}) => {
   const [data, setData] = useState([]);
@@ -81,15 +82,23 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <View style={styles.main}>
-      {/* {myData?.isLoading && <ActivityIndicator color="#005566" />}
+      <TouchableOpacity>
+        <CustomHeaderComponents
+          label={'Restaurant List'}
+          onPress={() => {
+            navigation.navigate(navigationStrings.LOGIN);
+          }}
+        />
+      </TouchableOpacity>
+      {myData?.isLoading && <ActivityIndicator color="#005566" />}
       {myData?.error && <Text>{myData?.error}</Text>}
-      {!myData?.isLoading && !myData?.error && ( */}
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={item => item.id.toString()}
-      />
-      {/* )} */}
+      {!myData?.isLoading && !myData?.error && (
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={item => item.id.toString()}
+        />
+      )}
     </View>
   );
 };

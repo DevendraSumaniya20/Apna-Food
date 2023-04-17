@@ -15,8 +15,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  CustomHeaderComponentsView: {
+    flex: 1,
+  },
+
   map: {
-    ...StyleSheet.absoluteFillObject,
+    width: '100%',
+    height: '100%',
   },
   MapTopscreen: {
     backgroundColor: colors.white,

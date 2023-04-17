@@ -16,42 +16,32 @@ const Stack = createNativeStackNavigator();
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator
+        screenOptions={{
+          statusBarColor: colors.mainThemesColor,
+        }}>
         <Stack.Screen
           name={navigationStrings.LOGIN}
           component={LoginScreen}
-          options={{headerShown: false}}
+          options={{
+            headerShown: false,
+          }}
         />
         <Stack.Screen
           name={navigationStrings.HOME}
           component={BottomTabNavigator}
           options={{
-            headerShown: true,
-            headerStyle: {
-              backgroundColor: colors.mainThemesColor,
-            },
-            headerTintColor: colors.whiteOpacity80,
-            title: 'RestaurantList',
-            headerTitleStyle: {
-              fontSize: scale(17),
-              fontWeight: 'bold',
-            },
+            headerShown: false,
+            headerTintColor: colors.mainThemesColor,
+            statusBarColor: colors.mainThemesColor,
           }}
         />
         <Stack.Screen
           name={navigationStrings.MAP}
           component={MapScreen}
           options={{
-            headerShown: true,
-            headerStyle: {
-              backgroundColor: colors.mainThemesColor,
-            },
-            headerTintColor: colors.whiteOpacity80,
-            title: 'Map View',
-            headerTitleStyle: {
-              fontSize: scale(17),
-              fontWeight: 'bold',
-            },
+            headerShown: false,
+            headerTintColor: colors.mainThemesColor,
           }}
         />
       </Stack.Navigator>
@@ -60,5 +50,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-
-const styles = StyleSheet.create({});

@@ -10,23 +10,20 @@ const ButtonCustomComponents = ({
 }) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={{...styles.buttonStyle, ...buttonStyle}}>
+      <View style={styles.buttonStyle}>
         <Text style={styles.buttonText}>{buttonText}</Text>
       </View>
     </TouchableOpacity>
   );
 };
 
-export default ButtonCustomComponents;
-
 const styles = StyleSheet.create({
   buttonStyle: {
     height: moderateScale(50),
-    backgroundColor: colors.mainThemesColor,
     borderRadius: moderateScale(8),
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1,
+    backgroundColor: colors.mainThemesColor,
   },
   buttonText: {
     fontSize: scale(16),
@@ -37,3 +34,5 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
   },
 });
+
+export default ButtonCustomComponents;
