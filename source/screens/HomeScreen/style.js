@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.HomeScreenBackGroundColor,
   },
   image: {
-    height: moderateScale(70),
-    width: moderateScale(70),
+    height: moderateScale(50),
+    width: moderateScale(50),
     borderRadius: moderateScale(10),
   },
 
@@ -23,39 +23,67 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.locationBackGroundColor,
-    borderRadius: moderateScale(5),
+    borderRadius: moderateScale(8),
     padding: moderateScale(8),
   },
   locationIcon: {
-    height: moderateScale(30),
-    width: moderateScale(30),
+    height: moderateScale(25),
+    width: moderateScale(25),
   },
 
   subMain: {
+    flex: 1,
     flexDirection: 'row',
-    margin: moderateScale(10),
     backgroundColor: colors.HomeScreenViewColor,
-    padding: moderateScale(10),
-    borderRadius: moderateScale(15),
+    padding: moderateScale(12),
+    margin: verticalScale(10),
+    borderRadius: moderateScale(7),
     justifyContent: 'space-between',
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
-      width: 0,
-      height: 4,
+      height: moderateScale(8),
+      width: moderateScale(1),
     },
-    shadowOpacity: 0.32,
-    shadowRadius: 5.46,
+    shadowOpacity: moderateScale(0.1),
+    gap: moderateScale(30),
+  },
 
-    elevation: 9,
+  imageContainer: {
+    paddingRight: moderateScale(20),
   },
 
   imageTitile: {
-    fontSize: scale(16),
-    fontWeight: '600',
+    fontSize: scale(14),
+    fontWeight: '500',
     color: colors.black,
-    fontFamily: 'NunitoSans-ExtraBold',
+    fontFamily: 'NunitoSans-SemiBold',
     textTransform: 'capitalize',
+  },
+  starIcon: {
+    width: moderateScale(12),
+    height: moderateScale(12),
+    marginRight: moderateScale(5),
+  },
+  ratingContainer: {
+    marginTop: moderateScale(8),
+    flexDirection: 'row',
+  },
+  titleAndRatingContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  FlatListDataStyle: {
+    flex: 1,
+  },
+
+  activityIndicatorStyle: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'red',
   },
 });
 

@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
 
   CustomHeaderComponentsView: {
     flex: 1,
+    justifyContent: 'center',
   },
 
   map: {
@@ -25,12 +26,13 @@ const styles = StyleSheet.create({
   },
   MapTopscreen: {
     backgroundColor: colors.white,
-    justifyContent: 'space-evenly',
     alignItems: 'center',
     flexDirection: 'row',
     borderRadius: moderateScale(10),
-    padding: moderateScale(10),
     backgroundColor: 'white',
+    padding: verticalScale(12),
+    flex: 1,
+    gap: moderateScale(15),
   },
   MapShopImg: {
     height: moderateScale(40),
@@ -39,25 +41,32 @@ const styles = StyleSheet.create({
   TextTopTitle: {
     fontSize: scale(14),
     fontFamily: 'NunitoSans-bold',
-    margin: moderateScale(10),
   },
   MapTopscreenSecondView: {
+    justifyContent: 'space-between',
     flexDirection: 'column',
-    justifyContent: 'center',
+    alignItems: 'flex-start',
   },
   ratingStyle: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    marginTop: moderateScale(7),
   },
+
+  starIcon: {
+    width: moderateScale(13),
+    height: moderateScale(13),
+    marginRight: moderateScale(5),
+  },
+
   CalloutArrow: {
     position: 'absolute',
-    bottom: -8,
+    bottom: moderateScale(-8),
     alignSelf: 'center',
-    width: 5,
-    height: 5,
-    borderLeftWidth: 8,
-    borderRightWidth: 8,
-    borderTopWidth: 8,
+    width: moderateScale(5),
+    height: moderateScale(5),
+    borderLeftWidth: moderateScale(8),
+    borderRightWidth: moderateScale(8),
+    borderTopWidth: moderateScale(8),
     borderLeftColor: 'transparent',
     borderRightColor: 'transparent',
     borderTopColor: colors.white,

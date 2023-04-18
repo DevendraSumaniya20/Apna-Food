@@ -10,14 +10,16 @@ import {
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
+import DeviceInfo from 'react-native-device-info';
+
 import {fetchApiData} from '../../store/ApiSlice';
 import ImagePath from '../../constant/ImagePath';
-import {Rating} from 'react-native-ratings';
+
 import styles from './style';
 import navigationStrings from '../../constant/navigationStrings';
-import {moderateScale, scale} from 'react-native-size-matters';
 
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
+import colors from '../../assets/color/colors';
 
 const HomeScreen = ({navigation}) => {
   const [data, setData] = useState([]);
@@ -25,43 +27,78 @@ const HomeScreen = ({navigation}) => {
 
   const myData = useSelector(state => state.ApiSlice);
 
+  const generateRatingStars = ({rating}) => {
+    const filledStars = Math.floor(rating);
+    const halfFilledStar = Math.ceil(rating - filledStars);
+    const emptyStars = 5 - filledStars - halfFilledStar;
+
+    const ratingStars = [];
+
+    for (let i = 0; i < filledStars; i++) {
+      ratingStars.push(
+        <Image
+          key={i}
+          source={ImagePath.startFillIcon}
+          style={styles.starIcon}
+        />,
+      );
+    }
+    if (halfFilledStar) {
+      ratingStars.push(
+        <Image
+          key={filledStars}
+          source={ImagePath.startFillIcon}
+          style={styles.starIcon}
+        />,
+      );
+    }
+    for (let i = 0; i < emptyStars; i++) {
+      ratingStars.push(
+        <Image
+          key={filledStars + halfFilledStar + i}
+          source={ImagePath.startEmptyIcon}
+          style={styles.starIcon}
+        />,
+      );
+    }
+
+    return ratingStars;
+  };
+
   const renderItem = ({item}) => {
+    const ratingStars = generateRatingStars(item);
+
     return (
       <View style={styles.main}>
         <View style={styles.subMain}>
-          <Image style={styles.image} source={ImagePath.FoodIcon} />
-          <View>
-            <Text style={styles.imageTitile}>{item.title}</Text>
-
-            <View
-              style={{
-                marginTop: moderateScale(10),
-              }}>
-              <Rating
-                startingValue={item.rating}
-                readonly={true}
-                imageSize={15}
-              />
-            </View>
+          <View style={styles.imageContainer}>
+            <Image style={styles.image} source={ImagePath.FoodIcon} />
           </View>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate(navigationStrings.MAP, {
-                longitude: item.longitude,
-                latitude: item.latitude,
-                title: item.title,
-                rating: item.rating,
-                image: item.image,
-              });
-            }}>
-            <View style={styles.imageView}>
-              <Image
-                resizeMode="contain"
-                source={ImagePath.locationIcon}
-                style={styles.locationIcon}
-              />
+          <View style={styles.titleAndRatingContainer}>
+            <View>
+              <Text style={styles.imageTitile}>{item.title}</Text>
+
+              <View style={styles.ratingContainer}>{ratingStars}</View>
             </View>
-          </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate(navigationStrings.MAP, {
+                  longitude: item.longitude,
+                  latitude: item.latitude,
+                  title: item.title,
+                  rating: item.rating,
+                  image: item.image,
+                });
+              }}>
+              <View style={styles.imageView}>
+                <Image
+                  resizeMode="contain"
+                  source={ImagePath.locationIcon}
+                  style={styles.locationIcon}
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -85,16 +122,21 @@ const HomeScreen = ({navigation}) => {
           navigation.navigate(navigationStrings.LOGIN);
         }}
       />
-      {myData?.isLoading && <ActivityIndicator color="#005566" />}
-      {myData?.error && <Text>{myData?.error}</Text>}
 
-      {!myData?.isLoading && !myData?.error && (
-        <FlatList
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={item => item.id.toString()}
-        />
-      )}
+      <View style={styles.FlatListDataStyle}>
+        {!myData?.isLoading && !myData?.error && (
+          <FlatList
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={item => item.id.toString()}
+          />
+        )}
+        {myData?.isLoading && (
+          <View style={styles.activityIndicatorStyle}>
+            <ActivityIndicator color={colors.color1Home} size={'large'} />
+          </View>
+        )}
+      </View>
     </View>
   );
 };

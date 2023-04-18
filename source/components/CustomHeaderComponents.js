@@ -10,6 +10,7 @@ const CustomHeaderComponents = ({label, onPress}) => {
         <Text style={styles.backBtnText}>Back</Text>
       </TouchableOpacity>
       <Text style={styles.label}>{label}</Text>
+      <View style={{width: moderateScale(55)}} />
     </View>
   );
 };
@@ -30,12 +31,12 @@ const styles = StyleSheet.create({
     color: colors.white,
     textAlign: 'center',
     fontSize: scale(18),
-    fontWeight: '900',
+    fontWeight: '700',
   },
   backBtnText: {
     color: colors.white,
     fontWeight: '700',
-    fontSize: scale(16),
+    fontSize: scale(14),
   },
 });
 
