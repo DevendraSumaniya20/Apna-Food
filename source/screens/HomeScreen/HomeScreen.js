@@ -20,12 +20,26 @@ import navigationStrings from '../../constant/navigationStrings';
 
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import colors from '../../assets/color/colors';
+import Geolocation from '@react-native-community/geolocation';
 
 const HomeScreen = ({navigation}) => {
   const [data, setData] = useState([]);
+  const [location, setLocation] = useState(null);
+
   const dispatch = useDispatch();
 
   const myData = useSelector(state => state.ApiSlice);
+
+  useEffect(() => {
+    Geolocation.getCurrentPosition(
+      position => {
+        const {latitude, longitude} = position.coords;
+        setLocation({latitude, longitude});
+      },
+      error => console.log(error),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+    );
+  }, []);
 
   const generateRatingStars = ({rating}) => {
     const filledStars = Math.floor(rating);
@@ -88,6 +102,7 @@ const HomeScreen = ({navigation}) => {
                   title: item.title,
                   rating: item.rating,
                   image: item.image,
+                  location,
                 });
               }}>
               <View style={styles.imageView}>

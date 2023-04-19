@@ -1,12 +1,6 @@
-import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
-import MapView, {
-  Callout,
-  Circle,
-  Marker,
-  Overlay,
-  Polyline,
-} from 'react-native-maps';
+import React, {useState, useEffect} from 'react';
+import {Alert, Image, Text, View} from 'react-native';
+import MapView, {Callout, Circle, Marker, Polyline} from 'react-native-maps';
 import colors from '../../assets/color/colors';
 import ImagePath from '../../constant/ImagePath';
 import styles from './styles';
@@ -14,14 +8,19 @@ import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import navigationStrings from '../../constant/navigationStrings';
 import {moderateScale} from 'react-native-size-matters';
 
+import Geolocation from '@react-native-community/geolocation';
+
 const MapScreen = ({route, navigation}) => {
+  const [userLatitude, setUserLatitude] = useState(null);
+  const [userLongitude, setUserLongitude] = useState(null);
+
   const {longitude, latitude, rating, title, image} = route.params
     ? route.params
     : {};
 
   const region = {
-    latitude,
-    longitude,
+    latitude: latitude || userLatitude,
+    longitude: longitude || userLongitude,
     title,
     rating,
     image,
@@ -30,12 +29,27 @@ const MapScreen = ({route, navigation}) => {
   };
 
   const coordinate = [
-    {latitude: 23.0122822, longitude: 72.5059498},
-    {
-      latitude,
-      longitude,
-    },
+    {latitude: userLatitude, longitude: userLongitude},
+    {latitude, longitude},
   ];
+
+  console.log('Restaurant location:', latitude, longitude);
+
+  useEffect(() => {
+    Geolocation.getCurrentPosition(
+      position => {
+        console.log(
+          'Current position:',
+          position.coords.latitude,
+          position.coords.longitude,
+        );
+        setUserLatitude(position.coords.latitude);
+        setUserLongitude(position.coords.longitude);
+      },
+      error => setError(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+    );
+  }, []);
 
   const generateRatingStars = ({rating}) => {
     const filledStars = Math.floor(rating);
@@ -83,18 +97,21 @@ const MapScreen = ({route, navigation}) => {
           navigation.navigate(navigationStrings.TABHOME);
         }}
       />
+
       <View style={styles.main}>
-        <MapView style={styles.map} initialRegion={region}>
+        <MapView
+          style={styles.map}
+          initialRegion={region}
+          showsUserLocation={true}>
           <Circle
-            center={{latitude: 23.0122822, longitude: 72.5059498}}
+            center={{latitude, longitude}}
             radius={moderateScale(10)}
             fillColor={colors.mainThemesColorOp}
             strokeWidth={moderateScale(0.01)}
             zIndex={moderateScale(0)}
           />
-
           <Circle
-            center={{latitude: 23.0122822, longitude: 72.5059498}}
+            center={{latitude, longitude}}
             radius={moderateScale(4)}
             fillColor={colors.white}
             strokeColor={colors.mainThemesColor}
@@ -106,7 +123,9 @@ const MapScreen = ({route, navigation}) => {
             strokeColor={colors.mainThemesColor}
             strokeWidth={moderateScale(5)}
           />
+
           <Marker
+            draggable={true}
             coordinate={{latitude, longitude, title, rating, image}}
             image={ImagePath.ShopIcon}
             title={title}
@@ -132,6 +151,7 @@ const MapScreen = ({route, navigation}) => {
               <View style={styles.CalloutArrow} />
             </Callout>
           </Marker>
+
           <Circle
             center={{latitude, longitude}}
             radius={moderateScale(10)}
