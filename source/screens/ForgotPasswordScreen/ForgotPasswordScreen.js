@@ -6,16 +6,18 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Image,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import styles from './style';
 import colors from '../../assets/color/colors';
 import ButtonCustomComponents from '../../components/ButtonCustomComponents';
-import navigation from '../../navigation';
+
 import navigationStrings from '../../constant/navigationStrings';
 import TextinputWithLabel from '../../components/TextinputWithLabel';
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
-import {scale} from 'react-native-size-matters';
+import {moderateScale, scale} from 'react-native-size-matters';
+import ImagePath from '../../constant/ImagePath';
 
 const ForgotPasswordScreen = ({navigation}) => {
   const [email, setEmail] = useState();
@@ -46,7 +48,14 @@ const ForgotPasswordScreen = ({navigation}) => {
           }}
           label="Forgot Password"
         />
+
         <View style={styles.submain}>
+          <View style={styles.forgotPasswordView}>
+            <Image
+              source={ImagePath.ForgotPasswordImg}
+              style={styles.forgotImg}
+            />
+          </View>
           <View style={styles.ForgotPasswordView}>
             <Text style={styles.ForgotPasswordText}>Forgot Password</Text>
           </View>

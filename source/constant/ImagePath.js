@@ -8,4 +8,5 @@ export default {
   startEmptyIcon: require('../assets/images/Star-empty.png'),
   ShopIcon: require('../assets/images/shopIcon.png'),
   mapShopTitleImg: require('../assets/images/mapShopTitleImg.png'),
+  ForgotPasswordImg: require('../assets/images/ForgotPassword.jpeg'),
 };

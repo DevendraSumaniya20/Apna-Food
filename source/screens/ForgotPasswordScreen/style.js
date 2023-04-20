@@ -5,10 +5,20 @@ import colors from '../../assets/color/colors';
 const styles = StyleSheet.create({
   main: {
     flex: 1,
+    backgroundColor: colors.white,
   },
 
   submain: {
     paddingHorizontal: '5%',
+  },
+  forgotPasswordView: {
+    alignItems: 'center',
+    paddingTop: moderateScale(100),
+  },
+
+  forgotImg: {
+    width: moderateScale(200),
+    height: moderateScale(200),
   },
 
   ForgotPasswordText: {
@@ -19,9 +29,7 @@ const styles = StyleSheet.create({
     fontFamily: 'NunitoSans-Bold',
   },
 
-  ForgotPasswordView: {
-    marginTop: moderateScale(200),
-  },
+  ForgotPasswordView: {},
   ForgotPasswordTextDesc: {
     color: colors.black,
     lineHeight: moderateScale(20),

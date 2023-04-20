@@ -16,6 +16,7 @@ import colors from '../../assets/color/colors';
 import navigationStrings from '../../constant/navigationStrings';
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import {moderateScale} from 'react-native-size-matters';
+import DeviceInfo from 'react-native-device-info';
 
 const LoginScreen = ({navigation}) => {
   const [isVisible, setIsVisible] = useState(true);

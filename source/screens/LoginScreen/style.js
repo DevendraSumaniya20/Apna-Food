@@ -1,9 +1,4 @@
-import {
-  scale,
-  verticalScale,
-  moderateScale,
-  ScaledSheet,
-} from 'react-native-size-matters';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
 import colors from '../../assets/color/colors';
 import {StyleSheet} from 'react-native';
@@ -11,22 +6,22 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   main: {
     flex: 1,
+    backgroundColor: colors.white,
   },
   imageBackground: {
     height: moderateScale(200),
-    width: '100%',
   },
   mainStyle: {
     paddingHorizontal: '5%',
   },
 
   TextinputWithLabelView: {
-    marginTop: verticalScale(10),
+    marginTop: moderateScale(10),
   },
 
   forgotView: {
     alignSelf: 'flex-end',
-    marginVertical: moderateScale(30),
+    marginVertical: moderateScale(25),
   },
   forgotText: {
     fontSize: scale(16),
@@ -37,7 +32,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: verticalScale(30),
+    paddingVertical: verticalScale(50),
   },
 
   newAccountText: {

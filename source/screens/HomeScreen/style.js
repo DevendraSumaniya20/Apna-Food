@@ -1,9 +1,4 @@
-import {
-  scale,
-  verticalScale,
-  moderateScale,
-  ScaledSheet,
-} from 'react-native-size-matters';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
 import colors from '../../assets/color/colors';
 import {StyleSheet} from 'react-native';
@@ -11,7 +6,7 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    backgroundColor: colors.HomeScreenBackGroundColor,
+    backgroundColor: colors.white,
   },
   image: {
     height: moderateScale(50),
