@@ -3,13 +3,12 @@ import React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import MapScreen from '../screens/MapScreen/MapScreen';
 import navigationStrings from '../constant/navigationStrings';
 import colors from '../assets/color/colors';
-import {scale} from 'react-native-size-matters';
 import BottomTabNavigator from '../screens/TabNavigationScreen/BottomTabsNavigator';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,6 +38,15 @@ const Navigation = () => {
         <Stack.Screen
           name={navigationStrings.MAP}
           component={MapScreen}
+          options={{
+            headerShown: false,
+            headerTintColor: colors.mainThemesColor,
+          }}
+        />
+
+        <Stack.Screen
+          name={navigationStrings.FORGOTPASSWORD}
+          component={ForgotPasswordScreen}
           options={{
             headerShown: false,
             headerTintColor: colors.mainThemesColor,

@@ -4,4 +4,5 @@ export default {
   MAP: 'Map',
   BOTTOMTABNAVIGATOR: 'BottomTabNavigator',
   TABHOME: 'TabHome',
+  FORGOTPASSWORD: 'ForgotPassword',
 };

@@ -10,7 +10,7 @@ const ButtonCustomComponents = ({
 }) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={styles.buttonStyle}>
+      <View style={{...styles.buttonStyle, buttonStyle}}>
         <Text style={styles.buttonText}>{buttonText}</Text>
       </View>
     </TouchableOpacity>

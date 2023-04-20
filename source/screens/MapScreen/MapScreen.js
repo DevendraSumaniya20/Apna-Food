@@ -24,16 +24,14 @@ const MapScreen = ({route, navigation}) => {
     title,
     rating,
     image,
-    latitudeDelta: 5,
-    longitudeDelta: 5,
+    latitudeDelta: 105,
+    longitudeDelta: 105,
   };
 
   const coordinate = [
     {latitude: userLatitude, longitude: userLongitude},
     {latitude, longitude},
   ];
-
-  console.log('Restaurant location:', latitude, longitude);
 
   useEffect(() => {
     Geolocation.getCurrentPosition(
