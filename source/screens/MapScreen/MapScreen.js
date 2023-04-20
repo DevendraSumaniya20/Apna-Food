@@ -91,6 +91,7 @@ const MapScreen = ({route, navigation}) => {
     <View style={styles.CustomHeaderComponentsView}>
       <CustomHeaderComponents
         label={'Map View'}
+        back={'Back'}
         onPress={() => {
           navigation.navigate(navigationStrings.TABHOME);
         }}

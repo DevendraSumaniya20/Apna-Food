@@ -14,6 +14,8 @@ import TextinputWithLabel from '../../components/TextinputWithLabel';
 import ButtonCustomComponents from '../../components/ButtonCustomComponents';
 import colors from '../../assets/color/colors';
 import navigationStrings from '../../constant/navigationStrings';
+import CustomHeaderComponents from '../../components/CustomHeaderComponents';
+import {moderateScale} from 'react-native-size-matters';
 
 const LoginScreen = ({navigation}) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -50,42 +52,46 @@ const LoginScreen = ({navigation}) => {
     } else if (email === 'Devendra@gmail.com' && password === 'D123456789@d') {
       setEmailError('');
       setPasswordError('');
+
       navigation.navigate(navigationStrings.HOME);
     }
   };
 
   return (
     <View style={styles.main}>
+      <CustomHeaderComponents paddingTop={moderateScale(20)} />
       <ImageBackground
         source={ImagePath.FoodApp}
         style={styles.imageBackground}></ImageBackground>
       <View style={styles.mainStyle}>
-        <TextinputWithLabel
-          onchangeText={item => {
-            setEmail(item);
-          }}
-          value={email}
-          setValue={setEmail}
-          placeholder="Enter an Email or Phone"
-          label="Email or Phone :"
-          placeholderTextColor={colors.blackOpacity50}
-        />
+        <View style={styles.TextinputWithLabelView}>
+          <TextinputWithLabel
+            onchangeText={item => {
+              setEmail(item);
+            }}
+            value={email}
+            setValue={setEmail}
+            placeholder="Enter an Email or Phone"
+            placeholderTextColor={colors.blackOpacity30}
+          />
+        </View>
         <Text style={styles.errorStyle}>{emailError}</Text>
-        <TextinputWithLabel
-          value={password}
-          setValue={setPassword}
-          placeholder="Enter a Password"
-          label="Password :"
-          placeholderTextColor={colors.blackOpacity50}
-          secureTextEntry={isVisible}
-          rightIcon={!isVisible ? ImagePath.showEye : ImagePath.hideEye}
-          onPressRight={() => {
-            setIsVisible(!isVisible);
-          }}
-          onchangeText={item => {
-            setPassword(item);
-          }}
-        />
+        <View style={styles.TextinputWithLabelView}>
+          <TextinputWithLabel
+            value={password}
+            setValue={setPassword}
+            placeholder="Enter a Password"
+            placeholderTextColor={colors.blackOpacity30}
+            secureTextEntry={isVisible}
+            rightIcon={!isVisible ? ImagePath.showEye : ImagePath.hideEye}
+            onPressRight={() => {
+              setIsVisible(!isVisible);
+            }}
+            onchangeText={item => {
+              setPassword(item);
+            }}
+          />
+        </View>
         <Text style={styles.errorStyle}>{passwordError}</Text>
         <TouchableOpacity
           activeOpacity={0.5}
@@ -93,10 +99,12 @@ const LoginScreen = ({navigation}) => {
           onPress={() => navigation.navigate(navigationStrings.FORGOTPASSWORD)}>
           <Text style={styles.forgotText}>Forgot Password ?</Text>
         </TouchableOpacity>
-        <ButtonCustomComponents
-          buttonText="Login"
-          onPress={() => LoginValidation()}
-        />
+        <View style={styles.buttonStyle}>
+          <ButtonCustomComponents
+            buttonText="Login"
+            onPress={() => LoginValidation()}
+          />
+        </View>
       </View>
       <View style={styles.bottomView}>
         <Text style={styles.newAccountText}>Don't have an account? </Text>

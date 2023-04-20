@@ -10,8 +10,6 @@ import {
 import React from 'react';
 import colors from '../assets/color/colors';
 
-import fontPath from '../constant/fontPath';
-
 const TextinputWithLabel = ({
   label,
   placeholder,
@@ -60,13 +58,13 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.borderColor,
     borderRadius: moderateScale(5),
     justifyContent: 'center',
-    marginTop: verticalScale(8),
+    paddingTop: verticalScale(8),
   },
   inlineStyle: {
     paddingVertical: moderateScale(7),
     paddingLeft: moderateScale(1),
     textAlign: 'left',
-    marginTop: verticalScale(5),
+    paddingTop: verticalScale(5),
     fontSize: scale(14),
     flex: 1,
     fontFamily: 'NunitoSans-Bold',
@@ -74,7 +72,7 @@ const styles = StyleSheet.create({
   labelTextStyle: {
     color: colors.blackOpacity50,
     fontSize: scale(14),
-    marginTop: moderateScale(15),
+    marginTop: moderateScale(14),
     fontFamily: 'NunitoSans-SemiBold',
   },
   flexView: {

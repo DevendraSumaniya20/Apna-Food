@@ -1,5 +1,6 @@
 import {
   Alert,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -14,6 +15,7 @@ import navigation from '../../navigation';
 import navigationStrings from '../../constant/navigationStrings';
 import TextinputWithLabel from '../../components/TextinputWithLabel';
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
+import {scale} from 'react-native-size-matters';
 
 const ForgotPasswordScreen = ({navigation}) => {
   const [email, setEmail] = useState();
@@ -35,44 +37,50 @@ const ForgotPasswordScreen = ({navigation}) => {
   };
 
   return (
-    <View style={styles.main}>
-      <CustomHeaderComponents
-        onPress={() => {
-          navigation.navigate(navigationStrings.LOGIN);
-        }}
-        label="Forgot Password"
-      />
-      <View style={styles.ForgotPasswordView}>
-        <Text style={styles.ForgotPasswordText}>ForgotPassword</Text>
-      </View>
-      <View style={styles.ForgotPasswordTextDescView}>
-        <Text style={styles.ForgotPasswordTextDesc}>
-          Please Enter your Here youe account associated Email to verify your
-          account
-        </Text>
-      </View>
-      <View>
-        <TextinputWithLabel
-          onchangeText={item => {
-            setEmail(item);
+    <ScrollView>
+      <View style={styles.main}>
+        <CustomHeaderComponents
+          back={'Back'}
+          onPress={() => {
+            navigation.navigate(navigationStrings.LOGIN);
           }}
-          value={email}
-          setValue={setEmail}
-          placeholder="Enter an Email "
-          placeholderTextColor={colors.blackOpacity30}
+          label="Forgot Password"
         />
+        <View style={styles.submain}>
+          <View style={styles.ForgotPasswordView}>
+            <Text style={styles.ForgotPasswordText}>Forgot Password</Text>
+          </View>
+          <View style={styles.ForgotPasswordTextDescView}>
+            <Text style={styles.ForgotPasswordTextDesc}>
+              Please Enter associated Email to verify your account
+            </Text>
+          </View>
+          <View style={styles.MainContentView}>
+            <TextinputWithLabel
+              onchangeText={item => {
+                setEmail(item);
+              }}
+              value={email}
+              setValue={setEmail}
+              placeholder="Enter an Email "
+              placeholderTextColor={colors.blackOpacity30}
+            />
+          </View>
+          <View style={styles.errorStyleView}>
+            <Text style={styles.errorStyle}>{showError}</Text>
+          </View>
+          <TouchableOpacity onPress={handleForgotPassword}>
+            <View style={styles.buttonStyle}>
+              <ButtonCustomComponents
+                buttonText="Submit"
+                onPress={handleForgotPassword}
+                fontSize={scale(16)}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
-      <View style={styles.errorStyleView}>
-        <Text style={styles.errorStyle}>{showError}</Text>
-      </View>
-      <TouchableOpacity onPress={handleForgotPassword}>
-        <ButtonCustomComponents
-          buttonStyle={styles.buttonStyle}
-          buttonText="Submit"
-          onPress={handleForgotPassword}
-        />
-      </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 

@@ -6,12 +6,18 @@ import colors from '../assets/color/colors';
 const ButtonCustomComponents = ({
   buttonText,
   buttonStyle,
+  color = '#fff',
+  fontWeight = '800',
+  fontSize = scale(16),
+
   onPress = () => {},
 }) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={{...styles.buttonStyle, buttonStyle}}>
-        <Text style={styles.buttonText}>{buttonText}</Text>
+        <Text style={[styles.buttonText, {color, fontWeight, fontSize}]}>
+          {buttonText}
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -19,7 +25,7 @@ const ButtonCustomComponents = ({
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    height: moderateScale(50),
+    height: verticalScale(50),
     borderRadius: moderateScale(8),
     justifyContent: 'center',
     alignItems: 'center',

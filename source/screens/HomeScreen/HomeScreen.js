@@ -132,6 +132,7 @@ const HomeScreen = ({navigation}) => {
   return (
     <View style={styles.main}>
       <CustomHeaderComponents
+        back={'Back'}
         label={'Restaurant List'}
         onPress={() => {
           navigation.navigate(navigationStrings.LOGIN);

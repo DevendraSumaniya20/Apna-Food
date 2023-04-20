@@ -3,11 +3,16 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import colors from '../assets/color/colors';
 
-const CustomHeaderComponents = ({label, onPress}) => {
+const CustomHeaderComponents = ({
+  label,
+  onPress,
+  back,
+  paddingTop = moderateScale(40),
+}) => {
   return (
-    <View style={styles.header}>
+    <View style={[styles.header, {paddingTop}]}>
       <TouchableOpacity style={styles.backBtn} onPress={onPress}>
-        <Text style={styles.backBtnText}>Back</Text>
+        <Text style={styles.backBtnText}>{back}</Text>
       </TouchableOpacity>
       <Text style={styles.label}>{label}</Text>
       <View style={{width: moderateScale(55)}} />
@@ -20,7 +25,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.mainThemesColor,
     flexDirection: 'row',
     alignItems: 'center',
-    height: verticalScale(60),
     paddingTop: verticalScale(30),
   },
   backBtn: {

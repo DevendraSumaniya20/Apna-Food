@@ -1,4 +1,3 @@
-import {version} from 'react';
 import {StyleSheet} from 'react-native';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import colors from '../../assets/color/colors';
@@ -8,24 +7,33 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
+  submain: {
+    paddingHorizontal: '5%',
+  },
+
   ForgotPasswordText: {
     fontSize: scale(30),
     alignSelf: 'center',
-    color: '#000',
+    color: colors.mainThemesColor,
     fontWeight: `bold`,
     fontFamily: 'NunitoSans-Bold',
   },
 
   ForgotPasswordView: {
-    paddingTop: moderateScale(250),
+    marginTop: moderateScale(200),
   },
   ForgotPasswordTextDesc: {
     color: colors.black,
-    letterSpacing: scale(1),
+    lineHeight: moderateScale(20),
+    textAlign: 'center',
   },
 
   ForgotPasswordTextDescView: {
-    paddingTop: moderateScale(20),
+    marginTop: moderateScale(8),
+  },
+
+  MainContentView: {
+    paddingTop: moderateScale(30),
   },
 
   textInputView: {
@@ -36,8 +44,8 @@ const styles = StyleSheet.create({
   },
 
   errorStyleView: {
-    paddingTop: moderateScale(14),
-    alignItems: 'center',
+    marginTop: moderateScale(8),
+    marginBottom: moderateScale(20),
   },
 
   errorStyle: {
@@ -48,17 +56,10 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   submitView: {
-    paddingTop: moderateScale(100),
+    marginTop: moderateScale(100),
     width: moderateScale(300),
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  buttonStyle: {
-    height: moderateScale(50),
-    borderRadius: moderateScale(8),
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.mainThemesColor,
   },
 });
 

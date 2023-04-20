@@ -18,8 +18,12 @@ const styles = StyleSheet.create({
   },
   mainStyle: {
     paddingHorizontal: '5%',
-    paddingVertical: verticalScale(44),
   },
+
+  TextinputWithLabelView: {
+    marginTop: verticalScale(10),
+  },
+
   forgotView: {
     alignSelf: 'flex-end',
     marginVertical: moderateScale(30),
@@ -33,6 +37,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingVertical: verticalScale(30),
   },
 
   newAccountText: {
@@ -42,7 +47,7 @@ const styles = StyleSheet.create({
     fontFamily: 'NunitoSans-ExtraLightItalic',
   },
   signUpText: {
-    fontWeight: 'bold',
+    fontWeight: '600',
     fontSize: scale(16),
     color: colors.mainThemesColor,
     textTransform: 'capitalize',
