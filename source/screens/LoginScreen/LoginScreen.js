@@ -75,9 +75,7 @@ const LoginScreen = ({navigation}) => {
             placeholder="Enter an Email or Phone"
             placeholderTextColor={colors.blackOpacity30}
           />
-        </View>
-        <Text style={styles.errorStyle}>{emailError}</Text>
-        <View style={styles.TextinputWithLabelView}>
+          <Text style={styles.errorStyle}>{emailError}</Text>
           <TextinputWithLabel
             value={password}
             setValue={setPassword}

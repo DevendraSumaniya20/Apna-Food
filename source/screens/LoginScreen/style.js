@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
 
   TextinputWithLabelView: {
-    marginTop: moderateScale(10),
+    paddingTop: moderateScale(40),
   },
 
   forgotView: {
