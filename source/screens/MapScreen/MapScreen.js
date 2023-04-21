@@ -14,13 +14,17 @@ const MapScreen = ({route, navigation}) => {
   const [userLatitude, setUserLatitude] = useState(null);
   const [userLongitude, setUserLongitude] = useState(null);
 
-  const {longitude, latitude, rating, title, image} = route.params
-    ? route.params
-    : {};
+  const {
+    longitude = userLongitude,
+    latitude = userLatitude,
+    rating,
+    title,
+    image,
+  } = route.params || {};
 
   const region = {
-    latitude: latitude || userLatitude,
-    longitude: longitude || userLongitude,
+    latitude: latitude ?? userLatitude,
+    longitude: longitude ?? userLongitude,
     title,
     rating,
     image,
@@ -36,11 +40,6 @@ const MapScreen = ({route, navigation}) => {
   useEffect(() => {
     Geolocation.getCurrentPosition(
       position => {
-        console.log(
-          'Current position:',
-          position.coords.latitude,
-          position.coords.longitude,
-        );
         setUserLatitude(position.coords.latitude);
         setUserLongitude(position.coords.longitude);
       },
@@ -123,7 +122,6 @@ const MapScreen = ({route, navigation}) => {
               strokeColor={colors.mainThemesColor}
               strokeWidth={moderateScale(5)}
             />
-
             <Marker
               draggable={true}
               coordinate={{latitude, longitude, title, rating, image}}
@@ -151,7 +149,6 @@ const MapScreen = ({route, navigation}) => {
                 <View style={styles.CalloutArrow} />
               </Callout>
             </Marker>
-
             <Circle
               center={{latitude, longitude}}
               radius={moderateScale(10)}
