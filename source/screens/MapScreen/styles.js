@@ -24,6 +24,16 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+
+  indicator: {
+    paddingTop: moderateScale(5),
+    backgroundColor: colors.white,
+    borderRadius: moderateScale(5),
+  },
+  coordinateText: {
+    fontSize: scale(14),
+  },
+
   MapTopscreen: {
     backgroundColor: colors.white,
     alignItems: 'center',

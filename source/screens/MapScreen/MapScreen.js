@@ -14,6 +14,32 @@ const MapScreen = ({route, navigation}) => {
   const [userLatitude, setUserLatitude] = useState(null);
   const [userLongitude, setUserLongitude] = useState(null);
 
+  const [region, setRegion] = useState({
+    latitude: latitude,
+    longitude: longitude,
+    latitudeDelta: 100,
+    longitudeDelta: 100,
+  });
+
+  const onRegionChangeComplete = newRegion => {
+    setRegion(newRegion);
+  };
+
+  const CustomIndicator = ({region}) => {
+    const {latitude, longitude} = region;
+    if (latitude && longitude) {
+      return (
+        <View style={styles.indicator}>
+          <Text style={styles.coordinateText}>
+            Latitude: {latitude.toFixed(4)}, Longitude: {longitude.toFixed(4)}
+          </Text>
+        </View>
+      );
+    } else {
+      return null;
+    }
+  };
+
   const {
     longitude = userLongitude,
     latitude = userLatitude,
@@ -21,16 +47,6 @@ const MapScreen = ({route, navigation}) => {
     title,
     image,
   } = route.params || {};
-
-  const region = {
-    latitude: latitude ?? userLatitude,
-    longitude: longitude ?? userLongitude,
-    title,
-    rating,
-    image,
-    latitudeDelta: 105,
-    longitudeDelta: 105,
-  };
 
   const coordinate = [
     {latitude: userLatitude, longitude: userLongitude},
@@ -101,7 +117,9 @@ const MapScreen = ({route, navigation}) => {
           <MapView
             style={styles.map}
             initialRegion={region}
-            showsUserLocation={true}>
+            showsUserLocation={true}
+            onRegionChangeComplete={onRegionChangeComplete}>
+            <CustomIndicator region={region} />
             <Circle
               center={{latitude, longitude}}
               radius={moderateScale(10)}

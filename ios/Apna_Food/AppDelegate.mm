@@ -1,5 +1,8 @@
 #import "AppDelegate.h"
 //#import <GoogleMaps/GoogleMaps.h>
+#import <CoreLocation/CoreLocation.h>
+#import <React/RCTConvert.h>
+
 
 #import <React/RCTBundleURLProvider.h>
 
