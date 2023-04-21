@@ -29,9 +29,13 @@ const styles = StyleSheet.create({
     paddingTop: moderateScale(5),
     backgroundColor: colors.white,
     borderRadius: moderateScale(5),
+    alignItems: 'center',
+    backgroundColor: colors.mainThemesColor,
   },
   coordinateText: {
-    fontSize: scale(14),
+    fontSize: scale(15),
+    color: colors.white,
+    fontWeight: '600',
   },
 
   MapTopscreen: {

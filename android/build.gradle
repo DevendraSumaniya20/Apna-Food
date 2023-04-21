@@ -5,7 +5,6 @@ buildscript {
 
 
 
-         We have 3 options for deviceId:
 
  //Option 1 (latest):
     firebaseIidVersion = "19.0.1" // default: "19.0.1"

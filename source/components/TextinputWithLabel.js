@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(5),
     justifyContent: 'center',
     paddingTop: verticalScale(8),
+    color: colors.black,
   },
   inlineStyle: {
     paddingVertical: moderateScale(7),
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
     fontSize: scale(14),
     flex: 1,
     fontFamily: 'NunitoSans-Bold',
+    color: colors.black,
   },
   labelTextStyle: {
     color: colors.blackOpacity50,
