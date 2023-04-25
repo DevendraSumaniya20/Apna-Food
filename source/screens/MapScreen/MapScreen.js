@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Alert, Image, Text, View} from 'react-native';
+import {ActivityIndicator, Alert, Image, Text, View} from 'react-native';
 import MapView, {Callout, Circle, Marker, Polyline} from 'react-native-maps';
 import colors from '../../assets/color/colors';
 import ImagePath from '../../constant/ImagePath';
@@ -13,6 +13,13 @@ import Geolocation from '@react-native-community/geolocation';
 const MapScreen = ({route, navigation}) => {
   const [userLatitude, setUserLatitude] = useState(null);
   const [userLongitude, setUserLongitude] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [mapVisible, setMapVisible] = useState(false);
+
+  const onMapReady = () => {
+    setLoading(false);
+    console.log('Map is ready');
+  };
 
   const [region, setRegion] = useState({
     latitude: latitude,
@@ -24,45 +31,6 @@ const MapScreen = ({route, navigation}) => {
   const onRegionChangeComplete = newRegion => {
     setRegion(newRegion);
   };
-
-  const CustomIndicator = ({region}) => {
-    const {latitude, longitude} = region;
-    if (latitude && longitude) {
-      return (
-        <View style={styles.indicator}>
-          <Text style={styles.coordinateText}>
-            Latitude: {latitude.toFixed(4)}, Longitude: {longitude.toFixed(4)}
-          </Text>
-        </View>
-      );
-    } else {
-      return null;
-    }
-  };
-
-  const {
-    longitude = userLongitude,
-    latitude = userLatitude,
-    rating,
-    title,
-    image,
-  } = route.params || {};
-
-  const coordinate = [
-    {latitude: userLatitude, longitude: userLongitude},
-    {latitude, longitude},
-  ];
-
-  useEffect(() => {
-    Geolocation.getCurrentPosition(
-      position => {
-        setUserLatitude(position.coords.latitude);
-        setUserLongitude(position.coords.longitude);
-      },
-      error => setError(error.message),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
-    );
-  }, []);
 
   const generateRatingStars = ({rating}) => {
     const filledStars = Math.floor(rating);
@@ -102,6 +70,52 @@ const MapScreen = ({route, navigation}) => {
     return ratingStars;
   };
 
+  const CustomIndicator = ({region}) => {
+    const {latitude, longitude} = region;
+    if (latitude && longitude) {
+      return (
+        <View style={styles.indicator}>
+          <Text style={styles.coordinateText}>
+            Latitude: {latitude.toFixed(4)}, Longitude: {longitude.toFixed(4)}
+          </Text>
+        </View>
+      );
+    } else {
+      return null;
+    }
+  };
+
+  const {
+    longitude = userLongitude,
+    latitude = userLatitude,
+    rating,
+    title,
+    image,
+  } = route.params || {};
+
+  const coordinate = [
+    {latitude: userLatitude, longitude: userLongitude},
+    {latitude, longitude},
+  ];
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setMapVisible(true);
+    }, 5000);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
+    Geolocation.getCurrentPosition(
+      position => {
+        setUserLatitude(position.coords.latitude);
+        setUserLongitude(position.coords.longitude);
+      },
+      error => setError(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+    );
+  }, []);
+
   return (
     <View style={styles.CustomHeaderComponentsView}>
       <CustomHeaderComponents
@@ -113,11 +127,12 @@ const MapScreen = ({route, navigation}) => {
       />
 
       <View style={styles.main}>
-        {latitude && longitude && (
+        {mapVisible ? (
           <MapView
             style={styles.map}
             initialRegion={region}
             showsUserLocation={true}
+            onMapReady={onMapReady}
             onRegionChangeComplete={onRegionChangeComplete}>
             <CustomIndicator region={region} />
             <Circle
@@ -177,10 +192,11 @@ const MapScreen = ({route, navigation}) => {
               lineJoin={'bevel'}
             />
           </MapView>
+        ) : (
+          <ActivityIndicator color={colors.mainThemesColor} size={'large'} />
         )}
       </View>
     </View>
   );
 };
-
 export default MapScreen;
