@@ -10,8 +10,6 @@ import {
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
-import DeviceInfo from 'react-native-device-info';
-
 import {fetchApiData} from '../../store/ApiSlice';
 import ImagePath from '../../constant/ImagePath';
 
@@ -29,17 +27,6 @@ const HomeScreen = ({navigation}) => {
   const dispatch = useDispatch();
 
   const myData = useSelector(state => state.ApiSlice);
-
-  useEffect(() => {
-    Geolocation.getCurrentPosition(
-      position => {
-        const {latitude, longitude} = position.coords;
-        setLocation({latitude, longitude});
-      },
-      error => console.log(error),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
-    );
-  }, []);
 
   const generateRatingStars = ({rating}) => {
     const filledStars = Math.floor(rating);

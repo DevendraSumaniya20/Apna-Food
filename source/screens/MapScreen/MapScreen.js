@@ -13,19 +13,12 @@ import Geolocation from '@react-native-community/geolocation';
 const MapScreen = ({route, navigation}) => {
   const [userLatitude, setUserLatitude] = useState(null);
   const [userLongitude, setUserLongitude] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [mapVisible, setMapVisible] = useState(false);
 
-  const onMapReady = () => {
-    setLoading(false);
-    console.log('Map is ready');
-  };
+  const [mapVisible, setMapVisible] = useState(false);
 
   const [region, setRegion] = useState({
     latitude: latitude,
     longitude: longitude,
-    latitudeDelta: 100,
-    longitudeDelta: 100,
   });
 
   const onRegionChangeComplete = newRegion => {
@@ -68,21 +61,6 @@ const MapScreen = ({route, navigation}) => {
     }
 
     return ratingStars;
-  };
-
-  const CustomIndicator = ({region}) => {
-    const {latitude, longitude} = region;
-    if (latitude && longitude) {
-      return (
-        <View style={styles.indicator}>
-          <Text style={styles.coordinateText}>
-            Latitude: {latitude.toFixed(4)}, Longitude: {longitude.toFixed(4)}
-          </Text>
-        </View>
-      );
-    } else {
-      return null;
-    }
   };
 
   const {
@@ -132,9 +110,8 @@ const MapScreen = ({route, navigation}) => {
             style={styles.map}
             initialRegion={region}
             showsUserLocation={true}
-            onMapReady={onMapReady}
-            onRegionChangeComplete={onRegionChangeComplete}>
-            <CustomIndicator region={region} />
+            // onRegionChangeComplete={onRegionChangeComplete}
+          >
             <Circle
               center={{latitude, longitude}}
               radius={moderateScale(10)}
