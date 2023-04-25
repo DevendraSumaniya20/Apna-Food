@@ -18,11 +18,9 @@ import navigationStrings from '../../constant/navigationStrings';
 
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import colors from '../../assets/color/colors';
-import Geolocation from '@react-native-community/geolocation';
 
 const HomeScreen = ({navigation}) => {
   const [data, setData] = useState([]);
-  const [location, setLocation] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -89,7 +87,6 @@ const HomeScreen = ({navigation}) => {
                   title: item.title,
                   rating: item.rating,
                   image: item.image,
-                  location,
                 });
               }}>
               <View style={styles.imageView}>
