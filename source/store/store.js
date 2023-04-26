@@ -1,19 +1,30 @@
-import {configureStore} from '@reduxjs/toolkit';
-
-import ApiSlice from './ApiSlice';
-
+import {combineReducers, configureStore} from '@reduxjs/toolkit';
+import {persistStore, persistReducer} from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import createSagaMiddleware from '@redux-saga/core';
 import apiSaga from './saga';
+import ApiSlice from './ApiSlice';
 
-const saga = createSagaMiddleware();
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+};
 
-const store = configureStore({
-  reducer: {
-    ApiSlice: ApiSlice,
-  },
-  middleware: [saga],
+const rootReducer = combineReducers({
+  ApiSlice: ApiSlice,
 });
 
-saga.run(apiSaga);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export default store;
+const sagaMiddleware = createSagaMiddleware();
+
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: [sagaMiddleware],
+});
+
+sagaMiddleware.run(apiSaga);
+
+const persistor = persistStore(store);
+
+export {store, persistor};

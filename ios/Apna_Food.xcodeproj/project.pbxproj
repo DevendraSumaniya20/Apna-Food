@@ -18,6 +18,7 @@
 		3F78DBD049C049EB83A37214 /* NunitoSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C8EA465F3B83425BBA84ADC5 /* NunitoSans-ExtraLightItalic.ttf */; };
 		3F8EBA19F36C4B7BA833D4A1 /* NunitoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BAC99895CEF4F99AE347FB9 /* NunitoSans-Bold.ttf */; };
 		413C45305BFF445BB7CC6D62 /* NunitoSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58FCAD1736AC49C087040D1F /* NunitoSans-ExtraBoldItalic.ttf */; };
+		432D683620779261C771EABA /* libPods-Apna_Food.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 558C3A3762BE89832068B82F /* libPods-Apna_Food.a */; };
 		4C7D01A72EB246A68E58774B /* NunitoSans-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A86BED09F71848B4A9F5DC77 /* NunitoSans-Black.ttf */; };
 		510B44733EA141629F6339EA /* FiraMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 590F764D05524CB384FE3E89 /* FiraMono-Medium.ttf */; };
 		5B2996B20631460CBA1E3428 /* FiraMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFDE789F98114253A391B895 /* FiraMono-Bold.ttf */; };
@@ -29,9 +30,8 @@
 		8F5E3B9B05A845719512C4EB /* FiraMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FD65630D5834A40AAD922C1 /* FiraMono-Regular.ttf */; };
 		9144BA8EA4084D8C80B946B0 /* NunitoSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F38A5E1D0281454F958FF82B /* NunitoSans-SemiBoldItalic.ttf */; };
 		95F7404006B04101AADED20D /* Montserrat-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63085C0CD69B4D00A6C05F6E /* Montserrat-VariableFont_wght.ttf */; };
-		9D4A54C9D59581421A51CF68 /* libPods-Apna_Food-Apna_FoodTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2E440FDBED26F6995BCC2F /* libPods-Apna_Food-Apna_FoodTests.a */; };
-		A0CE79AA4C21C71327B34ABE /* libPods-Apna_Food.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB63B04957D5937C891E73B /* libPods-Apna_Food.a */; };
 		B67F75BE8B1B466DAA8E3B60 /* NunitoSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A34B25C75EE54AB3B9206396 /* NunitoSans-ExtraBold.ttf */; };
+		B6A3A7EFECCE7D480C499A0F /* libPods-Apna_Food-Apna_FoodTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D30F10760D061BB6898000C /* libPods-Apna_Food-Apna_FoodTests.a */; };
 		BAC5EF5B833F434C90F3E978 /* JosefinSans-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76A5F073FDB6402D80BCD427 /* JosefinSans-VariableFont_wght.ttf */; };
 		D3CF2964BCA945FC8E226527 /* TiroDevanagariHindi-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 516AD50877304FE9B89019A1 /* TiroDevanagariHindi-Regular.ttf */; };
 		D9B328C56A604750855EE574 /* NunitoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 983DAE47B689464E9464C951 /* NunitoSans-Regular.ttf */; };
@@ -55,6 +55,7 @@
 		00E356F21AD99517003FC87E /* Apna_FoodTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Apna_FoodTests.m; sourceTree = "<group>"; };
 		0BAC99895CEF4F99AE347FB9 /* NunitoSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Bold.ttf"; path = "../source/assets/fonts/NunitoSans-Bold.ttf"; sourceTree = "<group>"; };
 		0FD65630D5834A40AAD922C1 /* FiraMono-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraMono-Regular.ttf"; path = "../source/assets/fonts/FiraMono-Regular.ttf"; sourceTree = "<group>"; };
+		128F9A6ECC0E2A4DAFFFEAC7 /* Pods-Apna_Food-Apna_FoodTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apna_Food-Apna_FoodTests.release.xcconfig"; path = "Target Support Files/Pods-Apna_Food-Apna_FoodTests/Pods-Apna_Food-Apna_FoodTests.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Apna_Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Apna_Food.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Apna_Food/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = Apna_Food/AppDelegate.mm; sourceTree = "<group>"; };
@@ -63,30 +64,29 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Apna_Food/main.m; sourceTree = "<group>"; };
 		270B1FE68DAB43BFBDAFD1A3 /* Montserrat-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Italic-VariableFont_wght.ttf"; path = "../source/assets/fonts/Montserrat-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		2D153383B21D48DC996FD57B /* NunitoSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-BoldItalic.ttf"; path = "../source/assets/fonts/NunitoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
-		3E2E440FDBED26F6995BCC2F /* libPods-Apna_Food-Apna_FoodTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Apna_Food-Apna_FoodTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC46EC4C7C04A1FBD8D1770 /* NunitoSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-LightItalic.ttf"; path = "../source/assets/fonts/NunitoSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		516AD50877304FE9B89019A1 /* TiroDevanagariHindi-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "TiroDevanagariHindi-Regular.ttf"; path = "../source/assets/fonts/TiroDevanagariHindi-Regular.ttf"; sourceTree = "<group>"; };
+		558C3A3762BE89832068B82F /* libPods-Apna_Food.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Apna_Food.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		58FCAD1736AC49C087040D1F /* NunitoSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraBoldItalic.ttf"; path = "../source/assets/fonts/NunitoSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		590F764D05524CB384FE3E89 /* FiraMono-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraMono-Medium.ttf"; path = "../source/assets/fonts/FiraMono-Medium.ttf"; sourceTree = "<group>"; };
 		59C39373E9AE41F9907A04E8 /* NunitoSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-SemiBold.ttf"; path = "../source/assets/fonts/NunitoSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		5D30F10760D061BB6898000C /* libPods-Apna_Food-Apna_FoodTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Apna_Food-Apna_FoodTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63085C0CD69B4D00A6C05F6E /* Montserrat-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-VariableFont_wght.ttf"; path = "../source/assets/fonts/Montserrat-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		76A5F073FDB6402D80BCD427 /* JosefinSans-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "JosefinSans-VariableFont_wght.ttf"; path = "../source/assets/fonts/JosefinSans-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		7D16D4E12D3F36099F777B8A /* Pods-Apna_Food-Apna_FoodTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apna_Food-Apna_FoodTests.debug.xcconfig"; path = "Target Support Files/Pods-Apna_Food-Apna_FoodTests/Pods-Apna_Food-Apna_FoodTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Apna_Food/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		86AF56594A2768FC76A23779 /* Pods-Apna_Food-Apna_FoodTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apna_Food-Apna_FoodTests.release.xcconfig"; path = "Target Support Files/Pods-Apna_Food-Apna_FoodTests/Pods-Apna_Food-Apna_FoodTests.release.xcconfig"; sourceTree = "<group>"; };
 		983DAE47B689464E9464C951 /* NunitoSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Regular.ttf"; path = "../source/assets/fonts/NunitoSans-Regular.ttf"; sourceTree = "<group>"; };
 		98A9CEA075204D9E87F00C9E /* NunitoSans-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-BlackItalic.ttf"; path = "../source/assets/fonts/NunitoSans-BlackItalic.ttf"; sourceTree = "<group>"; };
-		9C6F48C15B0B36049AB6ED85 /* Pods-Apna_Food.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apna_Food.release.xcconfig"; path = "Target Support Files/Pods-Apna_Food/Pods-Apna_Food.release.xcconfig"; sourceTree = "<group>"; };
 		A34B25C75EE54AB3B9206396 /* NunitoSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraBold.ttf"; path = "../source/assets/fonts/NunitoSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		A86BED09F71848B4A9F5DC77 /* NunitoSans-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Black.ttf"; path = "../source/assets/fonts/NunitoSans-Black.ttf"; sourceTree = "<group>"; };
-		ADB63B04957D5937C891E73B /* libPods-Apna_Food.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Apna_Food.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AEDA6F4F64B5CB9DC2E9070D /* Pods-Apna_Food.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apna_Food.debug.xcconfig"; path = "Target Support Files/Pods-Apna_Food/Pods-Apna_Food.debug.xcconfig"; sourceTree = "<group>"; };
 		B32660A6F9774A8DB33EDF60 /* JosefinSans-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "JosefinSans-Italic-VariableFont_wght.ttf"; path = "../source/assets/fonts/JosefinSans-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		B653A20714534C6590CB56F6 /* NunitoSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Light.ttf"; path = "../source/assets/fonts/NunitoSans-Light.ttf"; sourceTree = "<group>"; };
 		B8E7FFF491594076835371C6 /* NunitoSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Italic.ttf"; path = "../source/assets/fonts/NunitoSans-Italic.ttf"; sourceTree = "<group>"; };
-		B993330B39EFB0666169F88A /* Pods-Apna_Food-Apna_FoodTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apna_Food-Apna_FoodTests.debug.xcconfig"; path = "Target Support Files/Pods-Apna_Food-Apna_FoodTests/Pods-Apna_Food-Apna_FoodTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B9E9D6B0BD824E2F894EFBBF /* NunitoSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraLight.ttf"; path = "../source/assets/fonts/NunitoSans-ExtraLight.ttf"; sourceTree = "<group>"; };
+		C7FF9FB6751FCC8833BD30B9 /* Pods-Apna_Food.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apna_Food.release.xcconfig"; path = "Target Support Files/Pods-Apna_Food/Pods-Apna_Food.release.xcconfig"; sourceTree = "<group>"; };
 		C8EA465F3B83425BBA84ADC5 /* NunitoSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-ExtraLightItalic.ttf"; path = "../source/assets/fonts/NunitoSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		CFDE789F98114253A391B895 /* FiraMono-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraMono-Bold.ttf"; path = "../source/assets/fonts/FiraMono-Bold.ttf"; sourceTree = "<group>"; };
+		E4CA2E0F058329EADF48F880 /* Pods-Apna_Food.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apna_Food.debug.xcconfig"; path = "Target Support Files/Pods-Apna_Food/Pods-Apna_Food.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F018A196945F4A8F9F5C7E18 /* TiroDevanagariHindi-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "TiroDevanagariHindi-Italic.ttf"; path = "../source/assets/fonts/TiroDevanagariHindi-Italic.ttf"; sourceTree = "<group>"; };
 		F38A5E1D0281454F958FF82B /* NunitoSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-SemiBoldItalic.ttf"; path = "../source/assets/fonts/NunitoSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D4A54C9D59581421A51CF68 /* libPods-Apna_Food-Apna_FoodTests.a in Frameworks */,
+				B6A3A7EFECCE7D480C499A0F /* libPods-Apna_Food-Apna_FoodTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,7 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0CE79AA4C21C71327B34ABE /* libPods-Apna_Food.a in Frameworks */,
+				432D683620779261C771EABA /* libPods-Apna_Food.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,8 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				ADB63B04957D5937C891E73B /* libPods-Apna_Food.a */,
-				3E2E440FDBED26F6995BCC2F /* libPods-Apna_Food-Apna_FoodTests.a */,
+				558C3A3762BE89832068B82F /* libPods-Apna_Food.a */,
+				5D30F10760D061BB6898000C /* libPods-Apna_Food-Apna_FoodTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -217,10 +217,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AEDA6F4F64B5CB9DC2E9070D /* Pods-Apna_Food.debug.xcconfig */,
-				9C6F48C15B0B36049AB6ED85 /* Pods-Apna_Food.release.xcconfig */,
-				B993330B39EFB0666169F88A /* Pods-Apna_Food-Apna_FoodTests.debug.xcconfig */,
-				86AF56594A2768FC76A23779 /* Pods-Apna_Food-Apna_FoodTests.release.xcconfig */,
+				E4CA2E0F058329EADF48F880 /* Pods-Apna_Food.debug.xcconfig */,
+				C7FF9FB6751FCC8833BD30B9 /* Pods-Apna_Food.release.xcconfig */,
+				7D16D4E12D3F36099F777B8A /* Pods-Apna_Food-Apna_FoodTests.debug.xcconfig */,
+				128F9A6ECC0E2A4DAFFFEAC7 /* Pods-Apna_Food-Apna_FoodTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -232,12 +232,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "Apna_FoodTests" */;
 			buildPhases = (
-				8A13283053BDE25FCBABDD38 /* [CP] Check Pods Manifest.lock */,
+				15AF81F08AC3B47166F2CEFD /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				C6232BC15E0AD797AB34638C /* [CP] Embed Pods Frameworks */,
-				FDD1F7FA2A7B3A5A331C5EEB /* [CP] Copy Pods Resources */,
+				DDA1353EC75B86D97EE6225D /* [CP] Embed Pods Frameworks */,
+				915CF1D1F51DB836FE5DC2E4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,14 +253,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Apna_Food" */;
 			buildPhases = (
-				C2086BCF89F0E067A3FBCFD1 /* [CP] Check Pods Manifest.lock */,
+				008627D84D529B0F1F5584A8 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				84C6E476DB890110577CFF55 /* [CP] Embed Pods Frameworks */,
-				B7A563F5D7C262DA33C9434B /* [CP] Copy Pods Resources */,
+				FA41CD9BF2477E309346CC0F /* [CP] Embed Pods Frameworks */,
+				ED54E455662A5A5F37159CFA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -350,79 +350,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/.xcode.env.local",
-				"$(SRCROOT)/.xcode.env",
-			);
-			name = "Bundle React Native code and images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
-		};
-		84C6E476DB890110577CFF55 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Apna_Food/Pods-Apna_Food-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Apna_Food/Pods-Apna_Food-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Apna_Food/Pods-Apna_Food-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8A13283053BDE25FCBABDD38 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Apna_Food-Apna_FoodTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B7A563F5D7C262DA33C9434B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Apna_Food/Pods-Apna_Food-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Apna_Food/Pods-Apna_Food-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Apna_Food/Pods-Apna_Food-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C2086BCF89F0E067A3FBCFD1 /* [CP] Check Pods Manifest.lock */ = {
+		008627D84D529B0F1F5584A8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -444,7 +372,62 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C6232BC15E0AD797AB34638C /* [CP] Embed Pods Frameworks */ = {
+		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/.xcode.env.local",
+				"$(SRCROOT)/.xcode.env",
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
+		};
+		15AF81F08AC3B47166F2CEFD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Apna_Food-Apna_FoodTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		915CF1D1F51DB836FE5DC2E4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Apna_Food-Apna_FoodTests/Pods-Apna_Food-Apna_FoodTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Apna_Food-Apna_FoodTests/Pods-Apna_Food-Apna_FoodTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Apna_Food-Apna_FoodTests/Pods-Apna_Food-Apna_FoodTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DDA1353EC75B86D97EE6225D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -459,6 +442,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Apna_Food-Apna_FoodTests/Pods-Apna_Food-Apna_FoodTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED54E455662A5A5F37159CFA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Apna_Food/Pods-Apna_Food-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Apna_Food/Pods-Apna_Food-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Apna_Food/Pods-Apna_Food-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA41CD9BF2477E309346CC0F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Apna_Food/Pods-Apna_Food-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Apna_Food/Pods-Apna_Food-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Apna_Food/Pods-Apna_Food-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -478,23 +495,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		FDD1F7FA2A7B3A5A331C5EEB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Apna_Food-Apna_FoodTests/Pods-Apna_Food-Apna_FoodTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Apna_Food-Apna_FoodTests/Pods-Apna_Food-Apna_FoodTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Apna_Food-Apna_FoodTests/Pods-Apna_Food-Apna_FoodTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -530,7 +530,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B993330B39EFB0666169F88A /* Pods-Apna_Food-Apna_FoodTests.debug.xcconfig */;
+			baseConfigurationReference = 7D16D4E12D3F36099F777B8A /* Pods-Apna_Food-Apna_FoodTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -557,7 +557,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86AF56594A2768FC76A23779 /* Pods-Apna_Food-Apna_FoodTests.release.xcconfig */;
+			baseConfigurationReference = 128F9A6ECC0E2A4DAFFFEAC7 /* Pods-Apna_Food-Apna_FoodTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -581,7 +581,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AEDA6F4F64B5CB9DC2E9070D /* Pods-Apna_Food.debug.xcconfig */;
+			baseConfigurationReference = E4CA2E0F058329EADF48F880 /* Pods-Apna_Food.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -609,7 +609,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C6F48C15B0B36049AB6ED85 /* Pods-Apna_Food.release.xcconfig */;
+			baseConfigurationReference = C7FF9FB6751FCC8833BD30B9 /* Pods-Apna_Food.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

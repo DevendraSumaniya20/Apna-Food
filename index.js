@@ -7,12 +7,16 @@ import App from './App';
 import {name as appName} from './app.json';
 
 import {Provider} from 'react-redux';
-import store from './source/store/store';
+
+import {store, persistor} from './source/store/store';
+import {PersistGate} from 'redux-persist/integration/react';
 
 const ApnaFood = () => {
   return (
     <Provider store={store}>
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   );
 };
