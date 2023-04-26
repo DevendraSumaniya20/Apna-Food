@@ -1,11 +1,5 @@
 /* eslint-disable react/self-closing-comp */
-import {
-  ImageBackground,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {ImageBackground, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 
 import ImagePath from '../../constant/ImagePath';
@@ -19,7 +13,6 @@ import {moderateScale} from 'react-native-size-matters';
 
 const LoginScreen = ({navigation}) => {
   const [isVisible, setIsVisible] = useState(true);
-
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [emailError, setEmailError] = useState();
