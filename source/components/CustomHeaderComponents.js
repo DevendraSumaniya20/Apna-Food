@@ -25,10 +25,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.mainThemesColor,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: verticalScale(30),
+    paddingTop: verticalScale(40),
   },
   backBtn: {
     paddingHorizontal: moderateScale(10),
+    padding: verticalScale(5),
   },
   label: {
     flex: 1,
@@ -36,6 +37,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: scale(18),
     fontWeight: '700',
+    paddingBottom: verticalScale(5),
   },
   backBtnText: {
     color: colors.white,
