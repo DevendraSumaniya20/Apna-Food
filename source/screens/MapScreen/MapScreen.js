@@ -51,6 +51,44 @@ const MapScreen = ({route, navigation}) => {
     );
   }, []);
 
+  const generateRatingStars = ({rating}) => {
+    const filledStars = Math.floor(rating);
+    const halfFilledStar = Math.ceil(rating - filledStars);
+    const emptyStars = 5 - filledStars - halfFilledStar;
+
+    const ratingStars = [];
+
+    for (let i = 0; i < filledStars; i++) {
+      ratingStars.push(
+        <Image
+          key={i}
+          source={ImagePath.startFillIcon}
+          style={styles.starIcon}
+        />,
+      );
+    }
+    if (halfFilledStar) {
+      ratingStars.push(
+        <Image
+          key={filledStars}
+          source={ImagePath.startEmptyIcon}
+          style={styles.starIcon}
+        />,
+      );
+    }
+    for (let i = 0; i < emptyStars; i++) {
+      ratingStars.push(
+        <Image
+          key={filledStars + halfFilledStar + i}
+          source={ImagePath.startEmptyIcon}
+          style={styles.starIcon}
+        />,
+      );
+    }
+
+    return ratingStars;
+  };
+
   return (
     <View style={styles.CustomHeaderComponentsView}>
       <CustomHeaderComponents
@@ -110,7 +148,9 @@ const MapScreen = ({route, navigation}) => {
                       </View>
                       <View style={styles.MapTopscreenSecondView}>
                         <Text style={styles.TextTopTitle}>{title}</Text>
-                        <View style={styles.ratingStyle}></View>
+                        <View style={styles.ratingStyle}>
+                          {generateRatingStars({rating})}
+                        </View>
                       </View>
                     </View>
 
