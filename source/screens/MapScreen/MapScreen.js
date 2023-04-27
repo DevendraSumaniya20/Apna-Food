@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {ActivityIndicator, Alert, Image, Text, View} from 'react-native';
+import {ActivityIndicator, Image, Text, View} from 'react-native';
 import MapView, {Callout, Circle, Marker, Polyline} from 'react-native-maps';
 import colors from '../../assets/color/colors';
 import ImagePath from '../../constant/ImagePath';
@@ -40,15 +40,19 @@ const MapScreen = ({route, navigation}) => {
   }, []);
 
   useEffect(() => {
-    Geolocation.getCurrentPosition(
-      position => {
-        setUserLatitude(position.coords.latitude);
-        setUserLongitude(position.coords.longitude);
-      },
-
-      error => setError(error.message),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
-    );
+    try {
+      Geolocation.getCurrentPosition(
+        position => {
+          setUserLatitude(position.coords.latitude);
+          setUserLongitude(position.coords.longitude);
+        },
+        error => setError(error.message),
+        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+      );
+    } catch (error) {
+      console.log('Error getting location: ', error);
+      setError(error.message);
+    }
   }, []);
 
   const generateRatingStars = ({rating}) => {
@@ -109,7 +113,8 @@ const MapScreen = ({route, navigation}) => {
                 style={styles.map}
                 initialRegion={region}
                 showsUserLocation={true}
-                onRegionChangeComplete={onRegionChangeComplete}>
+                onRegionChangeComplete={onRegionChangeComplete}
+                mapType={Platform.OS == 'android' ? 'none' : 'standard'}>
                 <Circle
                   center={{latitude, longitude}}
                   radius={moderateScale(10)}

@@ -45,7 +45,6 @@ const LoginScreen = ({navigation}) => {
     } else if (email === 'Devendra@gmail.com' && password === 'D123456789@d') {
       setEmailError('');
       setPasswordError('');
-
       navigation.navigate(navigationStrings.HOME);
     }
   };
