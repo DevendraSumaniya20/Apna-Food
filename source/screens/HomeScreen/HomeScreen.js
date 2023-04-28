@@ -113,6 +113,8 @@ const HomeScreen = ({navigation}) => {
     }
   }, [myData]);
 
+  console.log(myData);
+
   return (
     <View style={styles.main}>
       <CustomHeaderComponents
@@ -134,6 +136,18 @@ const HomeScreen = ({navigation}) => {
         {myData?.isLoading && (
           <View style={styles.activityIndicatorStyle}>
             <ActivityIndicator color={colors.color1Home} size={'large'} />
+          </View>
+        )}
+        {!myData?.isLoading && myData?.error && (
+          <View style={styles.errorMessageStyle}>
+            <Text style={styles.errorMessageText}>
+              Error: {myData.error}. Please try again later.
+            </Text>
+          </View>
+        )}
+        {!myData?.isLoading && !myData?.error && data.length === 0 && (
+          <View style={styles.noDataMessageStyle}>
+            <Text style={styles.noDataMessageText}>No data available.</Text>
           </View>
         )}
       </View>

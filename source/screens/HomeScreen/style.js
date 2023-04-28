@@ -78,7 +78,26 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  errorMessageStyle: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  errorMessageText: {
+    fontSize: scale(16),
     color: 'red',
+    textAlign: 'center',
+  },
+  noDataMessageStyle: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noDataMessageText: {
+    fontSize: scale(16),
+    color: 'gray',
+    textAlign: 'center',
   },
 });
 
