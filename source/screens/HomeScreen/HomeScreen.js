@@ -28,7 +28,9 @@ const HomeScreen = ({navigation}) => {
 
   const generateRatingStars = ({rating}) => {
     const filledStars = Math.floor(rating);
+
     const halfFilledStar = Math.ceil(rating - filledStars);
+
     const emptyStars = 5 - filledStars - halfFilledStar;
 
     const ratingStars = [];
