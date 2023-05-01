@@ -1,158 +1,78 @@
 import React, {useState, useEffect} from 'react';
-import {ActivityIndicator, Image, Text, View} from 'react-native';
-import MapView, {Callout, Circle, Marker, Polyline} from 'react-native-maps';
-import colors from '../../assets/color/colors';
-import ImagePath from '../../constant/ImagePath';
-import styles from './styles';
-import CustomHeaderComponents from '../../components/CustomHeaderComponents';
-import navigationStrings from '../../constant/navigationStrings';
-import {moderateScale} from 'react-native-size-matters';
+import {View} from 'react-native';
+import MapView, {Circle, Marker, Polyline} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
-import {PermissionsAndroid} from 'react-native';
+import {Text} from 'react-native-paper';
 
-const MapScreen = ({route, navigation}) => {
-  const [userLatitude, setUserLatitude] = useState(null);
-  const [userLongitude, setUserLongitude] = useState(null);
-  const [error, setError] = useState(null);
+const MapScreen = () => {
+  const [region, setRegion] = useState(null);
+  const [currentLocation, setCurrentLocation] = useState(null);
 
-  const [mapVisible, setMapVisible] = useState(false);
-
-  const [region, setRegion] = useState({
-    latitude: 22.6688,
-    longitude: 71.6762,
-    latitudeDelta: 10,
-    longitudeDelta: 10,
-  });
-
-  const onRegionChangeComplete = newRegion => {
-    setRegion(newRegion);
+  const newYorkLocation = {
+    latitude: 40.7128,
+    longitude: -74.006,
   };
 
-  const {longitude, latitude, rating, title, image} = route.params || {};
-
-  const coordinate = [
-    // {latitude: userLatitude, longitude: userLongitude},
-    {latitude: 22.3039, longitude: 70.8022}, // rajkot coordinate
-    {latitude: 23.0225, longitude: 72.5714}, // ahmedabad coordinate
-  ];
+  const coordinate = currentLocation ? [currentLocation, newYorkLocation] : [];
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setMapVisible(true);
-    }, 2000);
-    return () => clearTimeout(timeout);
-  }, []);
-
-  useEffect(() => {
+    let watchId;
     try {
-      Geolocation.getCurrentPosition(
+      watchId = Geolocation.watchPosition(
         position => {
-          setUserLatitude(position?.coords?.latitude);
-          setUserLongitude(position?.coords?.longitude);
+          setCurrentLocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            latitudeDelta: region ? region.latitudeDelta : 100,
+            longitudeDelta: region ? region.longitudeDelta : 100,
+          });
+          if (!region) {
+            setRegion({
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+              latitudeDelta: 100,
+              longitudeDelta: 100,
+            });
+          }
         },
-        error => setError(error.message),
-        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+        error => console.log(error),
+        {
+          enableHighAccuracy: true,
+          distanceFilter: 500,
+        },
       );
-    } catch (error) {
-      console.log('Error getting location: ', error);
-      setError(error.message);
+    } catch (e) {
+      console.log('Error while watching position: ', e);
     }
-  }, []);
+    return () => Geolocation.clearWatch(watchId);
+  }, [region]);
+
+  if (!region) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>Fetching the currentLocation Please Wait.... </Text>
+      </View>
+    );
+  }
 
   return (
-    <View style={styles.CustomHeaderComponentsView}>
-      <CustomHeaderComponents
-        label={'Map View'}
-        back={'Back'}
-        onPress={() => {
-          navigation.navigate(navigationStrings.TABHOME);
-        }}
-      />
-
-      <View style={styles.main}>
-        {error ? (
-          <Text style={styles.errorText}>{error}</Text>
-        ) : (
-          <>
-            {mapVisible ? (
-              <>
-                {latitude && longitude ? (
-                  <MapView
-                    style={styles.map}
-                    initialRegion={region}
-                    showsUserLocation={true}
-                    onRegionChangeComplete={onRegionChangeComplete}>
-                    <Circle
-                      center={{latitude, longitude}}
-                      radius={moderateScale(10)}
-                      fillColor={colors.mainThemesColorOp}
-                      strokeWidth={moderateScale(0.01)}
-                      zIndex={moderateScale(0)}
-                    />
-                    <Circle
-                      center={{latitude, longitude}}
-                      radius={moderateScale(4)}
-                      fillColor={colors.white}
-                      strokeColor={colors.mainThemesColor}
-                      strokeWidth={moderateScale(30)}
-                      zIndex={moderateScale(2)}
-                    />
-                    <Polyline
-                      coordinates={coordinate}
-                      strokeColor={colors.mainThemesColor}
-                      strokeWidth={moderateScale(5)}
-                    />
-                    <Marker
-                      draggable={true}
-                      coordinate={{latitude, longitude, title, rating, image}}
-                      image={ImagePath.ShopIcon}
-                      title={title}
-                      rating={rating}
-                      tappable={true}>
-                      <Callout tooltip>
-                        <View style={styles.MapTopscreen}>
-                          <View>
-                            <Image
-                              resizeMode="contain"
-                              style={styles.MapShopImg}
-                              source={ImagePath.mapShopTitleImg}
-                            />
-                          </View>
-                          <View style={styles.MapTopscreenSecondView}>
-                            <Text style={styles.TextTopTitle}>{title}</Text>
-                            <View style={styles.ratingStyle}></View>
-                          </View>
-                        </View>
-
-                        <View style={styles.CalloutArrow} />
-                      </Callout>
-                    </Marker>
-                    <Circle
-                      center={{latitude, longitude}}
-                      radius={moderateScale(10)}
-                      strokeColor={colors.mainThemesColor}
-                      fillColor={colors.color1Home}
-                      strokeWidth={moderateScale(1)}
-                      lineCap={'square'}
-                      lineJoin={'bevel'}
-                    />
-                  </MapView>
-                ) : (
-                  <Text style={styles.FetchingDataText}>
-                    Fetching location Please Wait...
-                  </Text>
-                )}
-              </>
-            ) : (
-              <ActivityIndicator
-                color={colors.mainThemesColor}
-                size={'large'}
-              />
-            )}
-          </>
-        )}
-      </View>
+    <View style={{flex: 1}}>
+      <MapView
+        style={{flex: 1, height: '100%', width: '100%'}}
+        region={region}
+        onRegionChange={setRegion}>
+        <Circle
+          center={currentLocation}
+          radius={500}
+          fillColor="rgba(255, 0, 0, 0.2)"
+          strokeColor="red"
+        />
+        <Polyline coordinates={coordinate} strokeColor="blue" strokeWidth={3} />
+        <Marker coordinate={newYorkLocation} />
+        <Marker coordinate={currentLocation} />
+      </MapView>
     </View>
   );
 };
+
 export default MapScreen;
