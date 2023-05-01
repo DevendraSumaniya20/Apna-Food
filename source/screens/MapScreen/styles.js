@@ -14,6 +14,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  errorText: {
+    color: '#ff0000',
+  },
 
   CustomHeaderComponentsView: {
     flex: 1,
@@ -84,6 +87,10 @@ const styles = StyleSheet.create({
     borderLeftColor: 'transparent',
     borderRightColor: 'transparent',
     borderTopColor: colors.white,
+  },
+  FetchingDataText: {
+    fontSize: scale(16),
+    color: '#33C379',
   },
 });
 

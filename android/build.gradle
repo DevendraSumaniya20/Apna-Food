@@ -12,6 +12,8 @@ buildscript {
     googlePlayServicesIidVersion = "17.0.0" // default: "17.0.0" - AndroidX
     //Option 3 (legacy GooglePlay dependency before AndroidX):
     googlePlayServicesIidVersion = "16.0.1"
+    googlePlayServicesVersion = "17.0.0"
+    androidBuildToolsVersion = "29.0.2"
 
 
   //include as needed:

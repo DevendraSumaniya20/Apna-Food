@@ -8,6 +8,7 @@ import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import navigationStrings from '../../constant/navigationStrings';
 import {moderateScale} from 'react-native-size-matters';
 import Geolocation from '@react-native-community/geolocation';
+import {PermissionsAndroid} from 'react-native';
 
 const MapScreen = ({route, navigation}) => {
   const [userLatitude, setUserLatitude] = useState(null);
@@ -17,33 +18,28 @@ const MapScreen = ({route, navigation}) => {
   const [mapVisible, setMapVisible] = useState(false);
 
   const [region, setRegion] = useState({
-    latitude: latitude,
-    longitude: longitude,
+    latitude: 22.6688,
+    longitude: 71.6762,
+    latitudeDelta: 10,
+    longitudeDelta: 10,
   });
 
   const onRegionChangeComplete = newRegion => {
     setRegion(newRegion);
   };
 
-  console.log('region is added', region);
-
-  const {
-    longitude = 0,
-    latitude = 0,
-    rating,
-    title,
-    image,
-  } = route.params || {};
+  const {longitude, latitude, rating, title, image} = route.params || {};
 
   const coordinate = [
-    {latitude: userLatitude, longitude: userLongitude},
-    {latitude, longitude},
+    // {latitude: userLatitude, longitude: userLongitude},
+    {latitude: 22.3039, longitude: 70.8022}, // rajkot coordinate
+    {latitude: 23.0225, longitude: 72.5714}, // ahmedabad coordinate
   ];
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       setMapVisible(true);
-    }, 5000);
+    }, 2000);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -75,18 +71,17 @@ const MapScreen = ({route, navigation}) => {
 
       <View style={styles.main}>
         {error ? (
-          <Text>{error}</Text>
+          <Text style={styles.errorText}>{error}</Text>
         ) : (
           <>
             {mapVisible ? (
               <>
-                {userLatitude && userLongitude ? (
+                {latitude && longitude ? (
                   <MapView
                     style={styles.map}
                     initialRegion={region}
                     showsUserLocation={true}
-                    onRegionChangeComplete={onRegionChangeComplete}
-                    mapType={Platform.OS == 'android' ? 'none' : 'standard'}>
+                    onRegionChangeComplete={onRegionChangeComplete}>
                     <Circle
                       center={{latitude, longitude}}
                       radius={moderateScale(10)}
@@ -143,7 +138,9 @@ const MapScreen = ({route, navigation}) => {
                     />
                   </MapView>
                 ) : (
-                  <Text>Fetching location...</Text>
+                  <Text style={styles.FetchingDataText}>
+                    Fetching location Please Wait...
+                  </Text>
                 )}
               </>
             ) : (
