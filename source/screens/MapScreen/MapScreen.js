@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {View} from 'react-native';
+import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
 import MapView, {Circle, Marker, Polyline} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
-import {Text} from 'react-native-paper';
+import {moderateScale, scale} from 'react-native-size-matters';
+
+import colors from '../../assets/color/colors';
 
 const MapScreen = () => {
   const [region, setRegion] = useState(null);
@@ -16,6 +18,8 @@ const MapScreen = () => {
   const coordinate = currentLocation
     ? [currentLocation, ahmedabadLocation]
     : [];
+
+  console.log('this is the Map ', coordinate);
 
   useEffect(() => {
     let watchId;
@@ -52,24 +56,33 @@ const MapScreen = () => {
   if (!region) {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>Fetching the current Location Please Wait.... </Text>
+        <ActivityIndicator size="large" color={colors.mainThemesColor} />
       </View>
     );
   }
 
   return (
     <View style={{flex: 1}}>
+      <Text>Black clover</Text>
       <MapView
-        style={{flex: 1, height: '100%', width: '100%'}}
-        region={region}
+        style={{
+          height: '100%',
+          width: '100%',
+        }}
+        initialRegion={region}
+        mapType={Platform.OS == 'android' ? 'none' : 'standard'}
         onRegionChange={setRegion}>
         <Circle
           center={currentLocation}
-          radius={500}
+          radius={moderateScale(500)}
           fillColor="rgba(255, 0, 0, 0.2)"
           strokeColor="red"
         />
-        <Polyline coordinates={coordinate} strokeColor="blue" strokeWidth={3} />
+        <Polyline
+          coordinates={coordinate}
+          strokeColor="blue"
+          strokeWidth={moderateScale(3)}
+        />
         <Marker coordinate={ahmedabadLocation} />
         <Marker coordinate={currentLocation} />
       </MapView>
