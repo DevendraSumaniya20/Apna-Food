@@ -8,12 +8,14 @@ const MapScreen = () => {
   const [region, setRegion] = useState(null);
   const [currentLocation, setCurrentLocation] = useState(null);
 
-  const newYorkLocation = {
-    latitude: 40.7128,
-    longitude: -74.006,
+  const ahmedabadLocation = {
+    latitude: 23.0225,
+    longitude: 72.5714,
   };
 
-  const coordinate = currentLocation ? [currentLocation, newYorkLocation] : [];
+  const coordinate = currentLocation
+    ? [currentLocation, ahmedabadLocation]
+    : [];
 
   useEffect(() => {
     let watchId;
@@ -28,8 +30,8 @@ const MapScreen = () => {
           });
           if (!region) {
             setRegion({
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
+              latitude: position?.coords?.latitude,
+              longitude: position?.coords?.longitude,
               latitudeDelta: 100,
               longitudeDelta: 100,
             });
@@ -50,7 +52,7 @@ const MapScreen = () => {
   if (!region) {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>Fetching the currentLocation Please Wait.... </Text>
+        <Text>Fetching the current Location Please Wait.... </Text>
       </View>
     );
   }
@@ -68,7 +70,7 @@ const MapScreen = () => {
           strokeColor="red"
         />
         <Polyline coordinates={coordinate} strokeColor="blue" strokeWidth={3} />
-        <Marker coordinate={newYorkLocation} />
+        <Marker coordinate={ahmedabadLocation} />
         <Marker coordinate={currentLocation} />
       </MapView>
     </View>
