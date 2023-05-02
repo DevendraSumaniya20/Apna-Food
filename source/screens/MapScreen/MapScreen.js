@@ -1,93 +1,71 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
-import MapView, {Circle, Marker, Polyline} from 'react-native-maps';
+import {StyleSheet, View} from 'react-native';
+import MapView, {Marker, Polyline} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
-import {moderateScale, scale} from 'react-native-size-matters';
-
-import colors from '../../assets/color/colors';
 
 const MapScreen = () => {
-  const [region, setRegion] = useState(null);
-  const [currentLocation, setCurrentLocation] = useState(null);
-
-  const ahmedabadLocation = {
-    latitude: 23.0225,
-    longitude: 72.5714,
-  };
-
-  const coordinate = currentLocation
-    ? [currentLocation, ahmedabadLocation]
-    : [];
-
-  console.log('this is the Map ', coordinate);
+  const [initialRegion, setInitialRegion] = useState(null);
+  const [currentPosition, setCurrentPosition] = useState(null);
+  const [polylineCoordinates, setPolylineCoordinates] = useState([]);
 
   useEffect(() => {
-    let watchId;
-    try {
-      watchId = Geolocation.watchPosition(
-        position => {
-          setCurrentLocation({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-            latitudeDelta: region ? region.latitudeDelta : 100,
-            longitudeDelta: region ? region.longitudeDelta : 100,
-          });
-          if (!region) {
-            setRegion({
-              latitude: position?.coords?.latitude,
-              longitude: position?.coords?.longitude,
-              latitudeDelta: 100,
-              longitudeDelta: 100,
-            });
-          }
-        },
-        error => console.log(error),
-        {
-          enableHighAccuracy: true,
-          distanceFilter: 500,
-        },
-      );
-    } catch (e) {
-      console.log('Error while watching position: ', e);
-    }
-    return () => Geolocation.clearWatch(watchId);
-  }, [region]);
-
-  if (!region) {
-    return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <ActivityIndicator size="large" color={colors.mainThemesColor} />
-      </View>
+    const watchId = Geolocation.watchPosition(
+      position => {
+        const {latitude, longitude} = position.coords;
+        setCurrentPosition({latitude, longitude});
+        setInitialRegion({
+          latitude,
+          longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        });
+        setPolylineCoordinates(coordinates => [
+          ...coordinates,
+          {latitude, longitude},
+        ]);
+      },
+      error => console.log(error),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
     );
-  }
+    return () => Geolocation.clearWatch(watchId);
+  }, []);
 
   return (
-    <View style={{flex: 1}}>
-      <Text>Black clover</Text>
-      <MapView
-        style={{
-          height: '100%',
-          width: '100%',
-        }}
-        initialRegion={region}
-        mapType={Platform.OS == 'android' ? 'none' : 'standard'}
-        onRegionChange={setRegion}>
-        <Circle
-          center={currentLocation}
-          radius={moderateScale(500)}
-          fillColor="rgba(255, 0, 0, 0.2)"
-          strokeColor="red"
-        />
-        <Polyline
-          coordinates={coordinate}
-          strokeColor="blue"
-          strokeWidth={moderateScale(3)}
-        />
-        <Marker coordinate={ahmedabadLocation} />
-        <Marker coordinate={currentLocation} />
-      </MapView>
+    <View style={styles.container}>
+      {initialRegion && (
+        <MapView style={styles.map} initialRegion={initialRegion}>
+          {currentPosition && (
+            <Marker coordinate={currentPosition} title="Current position" />
+          )}
+          <Marker
+            coordinate={{latitude: 37.78825, longitude: -122.4324}}
+            title="Static location"
+            description="This is a static location"
+          />
+          {polylineCoordinates.length > 1 && (
+            <Polyline
+              coordinates={polylineCoordinates}
+              strokeColor="#000"
+              strokeWidth={3}
+            />
+          )}
+        </MapView>
+      )}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+    flex: 1,
+    backgroundColor: 'red',
+  },
+});
 
 export default MapScreen;

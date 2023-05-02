@@ -1,23 +1,17 @@
 #import "AppDelegate.h"
-//#import <GoogleMaps/GoogleMaps.h>
 #import <CoreLocation/CoreLocation.h>
 #import <React/RCTConvert.h>
-
-
 #import <React/RCTBundleURLProvider.h>
-
+// #import <GoogleMaps/GoogleMaps.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+//  [GMSServices provideAPIKey:@"AIzaSyBdKu1FNWX4wwkKTqG6y68jOZphmh9qrfg"];
   self.moduleName = @"Apna_Food";
-  // You can add your custom initial props in the dictionary below.
-  // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
- 
-// [GMSServices provideAPIKey:"AIzaSyAPbxsTh6PW6oq3uZlkGNVrpZtC3qintN0"]; // add this line using the api key obtained from Google Console
-  return [super application:application didFinishLaunchingWithOptions:launchOptions];
+    return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge

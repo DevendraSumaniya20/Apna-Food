@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
 
 
     <application
@@ -16,7 +18,7 @@
       android:theme="@style/AppTheme">
     <meta-data
      android:name="com.google.android.geo.API_KEY"
-     android:value="AIzaSyAPbxsTh6PW6oq3uZlkGNVrpZtC3qintN0"/>
+     android:value="AIzaSyBdKu1FNWX4wwkKTqG6y68jOZphmh9qrfg"/>
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
@@ -31,6 +33,5 @@
       </activity>
     </application>
     
-
 </manifest>
 
