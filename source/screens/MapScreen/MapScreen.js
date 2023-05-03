@@ -1,71 +1,99 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, {useState, useEffect, useRef} from 'react';
 import MapView, {Marker, Polyline} from 'react-native-maps';
+import {moderateScale, scale} from 'react-native-size-matters';
+import ImagePath from '../../constant/ImagePath';
+import styles from './styles';
+import colors from '../../assets/color/colors';
+
 import Geolocation from '@react-native-community/geolocation';
 
 const MapScreen = () => {
-  const [initialRegion, setInitialRegion] = useState(null);
-  const [currentPosition, setCurrentPosition] = useState(null);
-  const [polylineCoordinates, setPolylineCoordinates] = useState([]);
+  const [region, setRegion] = useState({});
+  const [currentLocation, setCurrentLocation] = useState(null);
+  const [userLocation, setUserLocation] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const mapRef = useRef(null);
 
   useEffect(() => {
-    const watchId = Geolocation.watchPosition(
-      position => {
-        const {latitude, longitude} = position.coords;
-        setCurrentPosition({latitude, longitude});
-        setInitialRegion({
-          latitude,
-          longitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        });
-        setPolylineCoordinates(coordinates => [
-          ...coordinates,
-          {latitude, longitude},
-        ]);
-      },
-      error => console.log(error),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
-    );
-    return () => Geolocation.clearWatch(watchId);
+    try {
+      Geolocation.getCurrentPosition(
+        position => {
+          setUserLocation &&
+            setCurrentLocation({
+              latitude: position?.coords?.latitude,
+              longitude: position?.coords?.longitude,
+              latitudeDelta: 0.01,
+              longitudeDelta: 0.01,
+            });
+          setIsLoading(false);
+        },
+        error => console.log(error),
+        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+      );
+    } catch (error) {
+      console.warn(error);
+      setIsLoading(false);
+    }
   }, []);
+
+  const DwarkaLocation = {
+    latitude: 22.2442,
+    longitude: 68.9685,
+    latitudeDelta: 40,
+    longitudeDelta: 40,
+  };
+
+  const goToDwarka = () => {
+    mapRef.current.animateToRegion(DwarkaLocation, 3 * 1000);
+  };
 
   return (
     <View style={styles.container}>
-      {initialRegion && (
-        <MapView style={styles.map} initialRegion={initialRegion}>
-          {currentPosition && (
-            <Marker coordinate={currentPosition} title="Current position" />
-          )}
-          <Marker
-            coordinate={{latitude: 37.78825, longitude: -122.4324}}
-            title="Static location"
-            description="This is a static location"
-          />
-          {polylineCoordinates.length > 1 && (
+      {isLoading ? (
+        <ActivityIndicator style={styles.loading} size="large" />
+      ) : (
+        <View style={styles.container}>
+          <MapView
+            ref={mapRef}
+            style={styles.map}
+            initialRegion={userLocation || currentLocation}
+            onRegionChangeComplete={region => setRegion(region)}>
+            <Marker
+              coordinate={currentLocation}
+              image={ImagePath.ShopIcon}
+              style={{height: moderateScale(30), width: moderateScale(30)}}
+            />
+
             <Polyline
-              coordinates={polylineCoordinates}
-              strokeColor="#000"
+              coordinates={[DwarkaLocation, currentLocation]}
+              strokeColor={colors.mainThemesColor}
               strokeWidth={3}
             />
-          )}
-        </MapView>
+          </MapView>
+
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              onPress={() => goToDwarka()}
+              style={styles.button}>
+              <Text style={styles.buttonText}>Let's go to Dwarka</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            {/* <Text style={styles.text1}>Current latitude: {region.latitude}</Text>
+      <Text style={styles.text2}>Current longitude: {region.longitude}</Text> */}
+          </View>
+        </View>
       )}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-    flex: 1,
-    backgroundColor: 'red',
-  },
-});
 
 export default MapScreen;
