@@ -45,10 +45,10 @@ const MapScreen = () => {
   }, []);
 
   const DwarkaLocation = {
-    latitude: 22.2442,
-    longitude: 68.9685,
-    latitudeDelta: 40,
-    longitudeDelta: 40,
+    latitude: 22.2376,
+    longitude: 68.9674,
+    latitudeDelta: 0.01,
+    longitudeDelta: 0.01,
   };
 
   const goToDwarka = () => {
@@ -69,7 +69,20 @@ const MapScreen = () => {
             <Marker
               coordinate={currentLocation}
               image={ImagePath.ShopIcon}
-              style={{height: moderateScale(30), width: moderateScale(30)}}
+              style={{
+                height: moderateScale(10),
+                width: moderateScale(10),
+                borderRadius: moderateScale(50),
+              }}
+            />
+            <Marker
+              coordinate={DwarkaLocation}
+              image={ImagePath.Dwarkadhish}
+              style={{
+                height: moderateScale(10),
+                width: moderateScale(10),
+                borderRadius: moderateScale(50),
+              }}
             />
 
             <Polyline

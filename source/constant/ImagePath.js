@@ -9,4 +9,5 @@ export default {
   ShopIcon: require('../assets/images/shopIcon.png'),
   mapShopTitleImg: require('../assets/images/mapShopTitleImg.png'),
   ForgotPasswordImg: require('../assets/images/ForgotPassword.jpeg'),
+  Dwarkadhish: require('../assets/images/Dwarkadhish.png'),
 };
