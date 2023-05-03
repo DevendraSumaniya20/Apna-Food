@@ -1,10 +1,4 @@
-import {
-  ActivityIndicator,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {ActivityIndicator, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState, useEffect, useRef} from 'react';
 import MapView, {Marker, Polyline} from 'react-native-maps';
 import {moderateScale, scale} from 'react-native-size-matters';
