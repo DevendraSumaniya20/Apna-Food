@@ -1,14 +1,17 @@
 #import "AppDelegate.h"
+#import <GoogleMaps/GoogleMaps.h>
 #import <CoreLocation/CoreLocation.h>
 #import <React/RCTConvert.h>
 #import <React/RCTBundleURLProvider.h>
-// #import <GoogleMaps/GoogleMaps.h>
+
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//  [GMSServices provideAPIKey:@"AIzaSyBdKu1FNWX4wwkKTqG6y68jOZphmh9qrfg"];
+ 
+  [GMSServices provideAPIKey:@"AIzaSyAPbxsTh6PW6oq3uZlkGNVrpZtC3qintN0"];
+  
   self.moduleName = @"Apna_Food";
   self.initialProps = @{};
     return [super application:application didFinishLaunchingWithOptions:launchOptions];

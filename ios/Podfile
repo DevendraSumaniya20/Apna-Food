@@ -1,7 +1,7 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, min_ios_version_supported
+platform :ios, '13.0'
 prepare_react_native_project!
 # If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
 # because `react-native-flipper` depends on (FlipperKit,...) that will be excluded
@@ -19,6 +19,8 @@ if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
   use_frameworks! :linkage => linkage.to_sym
 end
+
+  
 
 target 'Apna_Food' do
   config = use_native_modules!
@@ -50,6 +52,11 @@ target 'Apna_Food' do
     # Pods for testing
   end
 
+
+    pod 'Google-Maps-iOS-Utils', :git => 'https://github.com/Simon-TechForm/google-maps-ios-utils.git', :branch => 'feat/support-apple-silicon'
+    rn_maps_path = '../node_modules/react-native-maps'
+    pod 'react-native-google-maps', :path => rn_maps_path
+
   post_install do |installer|
     react_native_post_install(
       installer,
@@ -60,3 +67,4 @@ target 'Apna_Food' do
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end
+

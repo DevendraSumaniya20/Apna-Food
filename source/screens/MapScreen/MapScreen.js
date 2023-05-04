@@ -1,6 +1,17 @@
-import {ActivityIndicator, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Text,
+  TouchableOpacity,
+  View,
+  Platform,
+} from 'react-native';
 import React, {useState, useEffect, useRef} from 'react';
-import MapView, {Marker, Polyline} from 'react-native-maps';
+import MapView, {
+  Circle,
+  Marker,
+  Polyline,
+  PROVIDER_GOOGLE,
+} from 'react-native-maps';
 import {moderateScale, scale} from 'react-native-size-matters';
 import ImagePath from '../../constant/ImagePath';
 import styles from './styles';
@@ -72,6 +83,7 @@ const MapScreen = () => {
             />
             <MapView
               ref={mapRef}
+              provider="google"
               style={styles.map}
               initialRegion={userLocation || currentLocation}
               onRegionChangeComplete={region => setRegion(region)}>
@@ -98,6 +110,21 @@ const MapScreen = () => {
                 coordinates={[DwarkaLocation, currentLocation]}
                 strokeColor={colors.mainThemesColor}
                 strokeWidth={3}
+              />
+
+              <Circle
+                center={DwarkaLocation}
+                radius={10}
+                strokeWidth={1}
+                fillColor={colors.color1Home}
+                strokeColor={colors.mainThemesColor}
+              />
+              <Circle
+                center={currentLocation}
+                radius={10}
+                strokeWidth={5}
+                fillColor={colors.color1Home}
+                strokeColor={colors.mainThemesColor}
               />
             </MapView>
 

@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    ...StyleSheet.absoluteFillObject,
   },
   map: {
     ...StyleSheet.absoluteFillObject,
