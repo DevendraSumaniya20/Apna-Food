@@ -7,6 +7,7 @@ import styles from './styles';
 import colors from '../../assets/color/colors';
 
 import Geolocation from '@react-native-community/geolocation';
+import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 
 const MapScreen = () => {
   const [region, setRegion] = useState({});
@@ -50,56 +51,67 @@ const MapScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      {isLoading ? (
-        <ActivityIndicator style={styles.loading} size="large" />
-      ) : (
-        <View style={styles.container}>
-          <MapView
-            ref={mapRef}
-            style={styles.map}
-            initialRegion={userLocation || currentLocation}
-            onRegionChangeComplete={region => setRegion(region)}>
-            <Marker
-              coordinate={currentLocation}
-              image={ImagePath.ShopIcon}
-              style={{
-                height: moderateScale(10),
-                width: moderateScale(10),
-                borderRadius: moderateScale(50),
+    <>
+      <View style={styles.container}>
+        {isLoading ? (
+          <View
+            style={[
+              styles.container,
+              {justifyContent: 'center', alignItems: 'center'},
+            ]}>
+            <ActivityIndicator style={styles.loading} size="large" />
+          </View>
+        ) : (
+          <View style={styles.container}>
+            <CustomHeaderComponents
+              back={'Back'}
+              label={'Map view'}
+              onPress={() => {
+                navigation.navigate(navigationStrings.LOGIN);
               }}
             />
-            <Marker
-              coordinate={DwarkaLocation}
-              image={ImagePath.Dwarkadhish}
-              style={{
-                height: moderateScale(10),
-                width: moderateScale(10),
-                borderRadius: moderateScale(50),
-              }}
-            />
+            <MapView
+              ref={mapRef}
+              style={styles.map}
+              initialRegion={userLocation || currentLocation}
+              onRegionChangeComplete={region => setRegion(region)}>
+              <Marker
+                coordinate={currentLocation}
+                image={ImagePath.ShopIcon}
+                style={{
+                  height: moderateScale(10),
+                  width: moderateScale(10),
+                  borderRadius: moderateScale(50),
+                }}
+              />
+              <Marker
+                coordinate={DwarkaLocation}
+                image={ImagePath.Dwarkadhish}
+                style={{
+                  height: moderateScale(10),
+                  width: moderateScale(10),
+                  borderRadius: moderateScale(50),
+                }}
+              />
 
-            <Polyline
-              coordinates={[DwarkaLocation, currentLocation]}
-              strokeColor={colors.mainThemesColor}
-              strokeWidth={3}
-            />
-          </MapView>
+              <Polyline
+                coordinates={[DwarkaLocation, currentLocation]}
+                strokeColor={colors.mainThemesColor}
+                strokeWidth={3}
+              />
+            </MapView>
 
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              onPress={() => goToDwarka()}
-              style={styles.button}>
-              <Text style={styles.buttonText}>Let's go to Dwarka</Text>
-            </TouchableOpacity>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                onPress={() => goToDwarka()}
+                style={styles.button}>
+                <Text style={styles.buttonText}>Let's go to Dwarka</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View>
-            {/* <Text style={styles.text1}>Current latitude: {region.latitude}</Text>
-      <Text style={styles.text2}>Current longitude: {region.longitude}</Text> */}
-          </View>
-        </View>
-      )}
-    </View>
+        )}
+      </View>
+    </>
   );
 };
 
