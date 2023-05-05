@@ -18,14 +18,13 @@ import navigationStrings from '../../constant/navigationStrings';
 
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import colors from '../../assets/color/colors';
+import {useTranslation} from 'react-i18next';
+import common from '../../constant/translations/en/common';
 
 const HomeScreen = ({navigation}) => {
   const [data, setData] = useState([]);
-
   const dispatch = useDispatch();
-
   const myData = useSelector(state => state.ApiSlice);
-
   const generateRatingStars = ({rating}) => {
     const filledStars = Math.floor(rating);
 
@@ -104,6 +103,7 @@ const HomeScreen = ({navigation}) => {
       </View>
     );
   };
+  const {t, i18n} = useTranslation();
 
   useEffect(() => {
     dispatch(fetchApiData());
@@ -120,8 +120,8 @@ const HomeScreen = ({navigation}) => {
   return (
     <View style={styles.main}>
       <CustomHeaderComponents
-        back={'Back'}
-        label={'Restaurant List'}
+        back={t('common:Back')}
+        label={t('common:RestaurantList')}
         onPress={() => {
           navigation.navigate(navigationStrings.LOGIN);
         }}
@@ -143,7 +143,8 @@ const HomeScreen = ({navigation}) => {
         {!myData?.isLoading && myData?.error && (
           <View style={styles.errorMessageStyle}>
             <Text style={styles.errorMessageText}>
-              Error: {myData.error}. Please try again later.
+              {t('common:Error')} : {/* {myData.error}. */}
+              {t('common:Pleasetryagainlater')}
             </Text>
           </View>
         )}

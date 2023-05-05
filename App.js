@@ -2,6 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 import Navigation from './source/navigation/Navigation';
 import SplashScreen from 'react-native-splash-screen';
+import './source/constant/DCSLocalize';
 
 const App = () => {
   useEffect(() => {

@@ -19,6 +19,7 @@ import colors from '../../assets/color/colors';
 
 import Geolocation from '@react-native-community/geolocation';
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
+import {useTranslation} from 'react-i18next';
 
 const MapScreen = () => {
   const [region, setRegion] = useState({});
@@ -27,6 +28,7 @@ const MapScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const mapRef = useRef(null);
+  const {t, i18n} = useTranslation();
 
   useEffect(() => {
     try {
@@ -75,8 +77,8 @@ const MapScreen = () => {
         ) : (
           <View style={styles.container}>
             <CustomHeaderComponents
-              back={'Back'}
-              label={'Map view'}
+              back={t('common:Back')}
+              label={t('common:MapView')}
               onPress={() => {
                 navigation.navigate(navigationStrings.LOGIN);
               }}
@@ -132,7 +134,7 @@ const MapScreen = () => {
               <TouchableOpacity
                 onPress={() => goToDwarka()}
                 style={styles.button}>
-                <Text style={styles.buttonText}>Let's go to Dwarka</Text>
+                <Text style={styles.buttonText}>{t('common:GotoDwarka')}</Text>
               </TouchableOpacity>
             </View>
           </View>

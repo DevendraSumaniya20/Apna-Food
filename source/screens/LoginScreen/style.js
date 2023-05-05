@@ -58,6 +58,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderColor: 'blue',
   },
+  selectedText: {
+    fontSize: scale(16),
+    color: 'green',
+    paddingVertical: moderateScale(5),
+  },
+  text: {
+    fontSize: scale(16),
+    color: 'black',
+    paddingVertical: moderateScale(5),
+  },
 });
 
 export default styles;
