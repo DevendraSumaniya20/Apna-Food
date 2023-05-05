@@ -46,25 +46,18 @@ const LoginScreen = ({navigation}) => {
     const passwordMaxLength = 30;
     if (!email) {
       setEmailError(t('error:EmailError'));
-      alert(t('error:EmailError'));
     } else if (!emailRegex.test(email)) {
       setEmailError(t('error:EmailProper'));
-      alert(t('error:EmailProper'));
     } else if (email.length > emailMaxLength) {
       setEmailError(t('error:EmailLength'));
-      alert(t('error:EmailLength'));
     } else if (!password) {
       setPasswordError(t('error:PasswordError'));
-      alert(t('error:PasswordError'));
     } else if (password.length < 5) {
       setPasswordError(t('error:PasswordLessCharacters'));
-      alert(t('error:PasswordLessCharacters'));
     } else if (!passwordRegex.test(password)) {
       setPasswordError(t('error:PasswordRegex'));
-      alert(t('error:PasswordRegex'));
     } else if (password.length > passwordMaxLength) {
       setPasswordError(t('error:PasswordLength'));
-      alert(t('error:PasswordLength'));
     } else if (email === 'Devendra@gmail.com' && password === 'D123456789@d') {
       setEmailError('');
       setPasswordError('');
