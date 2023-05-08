@@ -19,7 +19,6 @@ import navigationStrings from '../../constant/navigationStrings';
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import colors from '../../assets/color/colors';
 import {useTranslation} from 'react-i18next';
-import common from '../../constant/translations/en/common';
 
 const HomeScreen = ({navigation}) => {
   const [data, setData] = useState([]);
@@ -27,13 +26,9 @@ const HomeScreen = ({navigation}) => {
   const myData = useSelector(state => state.ApiSlice);
   const generateRatingStars = ({rating}) => {
     const filledStars = Math.floor(rating);
-
     const halfFilledStar = Math.ceil(rating - filledStars);
-
     const emptyStars = 5 - filledStars - halfFilledStar;
-
     const ratingStars = [];
-
     for (let i = 0; i < filledStars; i++) {
       ratingStars.push(
         <Image

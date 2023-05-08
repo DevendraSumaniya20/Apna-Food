@@ -1,16 +1,15 @@
-/* eslint-disable react/self-closing-comp */
 import {
   ImageBackground,
   Text,
   TouchableOpacity,
   View,
-  Button,
   Pressable,
+  I18nManager,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import ImagePath from '../../constant/ImagePath';
-import styles from './style';
+
 import TextinputWithLabel from '../../components/TextinputWithLabel';
 import ButtonCustomComponents from '../../components/ButtonCustomComponents';
 import colors from '../../assets/color/colors';
@@ -18,24 +17,52 @@ import navigationStrings from '../../constant/navigationStrings';
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import {moderateScale} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
+import styles from './style';
+import RNRestart from 'react-native-restart';
+
+const isAr = false;
 
 const LoginScreen = ({navigation}) => {
-  const {t, i18n} = useTranslation();
-  const selectLanguageCode = i18n.language;
-
-  const LANGUAGES = [
-    {code: 'en', label: 'English'},
-    {code: 'fr', label: 'Français'},
-  ];
-
   const [isVisible, setIsVisible] = useState(true);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [emailError, setEmailError] = useState();
   const [passwordError, setPasswordError] = useState();
 
-  const setLanguage = code => {
-    return i18n.changeLanguage(code);
+  const {t, i18n} = useTranslation();
+  const selectLanguageCode = i18n.language;
+
+  const LANGUAGES = [
+    {code: 'en', label: 'English'},
+    {code: 'fr', label: 'Français'},
+    {code: 'ar', label: 'Arabic'},
+  ];
+
+  const isArabicSelected = false;
+  const rtlText = {
+    textAlign: isArabicSelected || I18nManager.isRTL ? 'right' : 'left',
+  };
+
+  const rtlSelectedText = {
+    textAlign: isArabicSelected || I18nManager.isRTL ? 'left' : 'right',
+    writingDirection: isArabicSelected || I18nManager.isRTL ? 'rtl' : 'ltr',
+  };
+
+  const setLanguage = async code => {
+    if (code === 'en' || code === 'fr') {
+      I18nManager.forceRTL(false);
+      I18nManager.allowRTL(false);
+    } else if (code === 'ar') {
+      I18nManager.forceRTL(true);
+      I18nManager.allowRTL(true);
+    } else {
+      throw new Error('Invalid language code');
+    }
+    try {
+      await i18n.changeLanguage(code);
+    } catch (error) {
+      console.error('Failed to change language:', error);
+    }
   };
 
   const LoginValidation = () => {
@@ -70,21 +97,26 @@ const LoginScreen = ({navigation}) => {
         <CustomHeaderComponents paddingTop={moderateScale(10)} />
         <ImageBackground
           source={ImagePath.FoodApp}
-          style={styles.imageBackground}></ImageBackground>
+          style={styles.imageBackground}
+        />
         <View style={styles.mainStyle}>
           <View style={styles.TextinputWithLabelView}>
             <TextinputWithLabel
-              onchangeText={item => {
-                setEmail(item);
-              }}
+              onChangeText={item => setEmail(item)}
               value={email}
               setValue={setEmail}
-              placeholder={t(`common:EnterAnEmailorPhone`)}
+              placeholder={t('common:EnterAnEmailorPhone')}
               placeholderTextColor={colors.blackOpacity30}
+              style={[rtlText, isAr && styles.arSliderTextAlign]}
             />
             <View>
               {emailError && (
-                <Text style={styles.errorStyle}>
+                <Text
+                  style={[
+                    styles.errorStyle,
+                    rtlText,
+                    isAr && styles.arSliderTextAlign,
+                  ]}>
                   {t('common:EmailError')}
                   {/* {emailError} */}
                 </Text>
@@ -94,21 +126,25 @@ const LoginScreen = ({navigation}) => {
             <TextinputWithLabel
               value={password}
               setValue={setPassword}
-              placeholder={t(`common:EnteraPassword`)}
+              placeholder={t('common:EnteraPassword')}
               placeholderTextColor={colors.blackOpacity30}
               secureTextEntry={isVisible}
               rightIcon={!isVisible ? ImagePath.showEye : ImagePath.hideEye}
               onPressRight={() => {
                 setIsVisible(!isVisible);
               }}
-              onchangeText={item => {
-                setPassword(item);
-              }}
+              onChangeText={item => setPassword(item)}
+              style={[rtlText, isAr && styles.arSliderTextAlign]}
             />
           </View>
           <View>
             {passwordError && (
-              <Text style={styles.errorStyle}>
+              <Text
+                style={[
+                  styles.errorStyle,
+                  rtlText,
+                  isAr && styles.arSliderTextAlign,
+                ]}>
                 {t('common:PasswordError')}
                 {/* {passwordError} */}
               </Text>
@@ -117,44 +153,58 @@ const LoginScreen = ({navigation}) => {
 
           <TouchableOpacity
             activeOpacity={0.5}
-            style={styles.forgotView}
+            style={[
+              styles.forgotView,
+              rtlText,
+              isAr && styles.arSliderTextAlign,
+            ]}
             onPress={() =>
               navigation.navigate(navigationStrings.FORGOTPASSWORD)
             }>
-            <Text style={styles.forgotText}>{t('common:ForgetPassword')}</Text>
+            <Text style={[styles.forgotText, rtlText]}>
+              {t('common:ForgetPassword')}
+            </Text>
           </TouchableOpacity>
           <View style={styles.buttonStyle}>
             <ButtonCustomComponents
-              buttonText={t(`common:Login`)}
+              buttonText={t('common:Login')}
               onPress={() => LoginValidation()}
+              style={[rtlSelectedText, isAr && styles.arSliderTextAlign]}
             />
           </View>
         </View>
         <View>
-          <View style={{alignItems: 'center'}}>
-            {LANGUAGES.map(language => {
-              const selectedLanguage = language.code === selectLanguageCode;
+          <View
+            style={[
+              selectLanguageCode === 'ar' ? styles.rtlText : null,
+              [isAr && styles.arSliderTextAlign],
+              {alignItems: 'center'},
+            ]}>
+            {LANGUAGES.map(lang => {
+              const selectedLanguage = lang.code === selectLanguageCode;
               return (
                 <Pressable
-                  key={language.code}
+                  key={lang.code}
                   style={{marginTop: moderateScale(10)}}
                   disabled={selectedLanguage}
                   onPress={() => {
-                    setLanguage(language.code);
+                    setLanguage(lang.code);
+                    // RNRestart.restart();
                   }}>
                   <Text
                     style={[
                       selectedLanguage ? styles.selectedText : styles.text,
+                      rtlSelectedText,
                     ]}>
-                    {language.label}
+                    {lang.label}
                   </Text>
                 </Pressable>
               );
             })}
           </View>
         </View>
-        <View style={styles.bottomView}>
-          <Text style={styles.newAccountText}>
+        <View style={[styles.bottomView, isAr && styles.arSliderTextAlign]}>
+          <Text style={[styles.newAccountText, rtlText]}>
             {t('common:DontHaveanAccount')}
           </Text>
           <TouchableOpacity
@@ -162,7 +212,9 @@ const LoginScreen = ({navigation}) => {
               navigation.navigate(navigationStrings.HOME);
             }}>
             <View style={styles.bottomSubView}>
-              <Text style={styles.signUpText}>{t('common:SignUp')}</Text>
+              <Text style={[styles.signUpText, rtlText]}>
+                {t('common:SignUp')}
+              </Text>
             </View>
           </TouchableOpacity>
         </View>

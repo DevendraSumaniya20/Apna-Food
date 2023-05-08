@@ -4,9 +4,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as RNLocalize from 'react-native-localize';
 import en from './translations/en';
 import fr from './translations/fr';
+import ar from './translations/ar';
+
 const LANGUAGES = {
   en,
   fr,
+  ar,
 };
 const LANG_CODES = Object.keys(LANGUAGES);
 const LANGUAGE_DETECTOR = {

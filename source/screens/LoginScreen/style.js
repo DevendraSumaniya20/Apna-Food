@@ -1,13 +1,16 @@
-import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
-
 import colors from '../../assets/color/colors';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, I18nManager} from 'react-native';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
 const styles = StyleSheet.create({
   main: {
     flex: 1,
     backgroundColor: colors.white,
   },
+  arSliderTextAlign: {
+    textAlign: 'right',
+  },
+
   imageBackground: {
     height: moderateScale(200),
   },
@@ -32,7 +35,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: verticalScale(50),
+    padding: moderateScale(10),
   },
 
   newAccountText: {
@@ -47,6 +50,7 @@ const styles = StyleSheet.create({
     color: colors.mainThemesColor,
     textTransform: 'capitalize',
     fontFamily: 'Montserrat',
+    textAlign: 'left',
   },
   errorStyle: {
     fontSize: scale(13),
@@ -59,14 +63,16 @@ const styles = StyleSheet.create({
     borderColor: 'blue',
   },
   selectedText: {
-    fontSize: scale(16),
-    color: 'green',
-    paddingVertical: moderateScale(5),
+    fontSize: moderateScale(16),
+    fontWeight: 'bold',
+    color: colors.mainThemesColor,
+    textAlign: 'center',
   },
   text: {
     fontSize: scale(16),
     color: 'black',
     paddingVertical: moderateScale(5),
+    textAlign: 'center',
   },
 });
 
