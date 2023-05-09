@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.borderColor,
     borderRadius: moderateScale(5),
     justifyContent: 'center',
-    paddingTop: verticalScale(8),
+    paddingTop: verticalScale(6),
     color: colors.black,
   },
   inlineStyle: {

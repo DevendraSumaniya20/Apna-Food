@@ -6,12 +6,7 @@ import {
   Platform,
 } from 'react-native';
 import React, {useState, useEffect, useRef} from 'react';
-import MapView, {
-  Circle,
-  Marker,
-  Polyline,
-  PROVIDER_GOOGLE,
-} from 'react-native-maps';
+import MapView, {Circle, Marker, Polyline} from 'react-native-maps';
 import {moderateScale, scale} from 'react-native-size-matters';
 import ImagePath from '../../constant/ImagePath';
 import styles from './styles';
@@ -28,7 +23,7 @@ const MapScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const mapRef = useRef(null);
-  const {t, i18n} = useTranslation();
+  const {t} = useTranslation();
 
   useEffect(() => {
     try {

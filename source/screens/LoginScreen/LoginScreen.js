@@ -5,6 +5,8 @@ import {
   View,
   Pressable,
   I18nManager,
+  Button,
+  Switch,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 
@@ -18,7 +20,9 @@ import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import {moderateScale} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
 import styles from './style';
-import RNRestart from 'react-native-restart';
+import {useSelector, useDispatch} from 'react-redux';
+import {toggleTheme} from '../../store/themeSlice';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const LoginScreen = ({navigation}) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -30,6 +34,19 @@ const LoginScreen = ({navigation}) => {
 
   const {t, i18n} = useTranslation();
   const selectLanguageCode = i18n.language;
+
+  const isDarkMode = useSelector(state => state.theme.isDarkMode);
+
+  const dispatch = useDispatch();
+
+  const handleToggleTheme = () => {
+    dispatch(toggleTheme());
+  };
+
+  const containerStyle = {
+    backgroundColor: isDarkMode ? '#fff' : '#000',
+    color: isDarkMode ? '#111' : '#fff',
+  };
 
   const LANGUAGES = [
     {code: 'en', label: 'English'},
@@ -84,12 +101,25 @@ const LoginScreen = ({navigation}) => {
   };
   return (
     <>
-      <View style={styles.main}>
+      <View style={[styles.main, containerStyle]}>
         <CustomHeaderComponents paddingTop={moderateScale(10)} />
         <ImageBackground
           source={ImagePath.FoodApp}
           style={styles.imageBackground}
         />
+
+        <TouchableOpacity
+          style={styles.isDarkModeView}
+          onPress={handleToggleTheme}>
+          <Switch
+            trackColor={{false: '#767577', true: '#81b0ff'}}
+            thumbColor={isDarkMode ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={handleToggleTheme}
+            value={isDarkMode}
+          />
+        </TouchableOpacity>
+
         <View style={styles.mainStyle}>
           <View style={styles.TextinputWithLabelView}>
             <TextinputWithLabel
@@ -171,7 +201,6 @@ const LoginScreen = ({navigation}) => {
                   disabled={selectedLanguage}
                   onPress={() => {
                     setLanguage(lang.code);
-                    // RNRestart.restart();
                   }}>
                   <Text
                     style={[

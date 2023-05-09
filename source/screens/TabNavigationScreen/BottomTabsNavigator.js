@@ -19,7 +19,6 @@ const BottomTabNavigator = () => {
         height: moderateScale(70),
         borderTopLeftRadius: moderateScale(15),
         borderTopRightRadius: moderateScale(15),
-        // overflow: 'visible',
       }}>
       <Tab.Screen
         name="TabHome"

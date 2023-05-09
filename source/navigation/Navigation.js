@@ -1,21 +1,25 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {useColorScheme} from 'react-native';
 import React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  DarkTheme,
+  NavigationContainer,
+  DefaultTheme,
+} from '@react-navigation/native';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import MapScreen from '../screens/MapScreen/MapScreen';
 import navigationStrings from '../constant/navigationStrings';
 import colors from '../assets/color/colors';
 import BottomTabNavigator from '../screens/TabNavigationScreen/BottomTabsNavigator';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
-import HomeScreen from '../screens/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
+  const theme = useColorScheme();
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator
         screenOptions={{
           statusBarColor: colors.mainThemesColor,

@@ -11,6 +11,9 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 
+  isDarkModeView: {
+    height: moderateScale(20),
+  },
   imageBackground: {
     height: moderateScale(200),
   },
@@ -19,12 +22,12 @@ const styles = StyleSheet.create({
   },
 
   TextinputWithLabelView: {
-    paddingTop: moderateScale(40),
+    paddingTop: moderateScale(25),
   },
 
   forgotView: {
     alignSelf: 'flex-end',
-    marginVertical: moderateScale(25),
+    marginVertical: moderateScale(20),
   },
   forgotText: {
     fontSize: scale(16),
