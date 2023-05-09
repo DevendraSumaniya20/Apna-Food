@@ -20,7 +20,7 @@ import {useTranslation} from 'react-i18next';
 import styles from './style';
 import RNRestart from 'react-native-restart';
 
-const isAr = false;
+// let isAr = false;
 
 const LoginScreen = ({navigation}) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -28,6 +28,7 @@ const LoginScreen = ({navigation}) => {
   const [password, setPassword] = useState();
   const [emailError, setEmailError] = useState();
   const [passwordError, setPasswordError] = useState();
+  const [isAr, setIsAr] = useState(false);
 
   const {t, i18n} = useTranslation();
   const selectLanguageCode = i18n.language;
@@ -38,23 +39,20 @@ const LoginScreen = ({navigation}) => {
     {code: 'ar', label: 'Arabic'},
   ];
 
-  const isArabicSelected = false;
-  const rtlText = {
-    textAlign: isArabicSelected || I18nManager.isRTL ? 'right' : 'left',
-  };
-
-  const rtlSelectedText = {
-    textAlign: isArabicSelected || I18nManager.isRTL ? 'left' : 'right',
-    writingDirection: isArabicSelected || I18nManager.isRTL ? 'rtl' : 'ltr',
-  };
+  // const rtlText = {
+  // textAlign: isAr ? 'right' : 'left',
+  // direction: 'ltr' ? 'ltr' : 'rtl',
+  // };
 
   const setLanguage = async code => {
     if (code === 'en' || code === 'fr') {
       I18nManager.forceRTL(false);
       I18nManager.allowRTL(false);
+      setIsAr(false);
     } else if (code === 'ar') {
       I18nManager.forceRTL(true);
       I18nManager.allowRTL(true);
+      setIsAr(true);
     } else {
       throw new Error('Invalid language code');
     }
@@ -102,84 +100,75 @@ const LoginScreen = ({navigation}) => {
         <View style={styles.mainStyle}>
           <View style={styles.TextinputWithLabelView}>
             <TextinputWithLabel
-              onChangeText={item => setEmail(item)}
+              textAlign={isAr ? 'right' : 'left'}
               value={email}
               setValue={setEmail}
               placeholder={t('common:EnterAnEmailorPhone')}
               placeholderTextColor={colors.blackOpacity30}
-              style={[rtlText, isAr && styles.arSliderTextAlign]}
+              style={{
+                ...(isAr && {textAlign: 'right'}),
+              }}
             />
-            <View>
-              {emailError && (
-                <Text
-                  style={[
-                    styles.errorStyle,
-                    rtlText,
-                    isAr && styles.arSliderTextAlign,
-                  ]}>
-                  {t('common:EmailError')}
-                  {/* {emailError} */}
-                </Text>
-              )}
-            </View>
 
             <TextinputWithLabel
+              textAlign={isAr ? 'right' : 'left'}
               value={password}
               setValue={setPassword}
               placeholder={t('common:EnteraPassword')}
               placeholderTextColor={colors.blackOpacity30}
               secureTextEntry={isVisible}
-              rightIcon={!isVisible ? ImagePath.showEye : ImagePath.hideEye}
+              rightIcon={
+                !isVisible
+                  ? isAr
+                    ? ImagePath.showEye
+                    : ImagePath.showEye
+                  : isAr
+                  ? ImagePath.hideEye
+                  : ImagePath.hideEye
+              }
+              style={{
+                flexDirection: (isAr && 'row-reverse') || 'row',
+                ...(isAr && {justifyContent: 'flex-end'}),
+              }}
               onPressRight={() => {
                 setIsVisible(!isVisible);
               }}
               onChangeText={item => setPassword(item)}
-              style={[rtlText, isAr && styles.arSliderTextAlign]}
             />
-          </View>
-          <View>
-            {passwordError && (
-              <Text
-                style={[
-                  styles.errorStyle,
-                  rtlText,
-                  isAr && styles.arSliderTextAlign,
-                ]}>
-                {t('common:PasswordError')}
-                {/* {passwordError} */}
-              </Text>
-            )}
-          </View>
 
-          <TouchableOpacity
-            activeOpacity={0.5}
-            style={[
-              styles.forgotView,
-              rtlText,
-              isAr && styles.arSliderTextAlign,
-            ]}
-            onPress={() =>
-              navigation.navigate(navigationStrings.FORGOTPASSWORD)
-            }>
-            <Text style={[styles.forgotText, rtlText]}>
-              {t('common:ForgetPassword')}
-            </Text>
-          </TouchableOpacity>
-          <View style={styles.buttonStyle}>
-            <ButtonCustomComponents
-              buttonText={t('common:Login')}
-              onPress={() => LoginValidation()}
-              style={[rtlSelectedText, isAr && styles.arSliderTextAlign]}
-            />
+            <View>
+              {passwordError && (
+                <Text
+                  style={[styles.errorStyle, isAr && styles.arSliderTextAlign]}>
+                  {t('common:PasswordError')}
+                </Text>
+              )}
+            </View>
+
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={[styles.forgotView, isAr && styles.arSliderTextAlign]}
+              onPress={() =>
+                navigation.navigate(navigationStrings.FORGOTPASSWORD)
+              }>
+              <Text
+                style={[styles.forgotText, isAr && styles.arSliderTextAlign]}>
+                {t('common:ForgetPassword')}
+              </Text>
+            </TouchableOpacity>
+
+            <View style={styles.buttonStyle}>
+              <ButtonCustomComponents
+                buttonText={t('common:Login')}
+                onPress={() => LoginValidation()}
+                style={[isAr && styles.arSliderTextAlign]}
+              />
+            </View>
           </View>
         </View>
+
         <View>
-          <View
-            style={[
-              selectLanguageCode === 'ar' ? styles.rtlText : null,
-              [isAr && styles.arSliderTextAlign],
-              {alignItems: 'center'},
-            ]}>
+          <View style={[selectLanguageCode === 'ar', {alignItems: 'center'}]}>
             {LANGUAGES.map(lang => {
               const selectedLanguage = lang.code === selectLanguageCode;
               return (
@@ -194,7 +183,6 @@ const LoginScreen = ({navigation}) => {
                   <Text
                     style={[
                       selectedLanguage ? styles.selectedText : styles.text,
-                      rtlSelectedText,
                     ]}>
                     {lang.label}
                   </Text>
@@ -204,7 +192,8 @@ const LoginScreen = ({navigation}) => {
           </View>
         </View>
         <View style={[styles.bottomView, isAr && styles.arSliderTextAlign]}>
-          <Text style={[styles.newAccountText, rtlText]}>
+          <Text
+            style={[styles.newAccountText, isAr && styles.arSliderTextAlign]}>
             {t('common:DontHaveanAccount')}
           </Text>
           <TouchableOpacity
@@ -212,7 +201,8 @@ const LoginScreen = ({navigation}) => {
               navigation.navigate(navigationStrings.HOME);
             }}>
             <View style={styles.bottomSubView}>
-              <Text style={[styles.signUpText, rtlText]}>
+              <Text
+                style={[styles.signUpText, isAr && styles.arSliderTextAlign]}>
                 {t('common:SignUp')}
               </Text>
             </View>

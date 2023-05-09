@@ -1,9 +1,7 @@
 import {
   Alert,
   ScrollView,
-  StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
   Image,
@@ -18,20 +16,22 @@ import TextinputWithLabel from '../../components/TextinputWithLabel';
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import {moderateScale, scale} from 'react-native-size-matters';
 import ImagePath from '../../constant/ImagePath';
+import {useTranslation} from 'react-i18next';
 
 const ForgotPasswordScreen = ({navigation}) => {
   const [email, setEmail] = useState();
   const [showError, setShowError] = useState();
 
+  const {t, i18n} = useTranslation();
   const EmailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
   const handleForgotPassword = () => {
     if (email?.length === 0) {
-      setShowError('Please fill the Email first');
+      setShowError(t('error:EmailError'));
     } else if (email?.length > 50) {
-      setShowError('your Email must be to long');
+      setShowError(t('error:Email_To_Long'));
     } else if (!EmailRegex.test(email)) {
-      setShowError('Please Fill correct Email');
+      setShowError(t('error:EmailError'));
     } else {
       setShowError('');
       navigation.navigate(navigationStrings.HOME);
@@ -46,7 +46,7 @@ const ForgotPasswordScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate(navigationStrings.LOGIN);
           }}
-          label="Forgot Password"
+          label={t('common:Forgot_Password')}
         />
 
         <View style={styles.submain}>
@@ -57,11 +57,13 @@ const ForgotPasswordScreen = ({navigation}) => {
             />
           </View>
           <View style={styles.ForgotPasswordView}>
-            <Text style={styles.ForgotPasswordText}>Forgot Password</Text>
+            <Text style={styles.ForgotPasswordText}>
+              {t('common:Forgot_Password')}
+            </Text>
           </View>
           <View style={styles.ForgotPasswordTextDescView}>
             <Text style={styles.ForgotPasswordTextDesc}>
-              Please Enter associated Email to verify your account
+              {t('common:ForgotPasswordTextDesc')}
             </Text>
           </View>
           <View style={styles.MainContentView}>
@@ -71,7 +73,7 @@ const ForgotPasswordScreen = ({navigation}) => {
               }}
               value={email}
               setValue={setEmail}
-              placeholder="Enter an Email "
+              placeholder={t('common:Forgot_Password_Placeholder_EmailText')}
               placeholderTextColor={colors.blackOpacity30}
             />
           </View>
@@ -81,7 +83,7 @@ const ForgotPasswordScreen = ({navigation}) => {
           <TouchableOpacity onPress={handleForgotPassword}>
             <View style={styles.buttonStyle}>
               <ButtonCustomComponents
-                buttonText="Submit"
+                buttonText={t('common:Forgot_Password_Submit')}
                 onPress={handleForgotPassword}
                 fontSize={scale(16)}
               />

@@ -26,4 +26,10 @@ export default {
   Pleasetryagainlater: 'يرجى إعادة المحاولة لاحقا.',
   GotoDwarka: 'دعنا نذهب إلى دواركا',
   MapView: 'عرض الخريطة',
+  Email_To_Long: 'بريدك الإلكتروني طويل جدا',
+  Forgot_Password: 'نسيت كلمة المرور',
+  ForgotPasswordTextDesc:
+    'يرجى إدخال البريد الإلكتروني المرتبط للتحقق من حسابك',
+  Forgot_Password_Placeholder_EmailText: 'أدخل بريدا إلكترونيا',
+  Forgot_Password_Submit: 'إرسال',
 };

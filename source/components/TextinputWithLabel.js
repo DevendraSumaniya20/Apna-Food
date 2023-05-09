@@ -10,6 +10,8 @@ import {
 import React from 'react';
 import colors from '../assets/color/colors';
 
+let isAr = false;
+
 const TextinputWithLabel = ({
   label,
   placeholder,
@@ -21,6 +23,7 @@ const TextinputWithLabel = ({
   onPressRight,
   value,
   setValue,
+  textAlign,
 }) => {
   return (
     <View style={styles.inputStyle}>
@@ -30,6 +33,7 @@ const TextinputWithLabel = ({
         <TextInput
           placeholder={placeholder}
           style={styles.inlineStyle}
+          textAlign={textAlign}
           {...props}
           onChangeText={onchangeText}
           placeholderTextColor={placeholderTextColor}
@@ -64,7 +68,6 @@ const styles = StyleSheet.create({
   inlineStyle: {
     paddingVertical: moderateScale(7),
     paddingLeft: moderateScale(1),
-    textAlign: 'left',
     paddingTop: verticalScale(5),
     fontSize: scale(14),
     flex: 1,

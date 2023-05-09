@@ -25,4 +25,10 @@ export default {
   Pleasetryagainlater: 'Veuillez réessayer plus tard',
   GotoDwarka: 'Allons à Dwarka',
   MapView: 'Vue de la carte',
+  Email_To_Long: 'votre e-mail est trop long',
+  Forgot_Password: 'Mot de passe oublié',
+  ForgotPasswordTextDesc:
+    "Veuillez saisir l'e-mail associé pour vérifier votre compte",
+  Forgot_Password_Placeholder_EmailText: 'Saisissez un e-mail',
+  Forgot_Password_Submit: 'Soumettre',
 };

@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
     color: colors.mainThemesColor,
     textTransform: 'capitalize',
     fontFamily: 'Montserrat',
-    textAlign: 'left',
   },
   errorStyle: {
     fontSize: scale(13),

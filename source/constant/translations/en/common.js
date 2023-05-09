@@ -26,4 +26,10 @@ export default {
   Pleasetryagainlater: 'Please try again later.',
   GotoDwarka: "Let's go to Dwarka",
   MapView: 'Map View',
+  Email_To_Long: 'your Email is too long',
+  Forgot_Password: 'Forgot Password',
+  ForgotPasswordTextDesc:
+    'Please Enter associated Email to verify your account',
+  Forgot_Password_Placeholder_EmailText: 'Enter an Email',
+  Forgot_Password_Submit: 'Submit',
 };
