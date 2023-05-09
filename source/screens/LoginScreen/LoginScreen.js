@@ -20,8 +20,6 @@ import {useTranslation} from 'react-i18next';
 import styles from './style';
 import RNRestart from 'react-native-restart';
 
-// let isAr = false;
-
 const LoginScreen = ({navigation}) => {
   const [isVisible, setIsVisible] = useState(true);
   const [email, setEmail] = useState();
@@ -38,11 +36,6 @@ const LoginScreen = ({navigation}) => {
     {code: 'fr', label: 'Français'},
     {code: 'ar', label: 'Arabic'},
   ];
-
-  // const rtlText = {
-  // textAlign: isAr ? 'right' : 'left',
-  // direction: 'ltr' ? 'ltr' : 'rtl',
-  // };
 
   const setLanguage = async code => {
     if (code === 'en' || code === 'fr') {

@@ -38,11 +38,14 @@ const ForgotPasswordScreen = ({navigation}) => {
     }
   };
 
+  const isAr = i18n.language === 'ar';
+  const textAlign = isAr ? 'right' : 'left';
+
   return (
     <ScrollView>
       <View style={styles.main}>
         <CustomHeaderComponents
-          back={'Back'}
+          back={t('common:Back')}
           onPress={() => {
             navigation.navigate(navigationStrings.LOGIN);
           }}
@@ -57,16 +60,16 @@ const ForgotPasswordScreen = ({navigation}) => {
             />
           </View>
           <View style={styles.ForgotPasswordView}>
-            <Text style={styles.ForgotPasswordText}>
+            <Text style={[styles.ForgotPasswordText, isAr && textAlign]}>
               {t('common:Forgot_Password')}
             </Text>
           </View>
           <View style={styles.ForgotPasswordTextDescView}>
-            <Text style={styles.ForgotPasswordTextDesc}>
+            <Text style={[styles.ForgotPasswordTextDesc, isAr && textAlign]}>
               {t('common:ForgotPasswordTextDesc')}
             </Text>
           </View>
-          <View style={styles.MainContentView}>
+          <View style={[styles.MainContentView, isAr && textAlign]}>
             <TextinputWithLabel
               onchangeText={item => {
                 setEmail(item);
@@ -75,13 +78,16 @@ const ForgotPasswordScreen = ({navigation}) => {
               setValue={setEmail}
               placeholder={t('common:Forgot_Password_Placeholder_EmailText')}
               placeholderTextColor={colors.blackOpacity30}
+              textAlign={isAr ? 'right' : 'left'}
             />
           </View>
           <View style={styles.errorStyleView}>
-            <Text style={styles.errorStyle}>{showError}</Text>
+            <Text style={[styles.errorStyle, isAr && textAlign]}>
+              {showError}
+            </Text>
           </View>
           <TouchableOpacity onPress={handleForgotPassword}>
-            <View style={styles.buttonStyle}>
+            <View style={[styles.buttonStyle, isAr && textAlign]}>
               <ButtonCustomComponents
                 buttonText={t('common:Forgot_Password_Submit')}
                 onPress={handleForgotPassword}
