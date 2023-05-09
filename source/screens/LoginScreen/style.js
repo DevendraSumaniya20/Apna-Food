@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
 
   TextinputWithLabelView: {
-    paddingTop: moderateScale(25),
+    paddingTop: moderateScale(8),
   },
 
   forgotView: {

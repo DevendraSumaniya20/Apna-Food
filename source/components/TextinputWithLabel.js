@@ -10,8 +10,6 @@ import {
 import React from 'react';
 import colors from '../assets/color/colors';
 
-let isAr = false;
-
 const TextinputWithLabel = ({
   label,
   placeholder,
