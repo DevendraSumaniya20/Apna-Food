@@ -5,8 +5,7 @@ import {
   View,
   Pressable,
   I18nManager,
-  Button,
-  Switch,
+  StyleSheet,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 
@@ -36,17 +35,25 @@ const LoginScreen = ({navigation}) => {
   const selectLanguageCode = i18n.language;
 
   const isDarkMode = useSelector(state => state.theme.isDarkMode);
-
   const dispatch = useDispatch();
 
-  const handleToggleTheme = () => {
+  const handleToggle = () => {
     dispatch(toggleTheme());
   };
 
-  const containerStyle = {
-    backgroundColor: isDarkMode ? '#fff' : '#000',
-    color: isDarkMode ? '#111' : '#fff',
-  };
+  const lightStyles = StyleSheet.create({
+    container: {
+      backgroundColor: '#ffffff',
+      color: '#000000',
+    },
+  });
+
+  const darkStyles = StyleSheet.create({
+    container: {
+      backgroundColor: '#000000',
+      color: '#ffffff',
+    },
+  });
 
   const LANGUAGES = [
     {code: 'en', label: 'English'},
@@ -80,45 +87,42 @@ const LoginScreen = ({navigation}) => {
     const emailMaxLength = 50;
     const passwordMaxLength = 30;
     if (!email) {
-      setEmailError(t('error:EmailError'));
+      setEmailError('Please Enter the Email');
     } else if (!emailRegex.test(email)) {
-      setEmailError(t('error:EmailProper'));
+      setEmailError('Please Enter the Proper Email');
     } else if (email.length > emailMaxLength) {
-      setEmailError(t('error:EmailLength'));
+      setEmailError(`Email must be Less than ${emailMaxLength} characters`);
     } else if (!password) {
-      setPasswordError(t('error:PasswordError'));
+      setPasswordError('Please Enter the Password');
     } else if (password.length < 5) {
-      setPasswordError(t('error:PasswordLessCharacters'));
+      setPasswordError('Please Enter the At least More characters');
     } else if (!passwordRegex.test(password)) {
-      setPasswordError(t('error:PasswordRegex'));
+      setPasswordError(
+        ' Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character',
+      );
     } else if (password.length > passwordMaxLength) {
-      setPasswordError(t('error:PasswordLength'));
+      setPasswordError(
+        `Password must be less than ${passwordMaxLength} characters`,
+      );
     } else if (email === 'Devendra@gmail.com' && password === 'D123456789@d') {
       setEmailError('');
       setPasswordError('');
       navigation.navigate(navigationStrings.HOME);
     }
   };
+
   return (
     <>
-      <View style={[styles.main, containerStyle]}>
+      <View
+        style={[
+          styles.main,
+          isDarkMode ? darkStyles.container : lightStyles.container,
+        ]}>
         <CustomHeaderComponents paddingTop={moderateScale(10)} />
         <ImageBackground
           source={ImagePath.FoodApp}
           style={styles.imageBackground}
         />
-
-        <TouchableOpacity
-          style={styles.isDarkModeView}
-          onPress={handleToggleTheme}>
-          <Switch
-            trackColor={{false: '#767577', true: '#81b0ff'}}
-            thumbColor={isDarkMode ? '#f5dd4b' : '#f4f3f4'}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={handleToggleTheme}
-            value={isDarkMode}
-          />
-        </TouchableOpacity>
 
         <View style={styles.mainStyle}>
           <View style={styles.TextinputWithLabelView}>
@@ -127,26 +131,43 @@ const LoginScreen = ({navigation}) => {
               value={email}
               setValue={setEmail}
               placeholder={t('common:EnterAnEmailorPhone')}
-              placeholderTextColor={colors.blackOpacity30}
+              placeholderTextColor={
+                isDarkMode ? colors.whiteOpacity80 : colors.blackOpacity80
+              }
               style={{
                 ...(isAr && {textAlign: 'right'}),
               }}
             />
+
+            <View>
+              {emailError && (
+                <Text
+                  style={[
+                    styles.errorStyle,
+                    isAr && styles.arSliderTextAlign,
+                    isDarkMode ? '#000' : '#fff',
+                  ]}>
+                  {t('error:EmailError')}
+                </Text>
+              )}
+            </View>
 
             <TextinputWithLabel
               textAlign={isAr ? 'right' : 'left'}
               value={password}
               setValue={setPassword}
               placeholder={t('common:EnteraPassword')}
-              placeholderTextColor={colors.blackOpacity30}
+              placeholderTextColor={
+                isDarkMode ? colors.whiteOpacity80 : colors.blackOpacity80
+              }
               secureTextEntry={isVisible}
               rightIcon={
                 !isVisible
-                  ? isAr
-                    ? ImagePath.showEye
+                  ? isDarkMode
+                    ? ImagePath.showEyeWhite
                     : ImagePath.showEye
-                  : isAr
-                  ? ImagePath.hideEye
+                  : isDarkMode
+                  ? ImagePath.hideEyeWhite
                   : ImagePath.hideEye
               }
               style={{
@@ -162,7 +183,11 @@ const LoginScreen = ({navigation}) => {
             <View>
               {passwordError && (
                 <Text
-                  style={[styles.errorStyle, isAr && styles.arSliderTextAlign]}>
+                  style={[
+                    styles.errorStyle,
+                    isAr && styles.arSliderTextAlign,
+                    isDarkMode ? '#000' : '#fff',
+                  ]}>
                   {t('common:PasswordError')}
                 </Text>
               )}
@@ -175,23 +200,40 @@ const LoginScreen = ({navigation}) => {
                 navigation.navigate(navigationStrings.FORGOTPASSWORD)
               }>
               <Text
-                style={[styles.forgotText, isAr && styles.arSliderTextAlign]}>
+                style={[
+                  styles.forgotText,
+                  isAr && styles.arSliderTextAlign,
+                  isDarkMode ? {color: '#fff'} : {color: '#000'},
+                ]}>
                 {t('common:ForgetPassword')}
               </Text>
             </TouchableOpacity>
+
+            <View
+              style={{
+                paddingTop: 10,
+                backgroundColor: isDarkMode ? 'black' : 'white',
+              }}>
+              <TouchableOpacity onPress={handleToggle}>
+                <Ionicons name="sunny-outline" color="red" size={30} />
+              </TouchableOpacity>
+            </View>
 
             <View style={styles.buttonStyle}>
               <ButtonCustomComponents
                 buttonText={t('common:Login')}
                 onPress={() => LoginValidation()}
-                style={[isAr && styles.arSliderTextAlign]}
               />
             </View>
           </View>
         </View>
 
         <View>
-          <View style={[selectLanguageCode === 'ar', {alignItems: 'center'}]}>
+          <View
+            style={[
+              selectLanguageCode === 'ar' && {alignItems: 'center'},
+              isDarkMode && styles.darkMode,
+            ]}>
             {LANGUAGES.map(lang => {
               const selectedLanguage = lang.code === selectLanguageCode;
               return (
@@ -205,6 +247,7 @@ const LoginScreen = ({navigation}) => {
                   <Text
                     style={[
                       selectedLanguage ? styles.selectedText : styles.text,
+                      isDarkMode ? {color: '#fff'} : {color: '#000'},
                     ]}>
                     {lang.label}
                   </Text>
@@ -213,10 +256,23 @@ const LoginScreen = ({navigation}) => {
             })}
           </View>
         </View>
-        <View style={[styles.bottomView, isAr && styles.arSliderTextAlign]}>
+        <View
+          style={[
+            styles.bottomView,
+            isAr && styles.arSliderTextAlign,
+            isDarkMode
+              ? {backgroundColor: '#000', color: '#fff'}
+              : {backgroundColor: '#fff', color: '#000'},
+          ]}>
           <Text
-            style={[styles.newAccountText, isAr && styles.arSliderTextAlign]}>
-            {t('common:DontHaveanAccount')}
+            style={[
+              styles.newAccountText,
+              isAr && styles.arSliderTextAlign,
+              isDarkMode
+                ? {backgroundColor: '#000', color: '#fff'}
+                : {backgroundColor: '#fff', color: '#000'},
+            ]}>
+            {t('common:DontHaveanAccount')} {''}
           </Text>
           <TouchableOpacity
             onPress={() => {
@@ -224,7 +280,12 @@ const LoginScreen = ({navigation}) => {
             }}>
             <View style={styles.bottomSubView}>
               <Text
-                style={[styles.signUpText, isAr && styles.arSliderTextAlign]}>
+                style={[
+                  styles.signUpText,
+                  isAr && styles.arSliderTextAlign,
+
+                  isDarkMode ? {color: '#fff'} : {color: '#000'},
+                ]}>
                 {t('common:SignUp')}
               </Text>
             </View>

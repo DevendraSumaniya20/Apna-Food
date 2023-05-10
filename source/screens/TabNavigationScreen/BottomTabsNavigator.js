@@ -5,27 +5,39 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import colors from '../../assets/color/colors';
 import HomeScreen from '../HomeScreen';
 import MapScreen from '../MapScreen';
+import {useSelector} from 'react-redux';
+import {StyleSheet} from 'react-native';
 
 const Tab = createMaterialBottomTabNavigator();
 
 const BottomTabNavigator = () => {
+  const isDarkMode = useSelector(state => state.theme.isDarkMode);
+  const styles = StyleSheet.create({
+    container: {
+      backgroundColor: isDarkMode ? '#000' : '#fff',
+      color: isDarkMode ? '#fff' : '#000',
+    },
+  });
+
   return (
     <Tab.Navigator
       labeled={false}
-      activeColor={colors.mainThemesColor}
-      inactiveColor={colors.blackOpacity50}
-      barStyle={{
-        backgroundColor: colors.HomeScreenBackGroundColor,
-        height: moderateScale(70),
-        borderTopLeftRadius: moderateScale(15),
-        borderTopRightRadius: moderateScale(15),
-      }}>
+      activeColor={isDarkMode ? '#000' : '#fff'}
+      inactiveColor={isDarkMode ? '#fff' : '#000'}
+      barStyle={[
+        styles.container,
+        {
+          height: moderateScale(70),
+          borderTopLeftRadius: moderateScale(15),
+          borderTopRightRadius: moderateScale(15),
+        },
+      ]}>
       <Tab.Screen
         name="TabHome"
         component={HomeScreen}
         options={{
           tabBarIcon: ({color}) => (
-            <Ionicons name="home" color={color} size={24} />
+            <Ionicons name="home" color={color} size={24} style={styles.icon} />
           ),
         }}
       />
@@ -34,7 +46,7 @@ const BottomTabNavigator = () => {
         component={MapScreen}
         options={{
           tabBarIcon: ({color}) => (
-            <Ionicons name="map" color={color} size={24} />
+            <Ionicons name="map" color={color} size={24} style={styles.icon} />
           ),
         }}
       />

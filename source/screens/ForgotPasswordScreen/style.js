@@ -15,10 +15,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: moderateScale(100),
   },
-
   forgotImg: {
     width: moderateScale(200),
     height: moderateScale(200),
+    borderRadius: moderateScale(30),
   },
 
   ForgotPasswordText: {

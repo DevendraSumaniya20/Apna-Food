@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   View,
   Platform,
+  StyleSheet,
 } from 'react-native';
 import React, {useState, useEffect, useRef} from 'react';
 import MapView, {Circle, Marker, Polyline} from 'react-native-maps';
@@ -15,6 +16,7 @@ import colors from '../../assets/color/colors';
 import Geolocation from '@react-native-community/geolocation';
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import {useTranslation} from 'react-i18next';
+import {useDispatch, useSelector} from 'react-redux';
 
 const MapScreen = () => {
   const [region, setRegion] = useState({});
@@ -24,6 +26,8 @@ const MapScreen = () => {
 
   const mapRef = useRef(null);
   const {t} = useTranslation();
+
+  const isDarkMode = useSelector(state => state.theme.isDarkMode);
 
   useEffect(() => {
     try {
@@ -47,6 +51,20 @@ const MapScreen = () => {
     }
   }, []);
 
+  const lightStyles = StyleSheet.create({
+    container: {
+      backgroundColor: '#ffffff',
+      color: '#000000',
+    },
+  });
+
+  const darkStyles = StyleSheet.create({
+    container: {
+      backgroundColor: '#000000',
+      color: '#ffffff',
+    },
+  });
+
   const DwarkaLocation = {
     latitude: 22.2376,
     longitude: 68.9674,
@@ -60,7 +78,11 @@ const MapScreen = () => {
 
   return (
     <>
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          isDarkMode ? darkStyles.container : lightStyles.container,
+        ]}>
         {isLoading ? (
           <View
             style={[
@@ -70,14 +92,20 @@ const MapScreen = () => {
             <ActivityIndicator style={styles.loading} size="large" />
           </View>
         ) : (
-          <View style={styles.container}>
-            <CustomHeaderComponents
-              back={t('common:Back')}
-              label={t('common:MapView')}
-              onPress={() => {
-                navigation.navigate(navigationStrings.LOGIN);
-              }}
-            />
+          <View
+            style={[
+              styles.container,
+              isDarkMode ? darkStyles.container : lightStyles.container,
+            ]}>
+            <View style={{marginTop: moderateScale(30)}}>
+              <CustomHeaderComponents
+                back={t('common:Back')}
+                label={t('common:MapView')}
+                onPress={() => {
+                  navigation.navigate(navigationStrings.LOGIN);
+                }}
+              />
+            </View>
             <MapView
               ref={mapRef}
               provider="google"

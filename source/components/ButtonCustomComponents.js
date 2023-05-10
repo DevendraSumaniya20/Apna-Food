@@ -2,6 +2,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import colors from '../assets/color/colors';
+import {useSelector} from 'react-redux';
 
 const ButtonCustomComponents = ({
   buttonText,
@@ -12,10 +13,26 @@ const ButtonCustomComponents = ({
 
   onPress = () => {},
 }) => {
+  const isDarkMode = useSelector(state => state.theme.isDarkMode);
+
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={{...styles.buttonStyle, buttonStyle}}>
-        <Text style={[styles.buttonText, {color, fontWeight, fontSize}]}>
+      <View
+        style={[
+          styles.buttonStyle,
+          buttonStyle,
+          isDarkMode
+            ? {backgroundColor: '#fff', color: '#000'}
+            : {backgroundColor: '#000', color: '#fff'},
+        ]}>
+        <Text
+          style={[
+            styles.buttonText,
+            {color, fontWeight, fontSize},
+            isDarkMode
+              ? {backgroundColor: '#fff', color: '#000'}
+              : {backgroundColor: '#000', color: '#fff'},
+          ]}>
           {buttonText}
         </Text>
       </View>

@@ -5,6 +5,7 @@ import {
   FlatList,
   ActivityIndicator,
   TouchableOpacity,
+  StyleSheet,
 } from 'react-native';
 
 import React, {useEffect, useState} from 'react';
@@ -21,6 +22,9 @@ import colors from '../../assets/color/colors';
 import {useTranslation} from 'react-i18next';
 
 const HomeScreen = ({navigation}) => {
+  const [isAr, setIsAr] = useState(false);
+  const isDarkMode = useSelector(state => state.theme.isDarkMode);
+
   const [data, setData] = useState([]);
   const dispatch = useDispatch();
   const myData = useSelector(state => state.ApiSlice);
@@ -98,7 +102,21 @@ const HomeScreen = ({navigation}) => {
       </View>
     );
   };
-  const {t, i18n} = useTranslation();
+  const {t} = useTranslation();
+
+  const lightStyles = StyleSheet.create({
+    container: {
+      backgroundColor: '#ffffff',
+      color: '#000000',
+    },
+  });
+
+  const darkStyles = StyleSheet.create({
+    container: {
+      backgroundColor: '#000000',
+      color: '#ffffff',
+    },
+  });
 
   useEffect(() => {
     dispatch(fetchApiData());
@@ -110,10 +128,13 @@ const HomeScreen = ({navigation}) => {
     }
   }, [myData]);
 
-  console.log(myData);
-
   return (
-    <View style={styles.main}>
+    <View
+      style={[
+        styles.main,
+        isAr && styles.arSliderTextAlign,
+        isDarkMode ? darkStyles.container : lightStyles.container,
+      ]}>
       <CustomHeaderComponents
         back={t('common:Back')}
         label={t('common:RestaurantList')}

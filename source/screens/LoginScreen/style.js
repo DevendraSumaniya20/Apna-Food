@@ -5,7 +5,6 @@ import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    backgroundColor: colors.white,
   },
   arSliderTextAlign: {
     textAlign: 'right',
@@ -75,6 +74,10 @@ const styles = StyleSheet.create({
     color: 'black',
     paddingVertical: moderateScale(5),
     textAlign: 'center',
+  },
+  darkMode: {
+    backgroundColor: '#000',
+    color: '#fff',
   },
 });
 

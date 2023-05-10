@@ -3,14 +3,36 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import colors from '../assets/color/colors';
 
+import {useSelector} from 'react-redux';
 const CustomHeaderComponents = ({
   label,
   onPress,
   back,
   paddingTop = moderateScale(40),
 }) => {
+  const isDarkMode = useSelector(state => state.theme.isDarkMode);
+
+  const lightStyles = StyleSheet.create({
+    container: {
+      backgroundColor: '#ffffff',
+      color: '#000000',
+    },
+  });
+
+  const darkStyles = StyleSheet.create({
+    container: {
+      backgroundColor: '#000000',
+      color: '#ffffff',
+    },
+  });
+
   return (
-    <View style={[styles.header, {paddingTop}]}>
+    <View
+      style={[
+        styles.header,
+        {paddingTop},
+        isDarkMode ? darkStyles.container : lightStyles.container,
+      ]}>
       <TouchableOpacity style={styles.backBtn} onPress={onPress}>
         <Text style={styles.backBtnText}>{back}</Text>
       </TouchableOpacity>
