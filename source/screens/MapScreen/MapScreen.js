@@ -5,6 +5,7 @@ import {
   View,
   Platform,
   StyleSheet,
+  StatusBar,
 } from 'react-native';
 import React, {useState, useEffect, useRef} from 'react';
 import MapView, {Circle, Marker, Polyline} from 'react-native-maps';
@@ -156,8 +157,17 @@ const MapScreen = () => {
             <View style={styles.buttonContainer}>
               <TouchableOpacity
                 onPress={() => goToDwarka()}
-                style={styles.button}>
-                <Text style={styles.buttonText}>{t('common:GotoDwarka')}</Text>
+                style={[
+                  styles.button,
+                  isDarkMode ? darkStyles.container : lightStyles.container,
+                ]}>
+                <Text
+                  style={[
+                    styles.buttonText,
+                    isDarkMode ? darkStyles.container : lightStyles.container,
+                  ]}>
+                  {t('common:GotoDwarka')}
+                </Text>
               </TouchableOpacity>
             </View>
           </View>

@@ -8,14 +8,10 @@ import {
   StyleSheet,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
-
 import ImagePath from '../../constant/ImagePath';
-
 import TextinputWithLabel from '../../components/TextinputWithLabel';
 import ButtonCustomComponents from '../../components/ButtonCustomComponents';
-import colors from '../../assets/color/colors';
 import navigationStrings from '../../constant/navigationStrings';
-import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import {moderateScale} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
 import styles from './style';
@@ -86,6 +82,7 @@ const LoginScreen = ({navigation}) => {
       /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     const emailMaxLength = 50;
     const passwordMaxLength = 30;
+
     if (!email) {
       setEmailError('Please Enter the Email');
     } else if (!emailRegex.test(email)) {
@@ -118,12 +115,32 @@ const LoginScreen = ({navigation}) => {
           styles.main,
           isDarkMode ? darkStyles.container : lightStyles.container,
         ]}>
-        <CustomHeaderComponents paddingTop={moderateScale(10)} />
         <ImageBackground
           source={ImagePath.FoodApp}
           style={styles.imageBackground}
         />
-
+        <View
+          style={{
+            padding: moderateScale(10),
+            backgroundColor: isDarkMode ? 'black' : 'white',
+            flexDirection: 'row-reverse',
+          }}>
+          <TouchableOpacity onPress={handleToggle}>
+            {isDarkMode ? (
+              <Ionicons
+                name="moon-outline"
+                color={isDarkMode ? '#fff' : '#000'}
+                size={30}
+              />
+            ) : (
+              <Ionicons
+                name="sunny-outline"
+                color={isDarkMode ? '#fff' : '#000'}
+                size={30}
+              />
+            )}
+          </TouchableOpacity>
+        </View>
         <View style={styles.mainStyle}>
           <View style={styles.TextinputWithLabelView}>
             <TextinputWithLabel
@@ -131,9 +148,7 @@ const LoginScreen = ({navigation}) => {
               value={email}
               setValue={setEmail}
               placeholder={t('common:EnterAnEmailorPhone')}
-              placeholderTextColor={
-                isDarkMode ? colors.whiteOpacity80 : colors.blackOpacity80
-              }
+              placeholderTextColor={isDarkMode ? '#fff' : '#000'}
               style={{
                 ...(isAr && {textAlign: 'right'}),
               }}
@@ -147,7 +162,7 @@ const LoginScreen = ({navigation}) => {
                     isAr && styles.arSliderTextAlign,
                     isDarkMode ? '#000' : '#fff',
                   ]}>
-                  {t('error:EmailError')}
+                  {emailError}
                 </Text>
               )}
             </View>
@@ -157,19 +172,9 @@ const LoginScreen = ({navigation}) => {
               value={password}
               setValue={setPassword}
               placeholder={t('common:EnteraPassword')}
-              placeholderTextColor={
-                isDarkMode ? colors.whiteOpacity80 : colors.blackOpacity80
-              }
+              placeholderTextColor={isDarkMode ? '#fff' : '#000'}
               secureTextEntry={isVisible}
-              rightIcon={
-                !isVisible
-                  ? isDarkMode
-                    ? ImagePath.showEyeWhite
-                    : ImagePath.showEye
-                  : isDarkMode
-                  ? ImagePath.hideEyeWhite
-                  : ImagePath.hideEye
-              }
+              rightIcon={isVisible ? 'eye-off-outline' : 'eye-outline'}
               style={{
                 flexDirection: (isAr && 'row-reverse') || 'row',
                 ...(isAr && {justifyContent: 'flex-end'}),
@@ -188,7 +193,7 @@ const LoginScreen = ({navigation}) => {
                     isAr && styles.arSliderTextAlign,
                     isDarkMode ? '#000' : '#fff',
                   ]}>
-                  {t('common:PasswordError')}
+                  {passwordError}
                 </Text>
               )}
             </View>
@@ -209,20 +214,12 @@ const LoginScreen = ({navigation}) => {
               </Text>
             </TouchableOpacity>
 
-            <View
-              style={{
-                paddingTop: 10,
-                backgroundColor: isDarkMode ? 'black' : 'white',
-              }}>
-              <TouchableOpacity onPress={handleToggle}>
-                <Ionicons name="sunny-outline" color="red" size={30} />
-              </TouchableOpacity>
-            </View>
-
             <View style={styles.buttonStyle}>
               <ButtonCustomComponents
-                buttonText={t('common:Login')}
-                onPress={() => LoginValidation()}
+                buttonText="Login"
+                onPress={() => {
+                  LoginValidation();
+                }}
               />
             </View>
           </View>

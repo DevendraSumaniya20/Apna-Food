@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import colors from '../assets/color/colors';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {useSelector} from 'react-redux';
 const CustomHeaderComponents = ({
@@ -34,9 +35,22 @@ const CustomHeaderComponents = ({
         isDarkMode ? darkStyles.container : lightStyles.container,
       ]}>
       <TouchableOpacity style={styles.backBtn} onPress={onPress}>
-        <Text style={styles.backBtnText}>{back}</Text>
+        <Ionicons
+          name="arrow-back-outline"
+          size={30}
+          style={[
+            styles.backBtnText,
+            isDarkMode ? darkStyles.container : lightStyles.container,
+          ]}
+        />
       </TouchableOpacity>
-      <Text style={styles.label}>{label}</Text>
+      <Text
+        style={[
+          styles.label,
+          isDarkMode ? darkStyles.container : lightStyles.container,
+        ]}>
+        {label}
+      </Text>
       <View style={{width: moderateScale(55)}} />
     </View>
   );

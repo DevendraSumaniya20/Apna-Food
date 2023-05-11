@@ -10,7 +10,6 @@ const ButtonCustomComponents = ({
   color = '#fff',
   fontWeight = '800',
   fontSize = scale(16),
-
   onPress = () => {},
 }) => {
   const isDarkMode = useSelector(state => state.theme.isDarkMode);

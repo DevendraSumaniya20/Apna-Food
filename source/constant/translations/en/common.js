@@ -1,18 +1,6 @@
 const emailMaxLength = 50;
 const passwordMaxLength = 30;
 
-const Errors = {
-  EmailRequired: 'Please enter your email',
-  EmailInvalid: 'Please enter a valid email',
-  EmailMaxLength: `Email must be less than ${emailMaxLength} characters`,
-  PasswordRequired: 'Please enter your password',
-  PasswordMinLength: 'Please enter at least 5 characters',
-  PasswordMaxLength: `Password must be less than ${passwordMaxLength} characters`,
-  PasswordInvalid:
-    'Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character',
-  Generic: 'An error has occurred. Please try again later.',
-};
-
 export default {
   hey: 'Hey',
   languageSelector: 'Select a language',
@@ -23,17 +11,18 @@ export default {
   EnteraPassword: 'Enter a password',
   ForgetPassword: 'Forgot Password',
   DontHaveanAccount: "Don't have an account?",
-  EmailError: Errors.EmailRequired,
-  EmailProper: Errors.EmailInvalid,
-  EmailLength: Errors.EmailMaxLength,
-  PasswordError: Errors.PasswordRequired,
-  PasswordLessCharacters: Errors.PasswordMinLength,
-  PasswordLength: Errors.PasswordMaxLength,
-  PasswordRegex: Errors.PasswordInvalid,
+  EmailError: 'Please enter your email',
+  EmailProper: 'Please enter a valid email',
+  EmailLength: `Email must be less than ${emailMaxLength} characters`,
+  PasswordError: 'Please enter your password',
+  PasswordLessCharacters: 'Please enter at least 5 characters',
+  PasswordLength: `Password must be less than ${passwordMaxLength} characters`,
+  PasswordRegex:
+    'Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character',
   Back: 'Back',
   RestaurantList: 'Restaurant List',
   Error: 'Error',
-  Pleasetryagainlater: Errors.Generic,
+  Pleasetryagainlater: 'An error has occurred. Please try again later.',
   GotoDwarka: "Let's go to Dwarka",
   MapView: 'Map View',
   Email_To_Long: 'Your email is too long',

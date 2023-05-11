@@ -8,8 +8,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
-import colors from '../assets/color/colors';
 import {useSelector} from 'react-redux';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import colors from '../assets/color/colors';
 
 const TextinputWithLabel = ({
   label,
@@ -91,7 +92,7 @@ const TextinputWithLabel = ({
         />
         {!!rightIcon ? (
           <TouchableOpacity onPress={onPressRight}>
-            <Image source={rightIcon} style={styles.image} />
+            <Ionicons name={rightIcon} size={20} color={placeholderTextColor} />
           </TouchableOpacity>
         ) : null}
       </View>

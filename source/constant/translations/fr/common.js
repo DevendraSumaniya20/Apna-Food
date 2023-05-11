@@ -1,43 +1,35 @@
 const emailMaxLength = 50;
 const passwordMaxLength = 30;
 
-const Errors = {
-  EmailRequired: 'Veuillez saisir votre adresse e-mail',
-  EmailInvalid: 'Veuillez saisir une adresse e-mail valide',
-  EmailMaxLength: `L'adresse e-mail doit comporter moins de ${emailMaxLength} caractères`,
-  PasswordRequired: 'Veuillez saisir votre mot de passe',
-  PasswordMinLength: `Le mot de passe doit comporter au moins 5 caractères`,
-  PasswordMaxLength: `Le mot de passe doit comporter moins de ${passwordMaxLength} caractères`,
-  PasswordInvalid: `Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial `,
-  Generic: 'Une erreur est survenue. Veuillez réessayer plus tard.',
-};
-
 export default {
   hey: 'Salut',
-  languageSelector: 'Sélectionner une langue',
-  Login: 'Connexion',
+  languageSelector: 'Sélectionnez une langue',
+  Login: 'Se connecter',
   Password: 'Mot de passe',
   SignUp: "S'inscrire",
-  EnterAnEmailorPhone: 'Saisir une adresse e-mail ou un numéro de téléphone',
-  EnteraPassword: 'Saisir un mot de passe',
+  EnterAnEmailorPhone: 'Entrez un e-mail ou un numéro de téléphone',
+  EnteraPassword: 'Entrez un mot de passe',
   ForgetPassword: 'Mot de passe oublié',
   DontHaveanAccount: "Vous n'avez pas de compte?",
-  EmailError: Errors.EmailRequired,
-  EmailProper: Errors.EmailInvalid,
-  EmailLength: Errors.EmailMaxLength,
-  PasswordError: Errors.PasswordRequired,
-  PasswordLessCharacters: Errors.PasswordMinLength,
-  PasswordLength: Errors.PasswordMaxLength,
-  PasswordRegex: Errors.PasswordInvalid,
+  EmailError: 'Veuillez entrer votre e-mail',
+  EmailProper: 'Veuillez entrer un e-mail valide',
+  EmailLength: `L'e-mail doit comporter moins de ${emailMaxLength} caractères`,
+  PasswordError: 'Veuillez entrer votre mot de passe',
+  PasswordLessCharacters: 'Veuillez entrer au moins 5 caractères',
+  PasswordLength: `Le mot de passe doit comporter moins de ${passwordMaxLength} caractères`,
+  PasswordRegex:
+    'Le mot de passe doit contenir au moins 1 lettre majuscule, 1 lettre minuscule, 1 chiffre et 1 caractère spécial',
   Back: 'Retour',
   RestaurantList: 'Liste des restaurants',
   Error: 'Erreur',
-  Pleasetryagainlater: Errors.Generic,
+  Pleasetryagainlater:
+    "Une erreur s'est produite. Veuillez réessayer plus tard.",
   GotoDwarka: 'Allons à Dwarka',
   MapView: 'Vue de la carte',
-  Email_To_Long: 'Votre adresse e-mail est trop longue',
+  Email_To_Long: 'Votre e-mail est trop long',
   Forgot_Password: 'Mot de passe oublié',
-  ForgotPasswordTextDesc: `Veuillez saisir l'adresse e-mail associée à votre compte pour réinitialiser votre mot de passe.`,
-  Forgot_Password_Placeholder_EmailText: 'Saisir votre adresse e-mail',
-  Forgot_Password_Submit: 'Soumettre',
+  ForgotPasswordTextDesc:
+    'Veuillez saisir l’e-mail associé à votre compte pour réinitialiser votre mot de passe.',
+  Forgot_Password_Placeholder_EmailText: 'Entrez votre e-mail',
+  Forgot_Password_Submit: 'Envoyer',
 };

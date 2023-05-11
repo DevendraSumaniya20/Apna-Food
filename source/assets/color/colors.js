@@ -20,4 +20,5 @@ export default {
   locationBackGroundColor: 'rgba(39,221,147,1)',
   color1Home: '#33bd98',
   color2Home: '#EE3F37',
+  color_3: '#Def965',
 };

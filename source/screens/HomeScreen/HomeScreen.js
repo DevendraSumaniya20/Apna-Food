@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   StyleSheet,
+  StatusBar,
 } from 'react-native';
 
 import React, {useEffect, useState} from 'react';
@@ -129,48 +130,55 @@ const HomeScreen = ({navigation}) => {
   }, [myData]);
 
   return (
-    <View
-      style={[
-        styles.main,
-        isAr && styles.arSliderTextAlign,
-        isDarkMode ? darkStyles.container : lightStyles.container,
-      ]}>
-      <CustomHeaderComponents
-        back={t('common:Back')}
-        label={t('common:RestaurantList')}
-        onPress={() => {
-          navigation.navigate(navigationStrings.LOGIN);
-        }}
+    <>
+      <StatusBar
+        backgroundColor={isDarkMode ? 'black' : 'white'}
+        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
       />
 
-      <View style={styles.FlatListDataStyle}>
-        {!myData?.isLoading && !myData?.error && (
-          <FlatList
-            data={data}
-            renderItem={renderItem}
-            keyExtractor={item => item.id.toString()}
-          />
-        )}
-        {myData?.isLoading && (
-          <View style={styles.activityIndicatorStyle}>
-            <ActivityIndicator color={colors.color1Home} size={'large'} />
-          </View>
-        )}
-        {!myData?.isLoading && myData?.error && (
-          <View style={styles.errorMessageStyle}>
-            <Text style={styles.errorMessageText}>
-              {t('common:Error')} : {/* {myData.error}. */}
-              {t('common:Pleasetryagainlater')}
-            </Text>
-          </View>
-        )}
-        {!myData?.isLoading && !myData?.error && data.length === 0 && (
-          <View style={styles.noDataMessageStyle}>
-            <Text style={styles.noDataMessageText}>No data available.</Text>
-          </View>
-        )}
+      <View
+        style={[
+          styles.main,
+          isAr && styles.arSliderTextAlign,
+          isDarkMode ? darkStyles.container : lightStyles.container,
+        ]}>
+        <CustomHeaderComponents
+          back={t('common:Back')}
+          label={t('common:RestaurantList')}
+          onPress={() => {
+            navigation.navigate(navigationStrings.LOGIN);
+          }}
+        />
+
+        <View style={styles.FlatListDataStyle}>
+          {!myData?.isLoading && !myData?.error && (
+            <FlatList
+              data={data}
+              renderItem={renderItem}
+              keyExtractor={item => item.id.toString()}
+            />
+          )}
+          {myData?.isLoading && (
+            <View style={styles.activityIndicatorStyle}>
+              <ActivityIndicator color={colors.color1Home} size={'large'} />
+            </View>
+          )}
+          {!myData?.isLoading && myData?.error && (
+            <View style={styles.errorMessageStyle}>
+              <Text style={styles.errorMessageText}>
+                {t('common:Error')} : {/* {myData.error}. */}
+                {t('common:Pleasetryagainlater')}
+              </Text>
+            </View>
+          )}
+          {!myData?.isLoading && !myData?.error && data.length === 0 && (
+            <View style={styles.noDataMessageStyle}>
+              <Text style={styles.noDataMessageText}>No data available.</Text>
+            </View>
+          )}
+        </View>
       </View>
-    </View>
+    </>
   );
 };
 
