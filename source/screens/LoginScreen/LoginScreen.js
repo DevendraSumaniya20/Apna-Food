@@ -82,25 +82,20 @@ const LoginScreen = ({navigation}) => {
       /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     const emailMaxLength = 50;
     const passwordMaxLength = 30;
-
     if (!email) {
-      setEmailError('Please Enter the Email');
+      setEmailError(t('common:EmailError'));
     } else if (!emailRegex.test(email)) {
-      setEmailError('Please Enter the Proper Email');
+      setEmailError(t('common:EmailProper'));
     } else if (email.length > emailMaxLength) {
-      setEmailError(`Email must be Less than ${emailMaxLength} characters`);
+      setEmailError(t('common:EmailLength'));
     } else if (!password) {
-      setPasswordError('Please Enter the Password');
+      setPasswordError(t('common:PasswordError'));
     } else if (password.length < 5) {
-      setPasswordError('Please Enter the At least More characters');
+      setPasswordError(t('common:PasswordLessCharacters'));
     } else if (!passwordRegex.test(password)) {
-      setPasswordError(
-        ' Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character',
-      );
+      setPasswordError(t('common:PasswordRegex'));
     } else if (password.length > passwordMaxLength) {
-      setPasswordError(
-        `Password must be less than ${passwordMaxLength} characters`,
-      );
+      setPasswordError(t('common:PasswordLength'));
     } else if (email === 'Devendra@gmail.com' && password === 'D123456789@d') {
       setEmailError('');
       setPasswordError('');
@@ -146,7 +141,7 @@ const LoginScreen = ({navigation}) => {
             <TextinputWithLabel
               textAlign={isAr ? 'right' : 'left'}
               value={email}
-              setValue={setEmail}
+              onChangeText={setEmail}
               placeholder={t('common:EnterAnEmailorPhone')}
               placeholderTextColor={isDarkMode ? '#fff' : '#000'}
               style={{
@@ -155,7 +150,7 @@ const LoginScreen = ({navigation}) => {
             />
 
             <View>
-              {emailError && (
+              {emailError ? (
                 <Text
                   style={[
                     styles.errorStyle,
@@ -164,13 +159,21 @@ const LoginScreen = ({navigation}) => {
                   ]}>
                   {emailError}
                 </Text>
+              ) : (
+                <Text
+                  style={[
+                    styles.successStyle,
+                    isAr && styles.arSliderTextAlign,
+                    isDarkMode ? '#000' : '#fff',
+                  ]}>
+                  {''}
+                </Text>
               )}
             </View>
 
             <TextinputWithLabel
               textAlign={isAr ? 'right' : 'left'}
               value={password}
-              setValue={setPassword}
               placeholder={t('common:EnteraPassword')}
               placeholderTextColor={isDarkMode ? '#fff' : '#000'}
               secureTextEntry={isVisible}
@@ -186,7 +189,7 @@ const LoginScreen = ({navigation}) => {
             />
 
             <View>
-              {passwordError && (
+              {passwordError ? (
                 <Text
                   style={[
                     styles.errorStyle,
@@ -195,9 +198,17 @@ const LoginScreen = ({navigation}) => {
                   ]}>
                   {passwordError}
                 </Text>
+              ) : (
+                <Text
+                  style={[
+                    styles.successStyle,
+                    isAr && styles.arSliderTextAlign,
+                    isDarkMode ? '#000' : '#fff',
+                  ]}>
+                  {''}
+                </Text>
               )}
             </View>
-
             <TouchableOpacity
               activeOpacity={0.5}
               style={[styles.forgotView, isAr && styles.arSliderTextAlign]}
@@ -216,7 +227,7 @@ const LoginScreen = ({navigation}) => {
 
             <View style={styles.buttonStyle}>
               <ButtonCustomComponents
-                buttonText="Login"
+                buttonText={t('common:Login')}
                 onPress={() => {
                   LoginValidation();
                 }}

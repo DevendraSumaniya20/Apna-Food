@@ -88,7 +88,7 @@ const TextinputWithLabel = ({
           autoCorrect={false}
           secureTextEntry={secureTextEntry}
           value={value}
-          setValue={setValue}
+          // setValue={setValue}
         />
         {!!rightIcon ? (
           <TouchableOpacity onPress={onPressRight}>

@@ -1,9 +1,8 @@
 const emailMaxLength = 50;
 const passwordMaxLength = 30;
 
+
 export default {
-  hey: 'Salut',
-  languageSelector: 'Sélectionnez une langue',
   Login: 'Se connecter',
   Password: 'Mot de passe',
   SignUp: "S'inscrire",
