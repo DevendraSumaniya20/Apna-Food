@@ -1,91 +1,45 @@
-import {View, StyleSheet, StatusBar} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  StatusBar,
+  FlatList,
+  Button,
+  Text,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import styles from './style';
 import navigationStrings from '../../constant/navigationStrings';
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
-import SQLite from 'react-native-sqlite-storage';
 import {useTranslation} from 'react-i18next';
+import SQLite from 'react-native-sqlite-storage';
+import TextinputWithLabel from '../../components/TextinputWithLabel';
+import ButtonCustomComponents from '../../components/ButtonCustomComponents';
+import {moderateScale} from 'react-native-size-matters';
 
 const HomeScreen = ({navigation}) => {
   const [isAr, setIsAr] = useState(false);
+  const [value, setValue] = useState();
+
   const isDarkMode = useSelector(state => state.theme.isDarkMode);
   const {t} = useTranslation();
 
-  // Create a new SQLite database
-  const db = SQLite.openDatabase(
-    {
-      name: 'myDB.db',
-      location: 'default',
+  const lightStyles = StyleSheet.create({
+    container: {
+      backgroundColor: '#ffffff',
+      color: '#000000',
     },
-    () => {},
-    error => {
-      console.log(error);
+  });
+
+  const darkStyles = StyleSheet.create({
+    container: {
+      backgroundColor: '#000000',
+      color: '#ffffff',
     },
-  );
+  });
 
-  const addUser = () => {
-    db.transaction(tx => {
-      tx.executeSql(
-        'INSERT INTO users (name, email) VALUES (?, ?)',
-        ['Jane Doe', 'jane.doe@example.com'],
-        () => {
-          console.log('User added successfully');
-        },
-        error => {
-          console.log(error);
-        },
-      );
-    });
-  };
-
-  const getUsers = () => {
-    db.transaction(tx => {
-      tx.executeSql(
-        'SELECT * FROM users',
-        [],
-        (tx, results) => {
-          if (results.rows) {
-            console.log(results.rows.raw());
-          } else {
-            console.log('No rows found');
-          }
-        },
-        error => {
-          console.log(error);
-        },
-      );
-    });
-  };
-
-  const updateUser = () => {
-    db.transaction(tx => {
-      tx.executeSql(
-        'UPDATE users SET email = ? WHERE name = ?',
-        ['jane.doe@example.com', 'Jane Doe'],
-        () => {
-          console.log('User updated successfully');
-        },
-        error => {
-          console.log(error);
-        },
-      );
-    });
-  };
-
-  const deleteUser = () => {
-    db.transaction(tx => {
-      tx.executeSql(
-        'DELETE FROM users WHERE name = ?',
-        ['Jane Doe'],
-        () => {
-          console.log('User deleted successfully');
-        },
-        error => {
-          console.log(error);
-        },
-      );
-    });
+  const addDetails = () => {
+    console.log('button is clicked');
   };
 
   return (
@@ -102,17 +56,25 @@ const HomeScreen = ({navigation}) => {
           isDarkMode ? darkStyles.container : lightStyles.container,
         ]}>
         <CustomHeaderComponents
+          paddingTop={moderateScale(50)}
           back={t('common:Back')}
           label={t('common:RestaurantList')}
           onPress={() => {
             navigation.navigate(navigationStrings.LOGIN);
           }}
         />
-        <View style={styles.buttonContainer}>
-          <Button title="Add User" onPress={addUser} />
-          <Button title="Get Users" onPress={getUsers} />
-          <Button title="Update User" onPress={updateUser} />
-          <Button title="Delete User" onPress={deleteUser} />
+
+        <View>
+          <TextinputWithLabel
+            paddingTop={moderateScale(10)}
+            onChangeText={value => {
+              setValue(value);
+            }}
+            value={value}
+          />
+        </View>
+        <View style={{paddingTop: moderateScale(20), paddingHorizontal: '3%'}}>
+          <ButtonCustomComponents buttonText={'Add'} onPress={addDetails} />
         </View>
       </View>
     </>

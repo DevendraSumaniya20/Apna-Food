@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* Apna_FoodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* Apna_FoodTests.m */; };
+		0FA7B52D2A0E2BDF00E85908 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA7B52C2A0E2BDF00E85908 /* libsqlite3.tbd */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -55,6 +56,7 @@
 		00E356F21AD99517003FC87E /* Apna_FoodTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Apna_FoodTests.m; sourceTree = "<group>"; };
 		0BAC99895CEF4F99AE347FB9 /* NunitoSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Bold.ttf"; path = "../source/assets/fonts/NunitoSans-Bold.ttf"; sourceTree = "<group>"; };
 		0F1599652A03B57E00324402 /* GoogleMaps.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleMaps.xcframework; path = Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.xcframework; sourceTree = "<group>"; };
+		0FA7B52C2A0E2BDF00E85908 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0FD65630D5834A40AAD922C1 /* FiraMono-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraMono-Regular.ttf"; path = "../source/assets/fonts/FiraMono-Regular.ttf"; sourceTree = "<group>"; };
 		0FDB64AD2A03CF270044CFAE /* libreact-native-maps.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-maps.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* Apna_Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Apna_Food.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FA7B52D2A0E2BDF00E85908 /* libsqlite3.tbd in Frameworks */,
 				67BBCCE89419503B39A2487B /* libPods-Apna_Food.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,6 +149,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0FA7B52C2A0E2BDF00E85908 /* libsqlite3.tbd */,
 				0FDB64AD2A03CF270044CFAE /* libreact-native-maps.a */,
 				0F1599652A03B57E00324402 /* GoogleMaps.xcframework */,
 				E08D72821E88605A1CBBFEBD /* libPods-Apna_Food.a */,

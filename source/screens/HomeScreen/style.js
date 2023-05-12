@@ -99,6 +99,22 @@ const styles = StyleSheet.create({
     color: 'gray',
     textAlign: 'center',
   },
+  userContainer: {
+    backgroundColor: 'white',
+    padding: 10,
+    marginVertical: 5,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: 'gray',
+  },
+  userName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  userEmail: {
+    fontSize: 14,
+    color: 'gray',
+  },
 });
 
 export default styles;

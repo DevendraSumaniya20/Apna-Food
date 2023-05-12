@@ -22,8 +22,8 @@ const TextinputWithLabel = ({
   rightIcon,
   onPressRight,
   value,
-  setValue,
   textAlign,
+  paddingTop,
 }) => {
   const isDarkMode = useSelector(state => state.theme.isDarkMode);
 
@@ -88,7 +88,7 @@ const TextinputWithLabel = ({
           autoCorrect={false}
           secureTextEntry={secureTextEntry}
           value={value}
-          // setValue={setValue}
+          paddingTop={paddingTop}
         />
         {!!rightIcon ? (
           <TouchableOpacity onPress={onPressRight}>

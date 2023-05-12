@@ -67,6 +67,7 @@ const ForgotPasswordScreen = ({navigation}) => {
           isDarkMode ? darkStyles.container : lightStyles.container,
         ]}>
         <CustomHeaderComponents
+          paddingTop={moderateScale(50)}
           back={t('common:Back')}
           onPress={() => {
             navigation.navigate(navigationStrings.LOGIN);
@@ -122,13 +123,13 @@ const ForgotPasswordScreen = ({navigation}) => {
               textAlign={isAr ? 'right' : 'left'}
             />
           </View>
-          <View style={styles.errorStyleView}>
-            <Text
-              style={[
-                styles.errorStyle,
-                isAr && textAlign,
-                isDarkMode ? darkStyles.container : lightStyles.container,
-              ]}>
+          <View
+            style={[
+              styles.errorStyleView,
+              isAr && textAlign,
+              isDarkMode ? darkStyles.container : lightStyles.container,
+            ]}>
+            <Text style={[styles.errorStyle, isAr && textAlign]}>
               {showError}
             </Text>
           </View>
