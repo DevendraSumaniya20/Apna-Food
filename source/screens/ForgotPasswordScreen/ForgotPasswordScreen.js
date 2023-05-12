@@ -45,11 +45,11 @@ const ForgotPasswordScreen = ({navigation}) => {
 
   const handleForgotPassword = () => {
     if (email?.length === 0) {
-      setShowError(t('error:EmailError'));
+      setShowError(t('common:EmailError'));
     } else if (email?.length > 50) {
-      setShowError(t('error:Email_To_Long'));
+      setShowError(t('common:Email_To_Long'));
     } else if (!EmailRegex.test(email)) {
-      setShowError(t('error:EmailError'));
+      setShowError(t('common:EmailProper'));
     } else {
       setShowError('');
       navigation.navigate(navigationStrings.HOME);
@@ -116,7 +116,7 @@ const ForgotPasswordScreen = ({navigation}) => {
                 setEmail(item);
               }}
               value={email}
-              setValue={setEmail}
+              onChangeText={setEmail}
               placeholder={t('common:Forgot_Password_Placeholder_EmailText')}
               placeholderTextColor={isDarkMode ? '#fff' : '#000'}
               textAlign={isAr ? 'right' : 'left'}

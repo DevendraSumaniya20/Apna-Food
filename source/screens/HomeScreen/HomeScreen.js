@@ -1,133 +1,92 @@
-import {
-  Text,
-  View,
-  Image,
-  FlatList,
-  ActivityIndicator,
-  TouchableOpacity,
-  StyleSheet,
-  StatusBar,
-} from 'react-native';
-
+import {View, StyleSheet, StatusBar} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-
-import {fetchApiData} from '../../store/ApiSlice';
-import ImagePath from '../../constant/ImagePath';
-
 import styles from './style';
 import navigationStrings from '../../constant/navigationStrings';
-
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
-import colors from '../../assets/color/colors';
+import SQLite from 'react-native-sqlite-storage';
 import {useTranslation} from 'react-i18next';
 
 const HomeScreen = ({navigation}) => {
   const [isAr, setIsAr] = useState(false);
   const isDarkMode = useSelector(state => state.theme.isDarkMode);
-
-  const [data, setData] = useState([]);
-  const dispatch = useDispatch();
-  const myData = useSelector(state => state.ApiSlice);
-  const generateRatingStars = ({rating}) => {
-    const filledStars = Math.floor(rating);
-    const halfFilledStar = Math.ceil(rating - filledStars);
-    const emptyStars = 5 - filledStars - halfFilledStar;
-    const ratingStars = [];
-    for (let i = 0; i < filledStars; i++) {
-      ratingStars.push(
-        <Image
-          key={i}
-          source={ImagePath.startFillIcon}
-          style={styles.starIcon}
-        />,
-      );
-    }
-    if (halfFilledStar) {
-      ratingStars.push(
-        <Image
-          key={filledStars}
-          source={ImagePath.startFillIcon}
-          style={styles.starIcon}
-        />,
-      );
-    }
-    for (let i = 0; i < emptyStars; i++) {
-      ratingStars.push(
-        <Image
-          key={filledStars + halfFilledStar + i}
-          source={ImagePath.startEmptyIcon}
-          style={styles.starIcon}
-        />,
-      );
-    }
-
-    return ratingStars;
-  };
-
-  const renderItem = ({item}) => {
-    const ratingStars = generateRatingStars(item);
-
-    return (
-      <View style={styles.main}>
-        <View style={styles.subMain}>
-          <View style={styles.imageContainer}>
-            <Image style={styles.image} source={ImagePath.FoodIcon} />
-          </View>
-          <View style={styles.titleAndRatingContainer}>
-            <View>
-              <Text style={styles.imageTitile}>{item.title}</Text>
-
-              <View style={styles.ratingContainer}>{ratingStars}</View>
-            </View>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate(navigationStrings.MAP, {
-                  longitude: item.longitude,
-                  latitude: item.latitude,
-                  title: item.title,
-                  rating: item.rating,
-                  image: item.image,
-                });
-              }}>
-              <View style={styles.imageView}>
-                <Image
-                  resizeMode="contain"
-                  source={ImagePath.locationIcon}
-                  style={styles.locationIcon}
-                />
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-    );
-  };
   const {t} = useTranslation();
 
-  const lightStyles = StyleSheet.create({
-    container: {
-      backgroundColor: '#ffffff',
-      color: '#000000',
+  // Create a new SQLite database
+  const db = SQLite.openDatabase(
+    {
+      name: 'myDB.db',
+      location: 'default',
     },
-  });
-
-  const darkStyles = StyleSheet.create({
-    container: {
-      backgroundColor: '#000000',
-      color: '#ffffff',
+    () => {},
+    error => {
+      console.log(error);
     },
-  });
+  );
 
-  useEffect(() => {
-    dispatch(fetchApiData());
-  }, []);
+  const addUser = () => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'INSERT INTO users (name, email) VALUES (?, ?)',
+        ['Jane Doe', 'jane.doe@example.com'],
+        () => {
+          console.log('User added successfully');
+        },
+        error => {
+          console.log(error);
+        },
+      );
+    });
+  };
 
-  useEffect(() => {
-    if (myData?.data?.data) {
-      setData(myData?.data?.data);
-    }
-  }, [myData]);
+  const getUsers = () => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'SELECT * FROM users',
+        [],
+        (tx, results) => {
+          if (results.rows) {
+            console.log(results.rows.raw());
+          } else {
+            console.log('No rows found');
+          }
+        },
+        error => {
+          console.log(error);
+        },
+      );
+    });
+  };
+
+  const updateUser = () => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'UPDATE users SET email = ? WHERE name = ?',
+        ['jane.doe@example.com', 'Jane Doe'],
+        () => {
+          console.log('User updated successfully');
+        },
+        error => {
+          console.log(error);
+        },
+      );
+    });
+  };
+
+  const deleteUser = () => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'DELETE FROM users WHERE name = ?',
+        ['Jane Doe'],
+        () => {
+          console.log('User deleted successfully');
+        },
+        error => {
+          console.log(error);
+        },
+      );
+    });
+  };
 
   return (
     <>
@@ -149,33 +108,11 @@ const HomeScreen = ({navigation}) => {
             navigation.navigate(navigationStrings.LOGIN);
           }}
         />
-
-        <View style={styles.FlatListDataStyle}>
-          {!myData?.isLoading && !myData?.error && (
-            <FlatList
-              data={data}
-              renderItem={renderItem}
-              keyExtractor={item => item.id.toString()}
-            />
-          )}
-          {myData?.isLoading && (
-            <View style={styles.activityIndicatorStyle}>
-              <ActivityIndicator color={colors.color1Home} size={'large'} />
-            </View>
-          )}
-          {!myData?.isLoading && myData?.error && (
-            <View style={styles.errorMessageStyle}>
-              <Text style={styles.errorMessageText}>
-                {t('common:Error')} : {/* {myData.error}. */}
-                {t('common:Pleasetryagainlater')}
-              </Text>
-            </View>
-          )}
-          {!myData?.isLoading && !myData?.error && data.length === 0 && (
-            <View style={styles.noDataMessageStyle}>
-              <Text style={styles.noDataMessageText}>No data available.</Text>
-            </View>
-          )}
+        <View style={styles.buttonContainer}>
+          <Button title="Add User" onPress={addUser} />
+          <Button title="Get Users" onPress={getUsers} />
+          <Button title="Update User" onPress={updateUser} />
+          <Button title="Delete User" onPress={deleteUser} />
         </View>
       </View>
     </>

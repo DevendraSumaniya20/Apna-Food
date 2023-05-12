@@ -2,7 +2,7 @@ const emailMaxLength = 50;
 const passwordMaxLength = 30;
 
 export default {
- Login: 'Login',
+  Login: 'Login',
   Password: 'Password',
   SignUp: 'Sign Up',
   EnterAnEmailorPhone: 'Enter an email or phone number',
