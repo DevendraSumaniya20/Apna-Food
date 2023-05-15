@@ -3,9 +3,7 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Platform,
   StyleSheet,
-  StatusBar,
 } from 'react-native';
 import React, {useState, useEffect, useRef} from 'react';
 import MapView, {Circle, Marker, Polyline} from 'react-native-maps';
@@ -17,7 +15,7 @@ import colors from '../../assets/color/colors';
 import Geolocation from '@react-native-community/geolocation';
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import {useTranslation} from 'react-i18next';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 
 const MapScreen = () => {
   const [region, setRegion] = useState({});
@@ -108,6 +106,7 @@ const MapScreen = () => {
               />
             </View>
             <MapView
+              mapType="satellite"
               ref={mapRef}
               provider="google"
               style={styles.map}
