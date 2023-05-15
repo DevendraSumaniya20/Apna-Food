@@ -14,8 +14,7 @@ import navigationStrings from '../../constant/navigationStrings';
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import {useTranslation} from 'react-i18next';
 import {openDatabase} from 'react-native-sqlite-storage';
-import TextinputWithLabel from '../../components/TextinputWithLabel';
-import ButtonCustomComponents from '../../components/ButtonCustomComponents';
+
 import {moderateScale} from 'react-native-size-matters';
 import axios from 'axios';
 
@@ -25,8 +24,6 @@ const db = openDatabase({
 
 const HomeScreen = ({navigation}) => {
   const [isAr, setIsAr] = useState(false);
-  const [value, setValue] = useState('');
-  const [values, setValues] = useState([]);
   const [apiData, setApiData] = useState([]);
 
   const isDarkMode = useSelector(state => state.theme.isDarkMode);
@@ -66,7 +63,6 @@ const HomeScreen = ({navigation}) => {
   useEffect(() => {
     const fetchData = async () => {
       await createTable();
-      await getDetails();
     };
     fetchData();
   }, []);
@@ -83,88 +79,6 @@ const HomeScreen = ({navigation}) => {
           console.log(
             'error occurred while creating a table: ' + error.message,
           );
-        },
-      );
-    });
-  };
-
-  const addDetails = () => {
-    if (!value) {
-      Alert.alert('Please Enter a valid value');
-      return false;
-    }
-    db.transaction(txn => {
-      txn.executeSql(
-        `INSERT INTO USER(name) VALUES (?)`,
-        [value.toString()],
-        (sqlTxn, res) => {
-          console.log('Data is added successfully');
-          getDetails();
-          setValue('');
-        },
-        error => {
-          console.log('error while inserting data: ' + error.message);
-        },
-      );
-    });
-  };
-
-  const DeleteDetails = () => {
-    db.transaction(txn => {
-      txn.executeSql(
-        `DELETE FROM USER`,
-        [],
-        (sqlTxn, res) => {
-          console.log('Data is deleted');
-          getDetails();
-        },
-        error => {
-          console.log('error while deleting data: ' + error.message);
-        },
-      );
-    });
-  };
-
-  const insertData = data => {
-    db.transaction(txn => {
-      for (let i = 0; i < data.length; i++) {
-        const item = data[i];
-        txn.executeSql(
-          `INSERT INTO USER (id, name, email) VALUES (?, ?, ?)`,
-          [item.id, item.name, item.email],
-          (sqlTxn, res) => {
-            console.log('Data inserted successfully');
-          },
-          error => {
-            console.log('Error inserting data:', error.message);
-          },
-        );
-      }
-    });
-  };
-
-  const getDetails = () => {
-    db.transaction(txn => {
-      txn.executeSql(
-        `SELECT * FROM USER`,
-        [],
-        (sqlTxn, res) => {
-          console.log('Data is fetched successfully');
-          let len = res.rows.length;
-
-          if (len > 0) {
-            let results = [];
-            for (let i = 0; i < len; i++) {
-              let item = res.rows.item(i);
-              results.push({id: item.id, name: item.name, email: item.email});
-            }
-            setValues(results);
-          } else {
-            setValues([]);
-          }
-        },
-        error => {
-          console.log(' error while getting data: ' + error.message);
         },
       );
     });
