@@ -151,7 +151,7 @@ const HomeScreen = ({navigation}) => {
           isDarkMode ? darkStyles.container : lightStyles.container,
         ]}>
         <CustomHeaderComponents
-          paddingTop={moderateScale(50)}
+          paddingTop={moderateScale(35)}
           back={t('common:Back')}
           label={t('common:RestaurantList')}
           onPress={() => {
@@ -160,22 +160,16 @@ const HomeScreen = ({navigation}) => {
         />
 
         <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+          style={[
+            styles.flatlistDataView,
+            isDarkMode ? darkStyles.container : lightStyles.container,
+          ]}>
           {isConnected ? (
             <View>
               <FlatList
                 data={apiData}
                 renderItem={({item}) => (
-                  <View style={{}}>
-                    {/* <Text
-                    style={[
-                      isDarkMode ? darkStyles.container : lightStyles.container,
-                    ]}>
-                    {item.id}
-                  </Text> */}
+                  <View>
                     <Text
                       style={[
                         isDarkMode
@@ -190,7 +184,7 @@ const HomeScreen = ({navigation}) => {
                           ? darkStyles.container
                           : lightStyles.container,
                       ]}>
-                      {item.email}
+                      {item.username}
                     </Text>
                     <Text
                       style={[
@@ -198,7 +192,7 @@ const HomeScreen = ({navigation}) => {
                           ? darkStyles.container
                           : lightStyles.container,
                       ]}>
-                      {item.username}
+                      {item.email}
                     </Text>
                   </View>
                 )}
@@ -212,15 +206,7 @@ const HomeScreen = ({navigation}) => {
                 data={apiData}
                 renderItem={({item}) => {
                   return (
-                    <View style={{}}>
-                      {/* <Text
-                      style={[
-                        isDarkMode
-                          ? darkStyles.container
-                          : lightStyles.container,
-                      ]}>
-                      {item.id}
-                    </Text> */}
+                    <View>
                       <Text
                         style={[
                           isDarkMode
@@ -228,6 +214,22 @@ const HomeScreen = ({navigation}) => {
                             : lightStyles.container,
                         ]}>
                         {item.name}
+                      </Text>
+                      <Text
+                        style={[
+                          isDarkMode
+                            ? darkStyles.container
+                            : lightStyles.container,
+                        ]}>
+                        {item.username}
+                      </Text>
+                      <Text
+                        style={[
+                          isDarkMode
+                            ? darkStyles.container
+                            : lightStyles.container,
+                        ]}>
+                        {item.email}
                       </Text>
                     </View>
                   );

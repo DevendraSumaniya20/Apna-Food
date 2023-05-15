@@ -8,6 +8,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
+
+  flatlistDataView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   image: {
     height: moderateScale(50),
     width: moderateScale(50),
