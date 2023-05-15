@@ -161,47 +161,54 @@ const HomeScreen = ({navigation}) => {
 
         <View
           style={[
-            styles.flatlistDataView,
             isDarkMode ? darkStyles.container : lightStyles.container,
+            styles.dataMainView,
           ]}>
           {isConnected ? (
-            <View>
+            <View style={styles.flatlistInnerView}>
               <FlatList
                 data={apiData}
-                renderItem={({item}) => (
-                  <View>
-                    <Text
-                      style={[
-                        isDarkMode
-                          ? darkStyles.container
-                          : lightStyles.container,
-                      ]}>
-                      {item.name}
-                    </Text>
-                    <Text
-                      style={[
-                        isDarkMode
-                          ? darkStyles.container
-                          : lightStyles.container,
-                      ]}>
-                      {item.username}
-                    </Text>
-                    <Text
-                      style={[
-                        isDarkMode
-                          ? darkStyles.container
-                          : lightStyles.container,
-                      ]}>
-                      {item.email}
-                    </Text>
-                  </View>
-                )}
+                renderItem={({item}) => {
+                  return (
+                    <View>
+                      <Text
+                        style={[
+                          isDarkMode
+                            ? darkStyles.container
+                            : lightStyles.container,
+                        ]}>
+                        {item.name}
+                      </Text>
+                      <Text
+                        style={[
+                          isDarkMode
+                            ? darkStyles.container
+                            : lightStyles.container,
+                        ]}>
+                        {item.username}
+                      </Text>
+                      <Text
+                        style={[
+                          isDarkMode
+                            ? darkStyles.container
+                            : lightStyles.container,
+                        ]}>
+                        {item.email}
+                      </Text>
+                    </View>
+                  );
+                }}
                 keyExtractor={item => item.id.toString()}
               />
             </View>
           ) : (
             <>
-              <Text>No internet connection. Displaying offline data:</Text>
+              <Text
+                style={[
+                  isDarkMode ? darkStyles.container : lightStyles.container,
+                ]}>
+                No internet connection. Displaying offline data:
+              </Text>
               <FlatList
                 data={apiData}
                 renderItem={({item}) => {
