@@ -99,7 +99,9 @@ const HomeScreen = ({navigation}) => {
                 txn.executeSql(
                   'INSERT INTO USER (name, email) VALUES (?, ?)',
                   [item.name, item.email],
-                  (_, result) => {},
+                  (_, result) => {
+                    console.log(_, result);
+                  },
                   error => {
                     console.log(
                       'Error saving data to database:',
