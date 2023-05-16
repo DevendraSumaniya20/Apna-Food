@@ -13,6 +13,7 @@ import navigationStrings from '../constant/navigationStrings';
 import colors from '../assets/color/colors';
 import BottomTabNavigator from '../screens/TabNavigationScreen/BottomTabsNavigator';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
+import HomeScreen from '../screens/HomeScreen/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
