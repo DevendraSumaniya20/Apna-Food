@@ -149,7 +149,7 @@ const HomeScreen = ({navigation}) => {
         <CustomHeaderComponents
           paddingTop={moderateScale(35)}
           back={t('common:Back')}
-          label={t('common:RestaurantList')}
+          label={t('common:ShopList')}
           onPress={() => {
             navigation.navigate(navigationStrings.LOGIN);
           }}

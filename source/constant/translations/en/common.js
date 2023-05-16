@@ -19,6 +19,7 @@ export default {
     'Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character',
   Back: 'Back',
   RestaurantList: 'Restaurant List',
+  ShopList: 'Shop List',
   Error: 'Error',
   Pleasetryagainlater: 'An error has occurred. Please try again later.',
   GotoDwarka: "Let's go to Dwarka",

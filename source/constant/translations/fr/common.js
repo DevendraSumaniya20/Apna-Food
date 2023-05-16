@@ -1,7 +1,6 @@
 const emailMaxLength = 50;
 const passwordMaxLength = 30;
 
-
 export default {
   Login: 'Se connecter',
   Password: 'Mot de passe',
@@ -20,6 +19,7 @@ export default {
     'Le mot de passe doit contenir au moins 1 lettre majuscule, 1 lettre minuscule, 1 chiffre et 1 caractère spécial',
   Back: 'Retour',
   RestaurantList: 'Liste des restaurants',
+  ShopList: 'Liste de magasin',
   Error: 'Erreur',
   Pleasetryagainlater:
     "Une erreur s'est produite. Veuillez réessayer plus tard.",
