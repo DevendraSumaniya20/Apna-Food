@@ -224,7 +224,7 @@ const HomeScreen = ({navigation}) => {
                                 : lightStyles.container,
                               styles.flatListPrice,
                             ]}>
-                            $ {item.price}
+                            ${item.price}
                           </Text>
                         </View>
                       </View>
@@ -301,7 +301,7 @@ const HomeScreen = ({navigation}) => {
                                     : lightStyles.container,
                                   styles.flatListPrice,
                                 ]}>
-                                $ {item.price}
+                                ${item.price}
                               </Text>
                             </View>
                           </View>
