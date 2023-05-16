@@ -1,4 +1,4 @@
-import {View, StyleSheet, FlatList, Text, StatusBar} from 'react-native';
+import {View, StyleSheet, FlatList, Text, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import styles from './style';
@@ -77,9 +77,7 @@ const HomeScreen = ({navigation}) => {
 
   const fetchApiData = async () => {
     try {
-      const response = await axios.get(
-        'https://jsonplaceholder.typicode.com/users',
-      );
+      const response = await axios.get('https://fakestoreapi.com/products');
       setApiData(response.data);
       saveDataToDatabase(response.data);
     } catch (error) {
@@ -101,9 +99,7 @@ const HomeScreen = ({navigation}) => {
                 txn.executeSql(
                   'INSERT INTO USER (name, email) VALUES (?, ?)',
                   [item.name, item.email],
-                  (_, result) => {
-                    console.log('Data saved to database:', result);
-                  },
+                  (_, result) => {},
                   error => {
                     console.log(
                       'Error saving data to database:',
@@ -170,31 +166,34 @@ const HomeScreen = ({navigation}) => {
                 data={apiData}
                 renderItem={({item}) => {
                   return (
-                    <View>
-                      <Text
-                        style={[
-                          isDarkMode
-                            ? darkStyles.container
-                            : lightStyles.container,
-                        ]}>
-                        {item.name}
-                      </Text>
-                      <Text
-                        style={[
-                          isDarkMode
-                            ? darkStyles.container
-                            : lightStyles.container,
-                        ]}>
-                        {item.username}
-                      </Text>
-                      <Text
-                        style={[
-                          isDarkMode
-                            ? darkStyles.container
-                            : lightStyles.container,
-                        ]}>
-                        {item.email}
-                      </Text>
+                    <View style={styles.FlatlistTopMain}>
+                      <View style={styles.flatlistSubMain}>
+                        <Image
+                          source={{uri: item.image}}
+                          style={{height: 100, width: 100}}
+                        />
+                        <Text
+                          style={[
+                            isDarkMode
+                              ? darkStyles.container
+                              : lightStyles.container,
+                            styles.flatListTitle,
+                          ]}>
+                          {item.title}
+                        </Text>
+                      </View>
+
+                      <View style={styles.flatlistPriceView}>
+                        <Text
+                          style={[
+                            isDarkMode
+                              ? darkStyles.container
+                              : lightStyles.container,
+                            styles.flatListPrice,
+                          ]}>
+                          {item.price}
+                        </Text>
+                      </View>
                     </View>
                   );
                 }}
@@ -219,24 +218,18 @@ const HomeScreen = ({navigation}) => {
                           isDarkMode
                             ? darkStyles.container
                             : lightStyles.container,
+                          styles.flatListTitle,
                         ]}>
-                        {item.name}
+                        {item.title}
                       </Text>
                       <Text
                         style={[
                           isDarkMode
                             ? darkStyles.container
                             : lightStyles.container,
+                          styles.flatListPrice,
                         ]}>
-                        {item.username}
-                      </Text>
-                      <Text
-                        style={[
-                          isDarkMode
-                            ? darkStyles.container
-                            : lightStyles.container,
-                        ]}>
-                        {item.email}
+                        {item.price}
                       </Text>
                     </View>
                   );

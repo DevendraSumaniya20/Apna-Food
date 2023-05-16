@@ -1,6 +1,5 @@
-import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+import {moderateScale, scale} from 'react-native-size-matters';
 
-import colors from '../../assets/color/colors';
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
@@ -8,16 +7,31 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   dataMainView: {
-    flex: 1,
-    paddingTop: moderateScale(15),
     alignItems: 'center',
     justifyContent: 'center',
   },
+  FlatlistTopMain: {
+    flexDirection: 'column',
+    width: '80%',
+  },
   flatlistInnerView: {
-    borderRadius: moderateScale(5),
-    borderColor: 'red',
-    borderWidth: 2,
-    marginTop: moderateScale(14),
+    paddingTop: moderateScale(10),
+    flexDirection: 'row',
+  },
+  flatlistSubMain: {
+    flexDirection: 'row',
+  },
+  flatlistPriceView: {
+    flexDirection: 'column',
+  },
+  flatListText: {
+    fontSize: scale(18),
+  },
+  flatListTitle: {
+    fontSize: scale(16),
+  },
+  flatListPrice: {
+    fontSize: scale(14),
   },
 });
 
