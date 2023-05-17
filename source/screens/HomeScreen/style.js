@@ -1,6 +1,7 @@
 import {moderateScale, scale} from 'react-native-size-matters';
 
 import {StyleSheet} from 'react-native';
+import {Translation} from 'react-i18next';
 
 const styles = StyleSheet.create({
   main: {
@@ -58,15 +59,31 @@ const styles = StyleSheet.create({
     fontFamily: 'NunitoSans-Bold',
   },
   offlineMessageContainer: {
-    backgroundColor: 'red',
-    padding: moderateScale(5),
-    alignItems: 'center',
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(16),
+    borderWidth: 0.2,
+    borderRadius: moderateScale(8),
+    position: 'absolute',
+    bottom: moderateScale(0),
+    left: '35%',
   },
 
   onlineMessageContainer: {
-    backgroundColor: 'green',
-    padding: moderateScale(5),
-    alignItems: 'center',
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(16),
+    borderWidth: 0.2,
+    borderRadius: moderateScale(8),
+    position: 'absolute',
+    bottom: moderateScale(0),
+    left: '35%',
+  },
+  onlineMessageText: {
+    fontSize: scale(12),
+    textAlign: 'center',
+  },
+  offlineMessageText: {
+    fontSize: scale(14),
+    textAlign: 'center',
   },
 });
 

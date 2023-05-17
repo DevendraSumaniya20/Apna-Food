@@ -90,13 +90,15 @@ const HomeScreen = ({navigation}) => {
 
     if (netInfoState.isConnected) {
       setShowOfflineMessage(false);
-      setShowOnlineMessage(true);
-      fetchApiData();
+      if (!showOnlineMessage) {
+        setShowOnlineMessage(true);
+        fetchApiData();
 
-      setTimeout(() => {
-        setShowTimeoutMessage(false);
-        setShowOnlineMessage(false);
-      }, 2000);
+        setTimeout(() => {
+          setShowTimeoutMessage(false);
+          setShowOnlineMessage(false);
+        }, 2000);
+      }
     } else {
       setShowOnlineMessage(false);
       setShowOfflineMessage(true);
@@ -168,7 +170,9 @@ const HomeScreen = ({navigation}) => {
               <FlatList
                 onRefresh={onRefresh}
                 refreshing={isRefreshing}
+                contentContainerStyle={{paddingBottom: moderateScale(80)}}
                 showsVerticalScrollIndicator={false}
+                contentInsetAdjustmentBehavior="automatic"
                 data={apiData}
                 renderItem={({item}) => {
                   return (
@@ -320,13 +324,33 @@ const HomeScreen = ({navigation}) => {
         </View>
       </View>
       {showOfflineMessage && !showTimeoutMessage && (
-        <View style={styles.offlineMessageContainer}>
-          <Text style={[styles.offlineMessageText]}>You are offline</Text>
+        <View
+          style={[
+            styles.offlineMessageContainer,
+            isDarkMode ? darkStyles.container : lightStyles.container,
+          ]}>
+          <Text
+            style={[
+              styles.offlineMessageText,
+              isDarkMode ? darkStyles.container : lightStyles.container,
+            ]}>
+            You are offline
+          </Text>
         </View>
       )}
       {showOnlineMessage && !showTimeoutMessage && (
-        <View style={styles.onlineMessageContainer}>
-          <Text style={[styles.onlineMessageText]}>You are Online</Text>
+        <View
+          style={[
+            styles.onlineMessageContainer,
+            isDarkMode ? darkStyles.container : lightStyles.container,
+          ]}>
+          <Text
+            style={[
+              styles.onlineMessageText,
+              isDarkMode ? darkStyles.container : lightStyles.container,
+            ]}>
+            You are Online
+          </Text>
         </View>
       )}
     </>
