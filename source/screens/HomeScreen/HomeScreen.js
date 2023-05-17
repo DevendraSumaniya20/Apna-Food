@@ -7,7 +7,7 @@ import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import {useTranslation} from 'react-i18next';
 import {openDatabase} from 'react-native-sqlite-storage';
 import NetInfo from '@react-native-community/netinfo';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {moderateScale} from 'react-native-size-matters';
 import axios from 'axios';
 
@@ -19,6 +19,12 @@ const HomeScreen = ({navigation}) => {
   const [isAr, setIsAr] = useState(false);
   const [apiData, setApiData] = useState([]);
   const [isConnected, setIsConnected] = useState(false);
+  const [isOfflineDataAvailable, setIsOfflineDataAvailable] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [showOfflineMessage, setShowOfflineMessage] = useState(false);
+  const [showOnlineMessage, setShowOnlineMessage] = useState(false);
+
+  const [showTimeoutMessage, setShowTimeoutMessage] = useState(false);
 
   const isDarkMode = useSelector(state => state.theme.isDarkMode);
   const {t} = useTranslation();
@@ -39,10 +45,41 @@ const HomeScreen = ({navigation}) => {
     },
   });
 
+  const onRefresh = async () => {
+    setIsRefreshing(true);
+    try {
+      await fetchApiData();
+    } catch (error) {
+      console.log('Error refreshing data:', error);
+    }
+    setIsRefreshing(false);
+  };
+
+  const getDataFromStorage = async () => {
+    try {
+      const data = await AsyncStorage.getItem('apiData');
+      if (data) {
+        setApiData(JSON.parse(data));
+        setIsOfflineDataAvailable(true);
+      }
+    } catch (error) {
+      console.log('Error fetching data from storage:', error);
+    }
+  };
+
+  const saveDataToStorage = async data => {
+    try {
+      await AsyncStorage.setItem('apiData', JSON.stringify(data));
+    } catch (error) {
+      console.log('Error saving data to storage:', error);
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       await createTable();
       checkInternetConnection();
+      getDataFromStorage();
     };
     fetchData();
   }, []);
@@ -50,79 +87,38 @@ const HomeScreen = ({navigation}) => {
   const checkInternetConnection = async () => {
     const netInfoState = await NetInfo.fetch();
     setIsConnected(netInfoState.isConnected);
-    if (netInfoState.isConnected) {
-      fetchApiData();
-    } else {
-      getDataFromDatabase();
-    }
-  };
 
-  const getDataFromDatabase = () => {
-    db.transaction(txn => {
-      txn.executeSql(
-        'SELECT * FROM USER',
-        [],
-        (sqlTxn, res) => {
-          const rows = res.rows;
-          const data = [];
-          for (let i = 0; i < rows.length; i++) {
-            data.push(rows.item(i));
-          }
-          setApiData(data);
-        },
-        error => {
-          console.log('Error fetching data from table:', error.message);
-        },
-      );
-    });
+    if (netInfoState.isConnected) {
+      setShowOfflineMessage(false);
+      setShowOnlineMessage(true);
+      fetchApiData();
+
+      setTimeout(() => {
+        setShowTimeoutMessage(false);
+        setShowOnlineMessage(false);
+      }, 2000);
+    } else {
+      setShowOnlineMessage(false);
+      setShowOfflineMessage(true);
+
+      setTimeout(() => {
+        setShowOfflineMessage(false);
+      }, 2000);
+    }
   };
 
   const fetchApiData = async () => {
     try {
       const response = await axios.get('https://fakestoreapi.com/products');
-      setApiData(response.data);
-      saveDataToDatabase(response.data);
+      if (response.data && response.data.length > 0) {
+        setApiData(response.data);
+        saveDataToStorage(response.data);
+      } else {
+        console.log('Empty API response');
+      }
     } catch (error) {
       console.log('Error fetching data:', error);
     }
-  };
-
-  const saveDataToDatabase = async data => {
-    db.transaction(txn => {
-      txn.executeSql(
-        'CREATE TABLE IF NOT EXISTS USER (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT)',
-        [],
-        () => {
-          txn.executeSql(
-            'DELETE FROM USER',
-            [],
-            () => {
-              data.forEach(item => {
-                txn.executeSql(
-                  'INSERT INTO USER (name, email) VALUES (?, ?)',
-                  [item.name, item.email],
-                  (_, result) => {
-                    console.log(_, result);
-                  },
-                  error => {
-                    console.log(
-                      'Error saving data to database:',
-                      error.message,
-                    );
-                  },
-                );
-              });
-            },
-            error => {
-              console.log('Error clearing table:', error.message);
-            },
-          );
-        },
-        error => {
-          console.log('Error creating table:', error.message);
-        },
-      );
-    });
   };
 
   const createTable = () => {
@@ -151,7 +147,7 @@ const HomeScreen = ({navigation}) => {
           isDarkMode ? darkStyles.container : lightStyles.container,
         ]}>
         <CustomHeaderComponents
-          paddingTop={moderateScale(35)}
+          paddingTop={moderateScale(50)}
           back={t('common:Back')}
           label={t('common:ShopList')}
           onPress={() => {
@@ -170,6 +166,8 @@ const HomeScreen = ({navigation}) => {
                 isDarkMode ? darkStyles.container : lightStyles.container,
               ]}>
               <FlatList
+                onRefresh={onRefresh}
+                refreshing={isRefreshing}
                 showsVerticalScrollIndicator={false}
                 data={apiData}
                 renderItem={({item}) => {
@@ -236,16 +234,22 @@ const HomeScreen = ({navigation}) => {
             </View>
           ) : (
             <>
-              {!isConnected && (
+              {!isConnected && isOfflineDataAvailable && (
                 <>
-                  <Text
-                    style={[
-                      isDarkMode ? darkStyles.container : lightStyles.container,
-                      styles.offlineText,
-                    ]}>
-                    No internet connection. Displaying offline data:
-                  </Text>
+                  {showOfflineMessage ? (
+                    <Text
+                      style={[
+                        isDarkMode
+                          ? darkStyles.container
+                          : lightStyles.container,
+                        styles.offlineText,
+                      ]}>
+                      No internet connection. Displaying offline data:
+                    </Text>
+                  ) : null}
                   <FlatList
+                    onRefresh={onRefresh}
+                    refreshing={isRefreshing}
                     showsVerticalScrollIndicator={false}
                     data={apiData}
                     renderItem={({item}) => {
@@ -315,6 +319,16 @@ const HomeScreen = ({navigation}) => {
           )}
         </View>
       </View>
+      {showOfflineMessage && !showTimeoutMessage && (
+        <View style={styles.offlineMessageContainer}>
+          <Text style={[styles.offlineMessageText]}>You are offline</Text>
+        </View>
+      )}
+      {showOnlineMessage && !showTimeoutMessage && (
+        <View style={styles.onlineMessageContainer}>
+          <Text style={[styles.onlineMessageText]}>You are Online</Text>
+        </View>
+      )}
     </>
   );
 };

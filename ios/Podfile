@@ -21,9 +21,7 @@ if linkage != nil
 end
 
   
-  pod 'Firebase', :modular_headers => true
-  pod 'FirebaseCoreInternal', :modular_headers => true
-  pod 'GoogleUtilities', :modular_headers => true
+  
 
 target 'Apna_Food' do
   config = use_native_modules!

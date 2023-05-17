@@ -37,7 +37,6 @@ const CustomHeaderComponents = ({
       <TouchableOpacity style={styles.backBtn} onPress={onPress}>
         <Ionicons
           name="arrow-back-outline"
-          size={30}
           style={[
             styles.backBtnText,
             isDarkMode ? darkStyles.container : lightStyles.container,
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
   backBtnText: {
     color: colors.white,
     fontWeight: '700',
-    fontSize: scale(14),
+    fontSize: scale(20),
   },
 });
 

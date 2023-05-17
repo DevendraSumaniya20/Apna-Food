@@ -40,6 +40,9 @@ const styles = StyleSheet.create({
   flatlistColumn: {
     flexDirection: 'row',
   },
+  offlineText: {
+    marginBottom: moderateScale(16),
+  },
 
   flatListTitle: {
     fontSize: scale(14),
@@ -53,6 +56,17 @@ const styles = StyleSheet.create({
   flatListMainTitle: {
     marginTop: moderateScale(12),
     fontFamily: 'NunitoSans-Bold',
+  },
+  offlineMessageContainer: {
+    backgroundColor: 'red',
+    padding: moderateScale(5),
+    alignItems: 'center',
+  },
+
+  onlineMessageContainer: {
+    backgroundColor: 'green',
+    padding: moderateScale(5),
+    alignItems: 'center',
   },
 });
 
