@@ -275,7 +275,6 @@ const HomeScreen = ({navigation}) => {
                               isDarkMode
                                 ? darkStyles.container
                                 : lightStyles.container,
-                              styles.flatlistSubtext,
                             ]}>
                             <Text
                               style={[

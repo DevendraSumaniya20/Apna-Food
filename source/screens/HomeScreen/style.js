@@ -37,15 +37,16 @@ const styles = StyleSheet.create({
 
   flatListTitle: {
     fontSize: scale(14),
-    fontWeight: 'bold',
     width: moderateScale(220),
+    fontFamily: 'NunitoSans-Bold',
   },
   flatListPrice: {
     fontSize: scale(14),
-    fontWeight: '600',
+    fontFamily: 'NunitoSans-Bold',
   },
   flatListMainTitle: {
     marginTop: moderateScale(12),
+    fontFamily: 'NunitoSans-Bold',
   },
 });
 
