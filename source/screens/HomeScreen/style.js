@@ -31,6 +31,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginEnd: moderateScale(24),
   },
+
+  placeholderText: {
+    textAlign: 'center',
+    fontSize: scale(16),
+    color: 'red',
+  },
   flatlistColumn: {
     flexDirection: 'row',
   },

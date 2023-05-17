@@ -10,4 +10,5 @@ export default {
   mapShopTitleImg: require('../assets/images/mapShopTitleImg.png'),
   ForgotPasswordImg: require('../assets/images/ForgotPassword.jpeg'),
   Dwarkadhish: require('../assets/images/Dwarkadhish.png'),
+  NoImage: require('../assets/images/no-image.png'),
 };

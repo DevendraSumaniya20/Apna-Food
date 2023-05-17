@@ -25,5 +25,6 @@
         "vector": "cpp",
         "filesystem": "cpp",
         "*.ipp": "cpp"
-    }
+    },
+    "java.configuration.updateBuildConfiguration": "disabled"
 }
