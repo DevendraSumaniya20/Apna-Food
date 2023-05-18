@@ -170,7 +170,7 @@ const HomeScreen = ({navigation}) => {
               <FlatList
                 onRefresh={onRefresh}
                 refreshing={isRefreshing}
-                contentContainerStyle={{paddingBottom: moderateScale(80)}}
+                contentContainerStyle={{paddingBottom: moderateScale(100)}}
                 showsVerticalScrollIndicator={false}
                 contentInsetAdjustmentBehavior="automatic"
                 data={apiData}
