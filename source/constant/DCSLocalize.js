@@ -11,7 +11,9 @@ const LANGUAGES = {
   fr,
   ar,
 };
+
 const LANG_CODES = Object.keys(LANGUAGES);
+
 const LANGUAGE_DETECTOR = {
   type: 'languageDetector',
   async: true,
@@ -19,13 +21,17 @@ const LANGUAGE_DETECTOR = {
     AsyncStorage.getItem('user-language', (err, language) => {
       if (err || !language) {
         if (err) {
-          console.log('Error fetching Languages from asyncstorage ', err);
+          console.log('Error fetching language from AsyncStorage', err);
         } else {
           console.log('No language is set, choosing English as fallback');
         }
         const findBestAvailableLanguage =
           RNLocalize.findBestAvailableLanguage(LANG_CODES);
-        callback(findBestAvailableLanguage.languageTag || 'en');
+        const fallbackLanguage = findBestAvailableLanguage
+          ? findBestAvailableLanguage.languageTag
+          : 'en';
+        AsyncStorage.setItem('user-language', fallbackLanguage);
+        callback(fallbackLanguage);
         return;
       }
       callback(language);
@@ -36,11 +42,13 @@ const LANGUAGE_DETECTOR = {
     AsyncStorage.setItem('user-language', language);
   },
 };
+
 i18n
   .use(LANGUAGE_DETECTOR)
   .use(initReactI18next)
   .init({
     resources: LANGUAGES,
+    lng: 'en',
     react: {
       useSuspense: false,
     },
@@ -49,6 +57,7 @@ i18n
     },
     compatibilityJSON: 'v3',
   });
+
 if (typeof console !== 'undefined') {
   console.log('No language is set, choosing English as fallback');
 }
