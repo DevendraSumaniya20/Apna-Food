@@ -13,7 +13,7 @@ import navigationStrings from '../constant/navigationStrings';
 import colors from '../assets/color/colors';
 import BottomTabNavigator from '../screens/TabNavigationScreen/BottomTabsNavigator';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
-import HomeScreen from '../screens/HomeScreen/HomeScreen';
+import SignUpScreen from '../screens/SignUpScreen/SignUpScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,6 +53,14 @@ const Navigation = () => {
         <Stack.Screen
           name={navigationStrings.FORGOTPASSWORD}
           component={ForgotPasswordScreen}
+          options={{
+            headerShown: false,
+            headerTintColor: colors.mainThemesColor,
+          }}
+        />
+        <Stack.Screen
+          name={navigationStrings.SIGNUP}
+          component={SignUpScreen}
           options={{
             headerShown: false,
             headerTintColor: colors.mainThemesColor,

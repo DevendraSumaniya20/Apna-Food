@@ -5,4 +5,5 @@ export default {
   BOTTOMTABNAVIGATOR: 'BottomTabNavigator',
   TABHOME: 'TabHome',
   FORGOTPASSWORD: 'ForgotPassword',
+  SIGNUP: 'Signup',
 };

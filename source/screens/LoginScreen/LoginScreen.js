@@ -284,7 +284,7 @@ const LoginScreen = ({navigation}) => {
           </Text>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate(navigationStrings.HOME);
+              navigation.navigate(navigationStrings.SIGNUP);
             }}>
             <View style={styles.bottomSubView}>
               <Text

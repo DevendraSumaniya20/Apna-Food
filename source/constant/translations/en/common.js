@@ -1,6 +1,6 @@
 const emailMaxLength = 50;
 const passwordMaxLength = 30;
-
+const usernameMaxLength = 50;
 export default {
   Login: 'Login',
   Password: 'Password',
@@ -8,6 +8,7 @@ export default {
   EnterAnEmailorPhone: 'Enter an email or phone number',
   EnteraPassword: 'Enter a password',
   ForgetPassword: 'Forgot Password',
+  username: 'Enter an Username',
   DontHaveanAccount: "Don't have an account?",
   EmailError: 'Please enter your email',
   EmailProper: 'Please enter a valid email',
@@ -30,4 +31,7 @@ export default {
     'Please enter the email associated with your account to reset your password.',
   Forgot_Password_Placeholder_EmailText: 'Enter your email',
   Forgot_Password_Submit: 'Submit',
+  usernameError: 'Enter the username ',
+  usernameMaxlength: `Please enter some less character ${usernameMaxLength} username `,
+  SignUpWelcomeText: `It's Free and anyone can join`,
 };
