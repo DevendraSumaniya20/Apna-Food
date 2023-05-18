@@ -106,10 +106,10 @@ const SignUpScreen = ({navigation}) => {
             styles.WelcomeText,
             isDarkMode ? darkStyles.container : lightStyles.container,
           ]}>
-          It's Free and anyone can join
+          {t('common:SignUpWelcomeText')}
         </Text>
       </View>
-      <View>
+      <View style={styles.SignUpMainView}>
         <TextinputWithLabel
           textAlign={isAr ? 'right' : 'left'}
           value={email}

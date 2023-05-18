@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
   errorStyle: {
     fontSize: scale(13),
-    color: '#d94b4a',
+    color: '#ff0000',
     marginTop: moderateScale(4),
     fontFamily: 'NunitoSans-SemiBold',
   },

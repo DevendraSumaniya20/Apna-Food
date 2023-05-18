@@ -18,6 +18,9 @@ const styles = StyleSheet.create({
     height: moderateScale(200),
     borderRadius: moderateScale(30),
   },
+  SignUpMainView: {
+    paddingHorizontal: '5%',
+  },
   WelcomeTextView: {
     paddingTop: moderateScale(20),
     alignItems: 'center',
@@ -30,6 +33,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     paddingTop: moderateScale(50),
+    paddingHorizontal: '5%',
   },
   errorStyle: {
     fontSize: scale(13),
