@@ -1,4 +1,11 @@
-import {View, StyleSheet, FlatList, Text, Image} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  Image,
+  KeyboardAvoidingView,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import styles from './style';
@@ -142,217 +149,222 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <>
-      <View
-        style={[
-          styles.main,
-          isAr && styles.arSliderTextAlign,
-          isDarkMode ? darkStyles.container : lightStyles.container,
-        ]}>
-        <CustomHeaderComponents
-          paddingTop={moderateScale(50)}
-          back={t('common:Back')}
-          label={t('common:ShopList')}
-          onPress={() => {
-            navigation.navigate(navigationStrings.LOGIN);
-          }}
-        />
-
+      <KeyboardAvoidingView style={{flex: 1}}>
         <View
           style={[
+            styles.main,
+            isAr && styles.arSliderTextAlign,
             isDarkMode ? darkStyles.container : lightStyles.container,
-            styles.dataMainView,
           ]}>
-          {isConnected ? (
-            <View
-              style={[
-                isDarkMode ? darkStyles.container : lightStyles.container,
-              ]}>
-              <FlatList
-                onRefresh={onRefresh}
-                refreshing={isRefreshing}
-                contentContainerStyle={{paddingBottom: moderateScale(100)}}
-                showsVerticalScrollIndicator={false}
-                contentInsetAdjustmentBehavior="automatic"
-                data={apiData}
-                renderItem={({item}) => {
-                  return (
-                    <View
-                      style={[
-                        isDarkMode
-                          ? darkStyles.container
-                          : lightStyles.container,
-                        styles.flatlistFlext,
-                      ]}>
-                      <View
-                        style={[
-                          isDarkMode
-                            ? darkStyles.container
-                            : lightStyles.container,
-                          styles.flatlistSubMain,
-                        ]}>
-                        <Image
-                          resizeMode="contain"
-                          source={{uri: item.image}}
-                          style={[styles.flatListImage]}
-                        />
-                      </View>
-                      <View
-                        style={[
-                          isDarkMode
-                            ? darkStyles.container
-                            : lightStyles.container,
-                        ]}>
-                        <Text
-                          style={[
-                            isDarkMode
-                              ? darkStyles.container
-                              : lightStyles.container,
-                            styles.flatListTitle,
-                          ]}>
-                          {item.title}
-                        </Text>
+          <CustomHeaderComponents
+            paddingTop={moderateScale(50)}
+            back={t('common:Back')}
+            label={t('common:ShopList')}
+            onPress={() => {
+              navigation.navigate(navigationStrings.LOGIN);
+            }}
+          />
 
+          <View
+            style={[
+              isDarkMode ? darkStyles.container : lightStyles.container,
+              styles.dataMainView,
+            ]}>
+            {isConnected ? (
+              <View
+                style={[
+                  isDarkMode ? darkStyles.container : lightStyles.container,
+                ]}>
+                <FlatList
+                  onRefresh={onRefresh}
+                  refreshing={isRefreshing}
+                  contentContainerStyle={{paddingBottom: moderateScale(100)}}
+                  showsVerticalScrollIndicator={false}
+                  contentInsetAdjustmentBehavior="automatic"
+                  data={apiData}
+                  renderItem={({item}) => {
+                    return (
+                      <View
+                        style={[
+                          isDarkMode
+                            ? darkStyles.container
+                            : lightStyles.container,
+                          styles.flatlistFlext,
+                        ]}>
                         <View
                           style={[
                             isDarkMode
                               ? darkStyles.container
                               : lightStyles.container,
-                            styles.flatListMainTitle,
+                            styles.flatlistSubMain,
+                          ]}>
+                          <Image
+                            resizeMode="contain"
+                            source={{uri: item.image}}
+                            style={[styles.flatListImage]}
+                          />
+                        </View>
+                        <View
+                          style={[
+                            isDarkMode
+                              ? darkStyles.container
+                              : lightStyles.container,
                           ]}>
                           <Text
                             style={[
                               isDarkMode
                                 ? darkStyles.container
                                 : lightStyles.container,
-                              styles.flatListPrice,
+                              styles.flatListTitle,
                             ]}>
-                            ${item.price}
+                            {item.title}
                           </Text>
-                        </View>
-                      </View>
-                    </View>
-                  );
-                }}
-                keyExtractor={item => item.id.toString()}
-              />
-            </View>
-          ) : (
-            <>
-              {!isConnected && isOfflineDataAvailable && (
-                <>
-                  {showOfflineMessage ? (
-                    <Text
-                      style={[
-                        isDarkMode
-                          ? darkStyles.container
-                          : lightStyles.container,
-                        styles.offlineText,
-                      ]}>
-                      No internet connection. Displaying offline data:
-                    </Text>
-                  ) : null}
-                  <FlatList
-                    onRefresh={onRefresh}
-                    refreshing={isRefreshing}
-                    showsVerticalScrollIndicator={false}
-                    data={apiData}
-                    renderItem={({item}) => {
-                      return (
-                        <View
-                          style={[
-                            isDarkMode
-                              ? darkStyles.container
-                              : lightStyles.container,
-                            styles.flatlistFlext,
-                          ]}>
+
                           <View
                             style={[
                               isDarkMode
                                 ? darkStyles.container
                                 : lightStyles.container,
-                              styles.flatlistSubMain,
-                            ]}>
-                            <Image
-                              resizeMode="contain"
-                              source={{uri: item.image}}
-                              style={[styles.flatListImage]}
-                            />
-                          </View>
-                          <View
-                            style={[
-                              isDarkMode
-                                ? darkStyles.container
-                                : lightStyles.container,
+                              styles.flatListMainTitle,
                             ]}>
                             <Text
                               style={[
                                 isDarkMode
                                   ? darkStyles.container
                                   : lightStyles.container,
-                                styles.flatListTitle,
+                                styles.flatListPrice,
                               ]}>
-                              {item.title}
+                              ${item.price}
                             </Text>
-
+                          </View>
+                        </View>
+                      </View>
+                    );
+                  }}
+                  keyExtractor={item => item.id.toString()}
+                />
+              </View>
+            ) : (
+              <>
+                {!isConnected && isOfflineDataAvailable && (
+                  <>
+                    {showOfflineMessage ? (
+                      <Text
+                        style={[
+                          isDarkMode
+                            ? darkStyles.container
+                            : lightStyles.container,
+                          styles.offlineText,
+                        ]}>
+                        No internet connection. Displaying offline data:
+                      </Text>
+                    ) : null}
+                    <FlatList
+                      onRefresh={onRefresh}
+                      refreshing={isRefreshing}
+                      contentContainerStyle={{
+                        paddingBottom: moderateScale(100),
+                      }}
+                      showsVerticalScrollIndicator={false}
+                      data={apiData}
+                      renderItem={({item}) => {
+                        return (
+                          <View
+                            style={[
+                              isDarkMode
+                                ? darkStyles.container
+                                : lightStyles.container,
+                              styles.flatlistFlext,
+                            ]}>
                             <View
                               style={[
                                 isDarkMode
                                   ? darkStyles.container
                                   : lightStyles.container,
-                                styles.flatListMainTitle,
+                                styles.flatlistSubMain,
+                              ]}>
+                              <Image
+                                resizeMode="contain"
+                                source={{uri: item.image}}
+                                style={[styles.flatListImage]}
+                              />
+                            </View>
+                            <View
+                              style={[
+                                isDarkMode
+                                  ? darkStyles.container
+                                  : lightStyles.container,
                               ]}>
                               <Text
                                 style={[
                                   isDarkMode
                                     ? darkStyles.container
                                     : lightStyles.container,
-                                  styles.flatListPrice,
+                                  styles.flatListTitle,
                                 ]}>
-                                ${item.price}
+                                {item.title}
                               </Text>
+
+                              <View
+                                style={[
+                                  isDarkMode
+                                    ? darkStyles.container
+                                    : lightStyles.container,
+                                  styles.flatListMainTitle,
+                                ]}>
+                                <Text
+                                  style={[
+                                    isDarkMode
+                                      ? darkStyles.container
+                                      : lightStyles.container,
+                                    styles.flatListPrice,
+                                  ]}>
+                                  ${item.price}
+                                </Text>
+                              </View>
                             </View>
                           </View>
-                        </View>
-                      );
-                    }}
-                    keyExtractor={item => item.id.toString()}
-                  />
-                </>
-              )}
-            </>
-          )}
+                        );
+                      }}
+                      keyExtractor={item => item.id.toString()}
+                    />
+                  </>
+                )}
+              </>
+            )}
+          </View>
         </View>
-      </View>
-      {showOfflineMessage && !showTimeoutMessage && (
-        <View
-          style={[
-            styles.offlineMessageContainer,
-            isDarkMode ? darkStyles.container : lightStyles.container,
-          ]}>
-          <Text
+        {showOfflineMessage && !showTimeoutMessage && (
+          <View
             style={[
-              styles.offlineMessageText,
+              styles.offlineMessageContainer,
               isDarkMode ? darkStyles.container : lightStyles.container,
             ]}>
-            You are offline
-          </Text>
-        </View>
-      )}
-      {showOnlineMessage && !showTimeoutMessage && (
-        <View
-          style={[
-            styles.onlineMessageContainer,
-            isDarkMode ? darkStyles.container : lightStyles.container,
-          ]}>
-          <Text
+            <Text
+              style={[
+                styles.offlineMessageText,
+                isDarkMode ? darkStyles.container : lightStyles.container,
+              ]}>
+              You are offline
+            </Text>
+          </View>
+        )}
+        {showOnlineMessage && !showTimeoutMessage && (
+          <View
             style={[
-              styles.onlineMessageText,
+              styles.onlineMessageContainer,
               isDarkMode ? darkStyles.container : lightStyles.container,
             ]}>
-            You are Online
-          </Text>
-        </View>
-      )}
+            <Text
+              style={[
+                styles.onlineMessageText,
+                isDarkMode ? darkStyles.container : lightStyles.container,
+              ]}>
+              You are Online
+            </Text>
+          </View>
+        )}
+      </KeyboardAvoidingView>
     </>
   );
 };

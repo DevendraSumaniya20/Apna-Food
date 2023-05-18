@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   forgotPasswordView: {
     alignItems: 'center',
-    paddingTop: moderateScale(100),
+    paddingTop: moderateScale(60),
   },
   forgotImg: {
     width: moderateScale(200),
@@ -61,12 +61,6 @@ const styles = StyleSheet.create({
     color: '#ff0000',
     marginTop: moderateScale(4),
     fontFamily: 'NunitoSans-SemiBold',
-  },
-  submitView: {
-    marginTop: moderateScale(100),
-    width: moderateScale(300),
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 

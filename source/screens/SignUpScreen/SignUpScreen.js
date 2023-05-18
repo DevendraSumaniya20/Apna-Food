@@ -1,5 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  KeyboardAvoidingView,
+} from 'react-native';
 import styles from './style';
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import {moderateScale} from 'react-native-size-matters';
@@ -80,149 +86,153 @@ const SignUpScreen = ({navigation}) => {
   };
 
   return (
-    <View
-      style={[
-        styles.main,
-        isDarkMode ? darkStyles.container : lightStyles.container,
-      ]}>
-      <CustomHeaderComponents
-        paddingTop={moderateScale(50)}
-        back={t('common:Back')}
-        label={t('common:SignUp')}
-        onPress={() => {
-          navigation.navigate(navigationStrings.LOGIN);
-        }}
-      />
-      <View style={styles.SignUpView}>
-        <Image source={ImagePath.SingUpImage} style={styles.SignupImage} />
-      </View>
-      <View
-        style={[
-          styles.WelcomeTextView,
-          isDarkMode ? darkStyles.container : lightStyles.container,
-        ]}>
-        <Text
+    <>
+      <KeyboardAvoidingView style={{flex: 1}}>
+        <View
           style={[
-            styles.WelcomeText,
+            styles.main,
             isDarkMode ? darkStyles.container : lightStyles.container,
           ]}>
-          {t('common:SignUpWelcomeText')}
-        </Text>
-      </View>
-      <View style={styles.SignUpMainView}>
-        <TextinputWithLabel
-          textAlign={isAr ? 'right' : 'left'}
-          value={email}
-          onChangeText={setEmail}
-          placeholder={t('common:EnterAnEmailorPhone')}
-          placeholderTextColor={isDarkMode ? '#fff' : '#000'}
-          style={{
-            ...(isAr && {textAlign: 'right'}),
-          }}
-        />
+          <CustomHeaderComponents
+            paddingTop={moderateScale(50)}
+            back={t('common:Back')}
+            label={t('common:SignUp')}
+            onPress={() => {
+              navigation.navigate(navigationStrings.LOGIN);
+            }}
+          />
+          <View style={styles.SignUpView}>
+            <Image source={ImagePath.SingUpImage} style={styles.SignupImage} />
+          </View>
+          <View
+            style={[
+              styles.WelcomeTextView,
+              isDarkMode ? darkStyles.container : lightStyles.container,
+            ]}>
+            <Text
+              style={[
+                styles.WelcomeText,
+                isDarkMode ? darkStyles.container : lightStyles.container,
+              ]}>
+              {t('common:SignUpWelcomeText')}
+            </Text>
+          </View>
+          <View style={styles.SignUpMainView}>
+            <TextinputWithLabel
+              textAlign={isAr ? 'right' : 'left'}
+              value={email}
+              onChangeText={setEmail}
+              placeholder={t('common:EnterAnEmailorPhone')}
+              placeholderTextColor={isDarkMode ? '#fff' : '#000'}
+              style={{
+                ...(isAr && {textAlign: 'right'}),
+              }}
+            />
 
-        <View>
-          {emailError ? (
-            <Text
-              style={[
-                styles.errorStyle,
-                isAr && styles.arSliderTextAlign,
-                isDarkMode ? '#000' : '#fff',
-              ]}>
-              {emailError}
-            </Text>
-          ) : (
-            <Text
-              style={[
-                styles.successStyle,
-                isAr && styles.arSliderTextAlign,
-                isDarkMode ? '#000' : '#fff',
-              ]}>
-              {''}
-            </Text>
-          )}
+            <View>
+              {emailError ? (
+                <Text
+                  style={[
+                    styles.errorStyle,
+                    isAr && styles.arSliderTextAlign,
+                    isDarkMode ? '#000' : '#fff',
+                  ]}>
+                  {emailError}
+                </Text>
+              ) : (
+                <Text
+                  style={[
+                    styles.successStyle,
+                    isAr && styles.arSliderTextAlign,
+                    isDarkMode ? '#000' : '#fff',
+                  ]}>
+                  {''}
+                </Text>
+              )}
+            </View>
+
+            <TextinputWithLabel
+              textAlign={isAr ? 'right' : 'left'}
+              value={password}
+              placeholder={t('common:EnteraPassword')}
+              placeholderTextColor={isDarkMode ? '#fff' : '#000'}
+              secureTextEntry={isVisible}
+              rightIcon={isVisible ? 'eye-off-outline' : 'eye-outline'}
+              style={{
+                flexDirection: (isAr && 'row-reverse') || 'row',
+                ...(isAr && {justifyContent: 'flex-end'}),
+              }}
+              onPressRight={() => {
+                setIsVisible(!isVisible);
+              }}
+              onChangeText={item => setPassword(item)}
+            />
+
+            <View>
+              {passwordError ? (
+                <Text
+                  style={[
+                    styles.errorStyle,
+                    isAr && styles.arSliderTextAlign,
+                    isDarkMode ? '#000' : '#fff',
+                  ]}>
+                  {passwordError}
+                </Text>
+              ) : (
+                <Text
+                  style={[
+                    styles.successStyle,
+                    isAr && styles.arSliderTextAlign,
+                    isDarkMode ? '#000' : '#fff',
+                  ]}>
+                  {''}
+                </Text>
+              )}
+            </View>
+            <TextinputWithLabel
+              textAlign={isAr ? 'right' : 'left'}
+              value={username}
+              onChangeText={setUsername}
+              placeholder={t('common:username')}
+              placeholderTextColor={isDarkMode ? '#fff' : '#000'}
+              style={{
+                ...(isAr && {textAlign: 'right'}),
+              }}
+            />
+
+            <View>
+              {usernameError ? (
+                <Text
+                  style={[
+                    styles.errorStyle,
+                    isAr && styles.arSliderTextAlign,
+                    isDarkMode ? '#000' : '#fff',
+                  ]}>
+                  {usernameError}
+                </Text>
+              ) : (
+                <Text
+                  style={[
+                    styles.successStyle,
+                    isAr && styles.arSliderTextAlign,
+                    isDarkMode ? '#000' : '#fff',
+                  ]}>
+                  {''}
+                </Text>
+              )}
+            </View>
+          </View>
+          <View style={styles.buttonStyle}>
+            <ButtonCustomComponents
+              buttonText={t('common:SignUp')}
+              onPress={() => {
+                LoginValidation();
+              }}
+            />
+          </View>
         </View>
-
-        <TextinputWithLabel
-          textAlign={isAr ? 'right' : 'left'}
-          value={password}
-          placeholder={t('common:EnteraPassword')}
-          placeholderTextColor={isDarkMode ? '#fff' : '#000'}
-          secureTextEntry={isVisible}
-          rightIcon={isVisible ? 'eye-off-outline' : 'eye-outline'}
-          style={{
-            flexDirection: (isAr && 'row-reverse') || 'row',
-            ...(isAr && {justifyContent: 'flex-end'}),
-          }}
-          onPressRight={() => {
-            setIsVisible(!isVisible);
-          }}
-          onChangeText={item => setPassword(item)}
-        />
-
-        <View>
-          {passwordError ? (
-            <Text
-              style={[
-                styles.errorStyle,
-                isAr && styles.arSliderTextAlign,
-                isDarkMode ? '#000' : '#fff',
-              ]}>
-              {passwordError}
-            </Text>
-          ) : (
-            <Text
-              style={[
-                styles.successStyle,
-                isAr && styles.arSliderTextAlign,
-                isDarkMode ? '#000' : '#fff',
-              ]}>
-              {''}
-            </Text>
-          )}
-        </View>
-        <TextinputWithLabel
-          textAlign={isAr ? 'right' : 'left'}
-          value={username}
-          onChangeText={setUsername}
-          placeholder={t('common:username')}
-          placeholderTextColor={isDarkMode ? '#fff' : '#000'}
-          style={{
-            ...(isAr && {textAlign: 'right'}),
-          }}
-        />
-
-        <View>
-          {usernameError ? (
-            <Text
-              style={[
-                styles.errorStyle,
-                isAr && styles.arSliderTextAlign,
-                isDarkMode ? '#000' : '#fff',
-              ]}>
-              {usernameError}
-            </Text>
-          ) : (
-            <Text
-              style={[
-                styles.successStyle,
-                isAr && styles.arSliderTextAlign,
-                isDarkMode ? '#000' : '#fff',
-              ]}>
-              {''}
-            </Text>
-          )}
-        </View>
-      </View>
-      <View style={styles.buttonStyle}>
-        <ButtonCustomComponents
-          buttonText={t('common:SignUp')}
-          onPress={() => {
-            LoginValidation();
-          }}
-        />
-      </View>
-    </View>
+      </KeyboardAvoidingView>
+    </>
   );
 };
 

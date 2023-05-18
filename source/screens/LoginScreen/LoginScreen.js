@@ -5,6 +5,8 @@ import {
   View,
   Pressable,
   I18nManager,
+  KeyboardAvoidingView,
+  Platform,
   StyleSheet,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
@@ -105,201 +107,205 @@ const LoginScreen = ({navigation}) => {
 
   return (
     <>
-      <View
-        style={[
-          styles.main,
-          isDarkMode ? darkStyles.container : lightStyles.container,
-        ]}>
-        <ImageBackground
-          source={ImagePath.FoodApp}
-          style={styles.imageBackground}
-        />
-        <View
-          style={{
-            padding: moderateScale(10),
-            backgroundColor: isDarkMode ? 'black' : 'white',
-            flexDirection: 'row-reverse',
-          }}>
-          <TouchableOpacity onPress={handleToggle}>
-            {isDarkMode ? (
-              <Ionicons
-                name="moon-outline"
-                color={isDarkMode ? '#fff' : '#000'}
-                size={30}
-              />
-            ) : (
-              <Ionicons
-                name="sunny-outline"
-                color={isDarkMode ? '#fff' : '#000'}
-                size={30}
-              />
-            )}
-          </TouchableOpacity>
-        </View>
-        <View style={styles.mainStyle}>
-          <View style={styles.TextinputWithLabelView}>
-            <TextinputWithLabel
-              textAlign={isAr ? 'right' : 'left'}
-              value={email}
-              onChangeText={setEmail}
-              placeholder={t('common:EnterAnEmailorPhone')}
-              placeholderTextColor={isDarkMode ? '#fff' : '#000'}
-              style={{
-                ...(isAr && {textAlign: 'right'}),
-              }}
-            />
-
-            <View>
-              {emailError ? (
-                <Text
-                  style={[
-                    styles.errorStyle,
-                    isAr && styles.arSliderTextAlign,
-                    isDarkMode ? '#000' : '#fff',
-                  ]}>
-                  {emailError}
-                </Text>
-              ) : (
-                <Text
-                  style={[
-                    styles.successStyle,
-                    isAr && styles.arSliderTextAlign,
-                    isDarkMode ? '#000' : '#fff',
-                  ]}>
-                  {''}
-                </Text>
-              )}
-            </View>
-
-            <TextinputWithLabel
-              textAlign={isAr ? 'right' : 'left'}
-              value={password}
-              placeholder={t('common:EnteraPassword')}
-              placeholderTextColor={isDarkMode ? '#fff' : '#000'}
-              secureTextEntry={isVisible}
-              rightIcon={isVisible ? 'eye-off-outline' : 'eye-outline'}
-              style={{
-                flexDirection: (isAr && 'row-reverse') || 'row',
-                ...(isAr && {justifyContent: 'flex-end'}),
-              }}
-              onPressRight={() => {
-                setIsVisible(!isVisible);
-              }}
-              onChangeText={item => setPassword(item)}
-            />
-
-            <View>
-              {passwordError ? (
-                <Text
-                  style={[
-                    styles.errorStyle,
-                    isAr && styles.arSliderTextAlign,
-                    isDarkMode ? '#000' : '#fff',
-                  ]}>
-                  {passwordError}
-                </Text>
-              ) : (
-                <Text
-                  style={[
-                    styles.successStyle,
-                    isAr && styles.arSliderTextAlign,
-                    isDarkMode ? '#000' : '#fff',
-                  ]}>
-                  {''}
-                </Text>
-              )}
-            </View>
-            <TouchableOpacity
-              activeOpacity={0.5}
-              style={[styles.forgotView, isAr && styles.arSliderTextAlign]}
-              onPress={() =>
-                navigation.navigate(navigationStrings.FORGOTPASSWORD)
-              }>
-              <Text
-                style={[
-                  styles.forgotText,
-                  isAr && styles.arSliderTextAlign,
-                  isDarkMode ? {color: '#fff'} : {color: '#000'},
-                ]}>
-                {t('common:ForgetPassword')}
-              </Text>
-            </TouchableOpacity>
-
-            <View style={styles.buttonStyle}>
-              <ButtonCustomComponents
-                buttonText={t('common:Login')}
-                onPress={() => {
-                  LoginValidation();
-                }}
-              />
-            </View>
-          </View>
-        </View>
-
-        <View>
-          <View
-            style={[
-              selectLanguageCode === 'ar' && {alignItems: 'center'},
-              isDarkMode && styles.darkMode,
-            ]}>
-            {LANGUAGES.map(lang => {
-              const selectedLanguage = lang.code === selectLanguageCode;
-              return (
-                <Pressable
-                  key={lang.code}
-                  style={{marginTop: moderateScale(10)}}
-                  disabled={selectedLanguage}
-                  onPress={() => {
-                    setLanguage(lang.code);
-                  }}>
-                  <Text
-                    style={[
-                      selectedLanguage ? styles.selectedText : styles.text,
-                      isDarkMode ? {color: '#fff'} : {color: '#000'},
-                    ]}>
-                    {lang.label}
-                  </Text>
-                </Pressable>
-              );
-            })}
-          </View>
-        </View>
+      <KeyboardAvoidingView
+        style={{flex: 1}}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <View
           style={[
-            styles.bottomView,
-            isAr && styles.arSliderTextAlign,
-            isDarkMode
-              ? {backgroundColor: '#000', color: '#fff'}
-              : {backgroundColor: '#fff', color: '#000'},
+            styles.main,
+            isDarkMode ? darkStyles.container : lightStyles.container,
           ]}>
-          <Text
+          <ImageBackground
+            source={ImagePath.FoodApp}
+            style={styles.imageBackground}
+          />
+          <View
+            style={{
+              padding: moderateScale(10),
+              backgroundColor: isDarkMode ? 'black' : 'white',
+              flexDirection: 'row-reverse',
+            }}>
+            <TouchableOpacity onPress={handleToggle}>
+              {isDarkMode ? (
+                <Ionicons
+                  name="moon-outline"
+                  color={isDarkMode ? '#fff' : '#000'}
+                  size={30}
+                />
+              ) : (
+                <Ionicons
+                  name="sunny-outline"
+                  color={isDarkMode ? '#fff' : '#000'}
+                  size={30}
+                />
+              )}
+            </TouchableOpacity>
+          </View>
+          <View style={styles.mainStyle}>
+            <View style={styles.TextinputWithLabelView}>
+              <TextinputWithLabel
+                textAlign={isAr ? 'right' : 'left'}
+                value={email}
+                onChangeText={setEmail}
+                placeholder={t('common:EnterAnEmailorPhone')}
+                placeholderTextColor={isDarkMode ? '#fff' : '#000'}
+                style={{
+                  ...(isAr && {textAlign: 'right'}),
+                }}
+              />
+
+              <View>
+                {emailError ? (
+                  <Text
+                    style={[
+                      styles.errorStyle,
+                      isAr && styles.arSliderTextAlign,
+                      isDarkMode ? '#000' : '#fff',
+                    ]}>
+                    {emailError}
+                  </Text>
+                ) : (
+                  <Text
+                    style={[
+                      styles.successStyle,
+                      isAr && styles.arSliderTextAlign,
+                      isDarkMode ? '#000' : '#fff',
+                    ]}>
+                    {''}
+                  </Text>
+                )}
+              </View>
+
+              <TextinputWithLabel
+                textAlign={isAr ? 'right' : 'left'}
+                value={password}
+                placeholder={t('common:EnteraPassword')}
+                placeholderTextColor={isDarkMode ? '#fff' : '#000'}
+                secureTextEntry={isVisible}
+                rightIcon={isVisible ? 'eye-off-outline' : 'eye-outline'}
+                style={{
+                  flexDirection: (isAr && 'row-reverse') || 'row',
+                  ...(isAr && {justifyContent: 'flex-end'}),
+                }}
+                onPressRight={() => {
+                  setIsVisible(!isVisible);
+                }}
+                onChangeText={item => setPassword(item)}
+              />
+
+              <View>
+                {passwordError ? (
+                  <Text
+                    style={[
+                      styles.errorStyle,
+                      isAr && styles.arSliderTextAlign,
+                      isDarkMode ? '#000' : '#fff',
+                    ]}>
+                    {passwordError}
+                  </Text>
+                ) : (
+                  <Text
+                    style={[
+                      styles.successStyle,
+                      isAr && styles.arSliderTextAlign,
+                      isDarkMode ? '#000' : '#fff',
+                    ]}>
+                    {''}
+                  </Text>
+                )}
+              </View>
+              <TouchableOpacity
+                activeOpacity={0.5}
+                style={[styles.forgotView, isAr && styles.arSliderTextAlign]}
+                onPress={() =>
+                  navigation.navigate(navigationStrings.FORGOTPASSWORD)
+                }>
+                <Text
+                  style={[
+                    styles.forgotText,
+                    isAr && styles.arSliderTextAlign,
+                    isDarkMode ? {color: '#fff'} : {color: '#000'},
+                  ]}>
+                  {t('common:ForgetPassword')}
+                </Text>
+              </TouchableOpacity>
+
+              <View style={styles.buttonStyle}>
+                <ButtonCustomComponents
+                  buttonText={t('common:Login')}
+                  onPress={() => {
+                    LoginValidation();
+                  }}
+                />
+              </View>
+            </View>
+          </View>
+
+          <View>
+            <View
+              style={[
+                selectLanguageCode === 'ar' && {alignItems: 'center'},
+                isDarkMode && styles.darkMode,
+              ]}>
+              {LANGUAGES.map(lang => {
+                const selectedLanguage = lang.code === selectLanguageCode;
+                return (
+                  <Pressable
+                    key={lang.code}
+                    style={{marginTop: moderateScale(10)}}
+                    disabled={selectedLanguage}
+                    onPress={() => {
+                      setLanguage(lang.code);
+                    }}>
+                    <Text
+                      style={[
+                        selectedLanguage ? styles.selectedText : styles.text,
+                        isDarkMode ? {color: '#fff'} : {color: '#000'},
+                      ]}>
+                      {lang.label}
+                    </Text>
+                  </Pressable>
+                );
+              })}
+            </View>
+          </View>
+          <View
             style={[
-              styles.newAccountText,
+              styles.bottomView,
               isAr && styles.arSliderTextAlign,
               isDarkMode
                 ? {backgroundColor: '#000', color: '#fff'}
                 : {backgroundColor: '#fff', color: '#000'},
             ]}>
-            {t('common:DontHaveanAccount')} {''}
-          </Text>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate(navigationStrings.SIGNUP);
-            }}>
-            <View style={styles.bottomSubView}>
-              <Text
-                style={[
-                  styles.signUpText,
-                  isAr && styles.arSliderTextAlign,
+            <Text
+              style={[
+                styles.newAccountText,
+                isAr && styles.arSliderTextAlign,
+                isDarkMode
+                  ? {backgroundColor: '#000', color: '#fff'}
+                  : {backgroundColor: '#fff', color: '#000'},
+              ]}>
+              {t('common:DontHaveanAccount')} {''}
+            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate(navigationStrings.SIGNUP);
+              }}>
+              <View style={styles.bottomSubView}>
+                <Text
+                  style={[
+                    styles.signUpText,
+                    isAr && styles.arSliderTextAlign,
 
-                  isDarkMode ? {color: '#fff'} : {color: '#000'},
-                ]}>
-                {t('common:SignUp')}
-              </Text>
-            </View>
-          </TouchableOpacity>
+                    isDarkMode ? {color: '#fff'} : {color: '#000'},
+                  ]}>
+                  {t('common:SignUp')}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </>
   );
 };

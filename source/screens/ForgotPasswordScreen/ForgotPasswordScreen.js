@@ -6,6 +6,7 @@ import {
   Image,
   StyleSheet,
   StatusBar,
+  KeyboardAvoidingView,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import styles from './style';
@@ -61,94 +62,96 @@ const ForgotPasswordScreen = ({navigation}) => {
 
   return (
     <>
-      <View
-        style={[
-          styles.main,
-          isDarkMode ? darkStyles.container : lightStyles.container,
-        ]}>
-        <CustomHeaderComponents
-          paddingTop={moderateScale(50)}
-          back={t('common:Back')}
-          onPress={() => {
-            navigation.navigate(navigationStrings.LOGIN);
-          }}
-          label={t('common:Forgot_Password')}
-        />
-
+      <KeyboardAvoidingView style={{flex: 1}}>
         <View
           style={[
-            styles.submain,
+            styles.main,
             isDarkMode ? darkStyles.container : lightStyles.container,
           ]}>
-          <View style={styles.forgotPasswordView}>
-            <Image
-              source={ImagePath.ForgotPasswordImg}
-              style={styles.forgotImg}
-            />
-          </View>
-          <View style={styles.ForgotPasswordView}>
-            <Text
-              style={[
-                styles.ForgotPasswordText,
-                isAr && textAlign,
-                isDarkMode ? darkStyles.container : lightStyles.container,
-              ]}>
-              {t('common:Forgot_Password')}
-            </Text>
-          </View>
-          <View style={styles.ForgotPasswordTextDescView}>
-            <Text
-              style={[
-                styles.ForgotPasswordTextDesc,
-                isAr && textAlign,
-                isDarkMode ? darkStyles.container : lightStyles.container,
-              ]}>
-              {t('common:ForgotPasswordTextDesc')}
-            </Text>
-          </View>
+          <CustomHeaderComponents
+            paddingTop={moderateScale(50)}
+            back={t('common:Back')}
+            onPress={() => {
+              navigation.navigate(navigationStrings.LOGIN);
+            }}
+            label={t('common:Forgot_Password')}
+          />
+
           <View
             style={[
-              styles.MainContentView,
-              isAr && textAlign,
+              styles.submain,
               isDarkMode ? darkStyles.container : lightStyles.container,
             ]}>
-            <TextinputWithLabel
-              onchangeText={item => {
-                setEmail(item);
-              }}
-              value={email}
-              onChangeText={setEmail}
-              placeholder={t('common:Forgot_Password_Placeholder_EmailText')}
-              placeholderTextColor={isDarkMode ? '#fff' : '#000'}
-              textAlign={isAr ? 'right' : 'left'}
-            />
-          </View>
-          <View
-            style={[
-              styles.errorStyleView,
-              isAr && textAlign,
-              isDarkMode ? darkStyles.container : lightStyles.container,
-            ]}>
-            <Text style={[styles.errorStyle, isAr && textAlign]}>
-              {showError}
-            </Text>
-          </View>
-          <TouchableOpacity onPress={handleForgotPassword}>
-            <View
-              style={[
-                styles.buttonStyle,
-                isAr && textAlign,
-                isDarkMode ? darkStyles.container : lightStyles.container,
-              ]}>
-              <ButtonCustomComponents
-                buttonText={t('common:Forgot_Password_Submit')}
-                onPress={handleForgotPassword}
-                fontSize={scale(16)}
+            <View style={styles.forgotPasswordView}>
+              <Image
+                source={ImagePath.ForgotPasswordImg}
+                style={styles.forgotImg}
               />
             </View>
-          </TouchableOpacity>
+            <View style={styles.ForgotPasswordView}>
+              <Text
+                style={[
+                  styles.ForgotPasswordText,
+                  isAr && textAlign,
+                  isDarkMode ? darkStyles.container : lightStyles.container,
+                ]}>
+                {t('common:Forgot_Password')}
+              </Text>
+            </View>
+            <View style={styles.ForgotPasswordTextDescView}>
+              <Text
+                style={[
+                  styles.ForgotPasswordTextDesc,
+                  isAr && textAlign,
+                  isDarkMode ? darkStyles.container : lightStyles.container,
+                ]}>
+                {t('common:ForgotPasswordTextDesc')}
+              </Text>
+            </View>
+            <View
+              style={[
+                styles.MainContentView,
+                isAr && textAlign,
+                isDarkMode ? darkStyles.container : lightStyles.container,
+              ]}>
+              <TextinputWithLabel
+                onchangeText={item => {
+                  setEmail(item);
+                }}
+                value={email}
+                onChangeText={setEmail}
+                placeholder={t('common:Forgot_Password_Placeholder_EmailText')}
+                placeholderTextColor={isDarkMode ? '#fff' : '#000'}
+                textAlign={isAr ? 'right' : 'left'}
+              />
+            </View>
+            <View
+              style={[
+                styles.errorStyleView,
+                isAr && textAlign,
+                isDarkMode ? darkStyles.container : lightStyles.container,
+              ]}>
+              <Text style={[styles.errorStyle, isAr && textAlign]}>
+                {showError}
+              </Text>
+            </View>
+            <TouchableOpacity onPress={handleForgotPassword}>
+              <View
+                style={[
+                  styles.buttonStyle,
+                  isAr && textAlign,
+                  isDarkMode ? darkStyles.container : lightStyles.container,
+                ]}>
+                <ButtonCustomComponents
+                  buttonText={t('common:Forgot_Password_Submit')}
+                  onPress={handleForgotPassword}
+                  fontSize={scale(16)}
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </>
   );
 };
