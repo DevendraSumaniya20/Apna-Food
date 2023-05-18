@@ -1,4 +1,4 @@
-package com.apna_food;
+package com.app.apna_food;
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

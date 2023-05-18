@@ -10,19 +10,19 @@ const styles = StyleSheet.create({
   },
   SignUpView: {
     alignItems: 'center',
-    paddingTop: moderateScale(50),
+    paddingTop: moderateScale(10),
   },
 
   SignupImage: {
-    width: moderateScale(200),
-    height: moderateScale(200),
+    width: moderateScale(100),
+    height: moderateScale(100),
     borderRadius: moderateScale(30),
   },
   SignUpMainView: {
     paddingHorizontal: '5%',
   },
   WelcomeTextView: {
-    paddingTop: moderateScale(20),
+    paddingTop: moderateScale(22),
     alignItems: 'center',
   },
   WelcomeText: {
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     textTransform: 'capitalize',
   },
   buttonStyle: {
-    paddingTop: moderateScale(50),
+    paddingTop: moderateScale(30),
     paddingHorizontal: '5%',
   },
   errorStyle: {

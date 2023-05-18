@@ -94,9 +94,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.apna_food"
+    namespace "com.app.apna_food"
     defaultConfig {
-        applicationId "com.apna_food"
+        applicationId "com.app.apna_food"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
