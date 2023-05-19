@@ -18,7 +18,7 @@ import NetInfo from '@react-native-community/netinfo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {moderateScale} from 'react-native-size-matters';
 import axios from 'axios';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 const db = openDatabase({
   name: 'user',
 });
@@ -181,8 +181,8 @@ const HomeScreen = ({navigation}) => {
                 styles.iconContainer,
               ]}
               onPress={() => navigation.openDrawer()}>
-              <Ionicons
-                name="menu"
+              <MaterialIcons
+                name="menu-open"
                 size={24}
                 color={isDarkMode ? '#fff' : '#000'}
               />
@@ -202,7 +202,7 @@ const HomeScreen = ({navigation}) => {
                 <FlatList
                   onRefresh={onRefresh}
                   refreshing={isRefreshing}
-                  contentContainerStyle={{paddingBottom: moderateScale(100)}}
+                  contentContainerStyle={{paddingBottom: moderateScale(150)}}
                   showsVerticalScrollIndicator={false}
                   contentInsetAdjustmentBehavior="automatic"
                   data={apiData}
@@ -287,7 +287,7 @@ const HomeScreen = ({navigation}) => {
                       onRefresh={onRefresh}
                       refreshing={isRefreshing}
                       contentContainerStyle={{
-                        paddingBottom: moderateScale(100),
+                        paddingBottom: moderateScale(150),
                       }}
                       showsVerticalScrollIndicator={false}
                       data={apiData}
