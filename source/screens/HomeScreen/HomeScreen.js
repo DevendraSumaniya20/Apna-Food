@@ -5,6 +5,7 @@ import {
   Text,
   Image,
   KeyboardAvoidingView,
+  TouchableOpacity,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
@@ -17,7 +18,7 @@ import NetInfo from '@react-native-community/netinfo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {moderateScale} from 'react-native-size-matters';
 import axios from 'axios';
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 const db = openDatabase({
   name: 'user',
 });
@@ -164,6 +165,29 @@ const HomeScreen = ({navigation}) => {
               navigation.navigate(navigationStrings.LOGIN);
             }}
           />
+
+          <View
+            style={{
+              borderColor: isDarkMode ? '#fff' : '#000',
+              borderWidth: 0.3,
+            }}
+          />
+
+          <View
+            style={[isDarkMode ? darkStyles.container : lightStyles.container]}>
+            <TouchableOpacity
+              style={[
+                isDarkMode ? darkStyles.container : lightStyles.container,
+                styles.iconContainer,
+              ]}
+              onPress={() => navigation.openDrawer()}>
+              <Ionicons
+                name="menu"
+                size={24}
+                color={isDarkMode ? '#fff' : '#000'}
+              />
+            </TouchableOpacity>
+          </View>
 
           <View
             style={[

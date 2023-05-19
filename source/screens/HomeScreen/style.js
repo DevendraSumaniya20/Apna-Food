@@ -1,7 +1,6 @@
 import {moderateScale, scale} from 'react-native-size-matters';
 
 import {StyleSheet} from 'react-native';
-import {Translation} from 'react-i18next';
 
 const styles = StyleSheet.create({
   main: {
@@ -10,6 +9,11 @@ const styles = StyleSheet.create({
   dataMainView: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  iconContainer: {
+    flexDirection: 'row-reverse',
+    marginTop: moderateScale(10),
+    marginBottom: moderateScale(10),
   },
 
   flatListImage: {

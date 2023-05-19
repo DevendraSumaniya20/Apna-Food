@@ -1,40 +1,53 @@
 import 'react-native-gesture-handler';
-import {StyleSheet} from 'react-native';
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import MapScreen from '../MapScreen/MapScreen';
-import {useSelector} from 'react-redux';
 import BottomTabNavigator from '../TabNavigationScreen/BottomTabsNavigator';
-import colors from '../../assets/color/colors';
 import navigationStrings from '../../constant/navigationStrings';
-import {
-  DrawerContentScrollView,
-  DrawerItemList,
-} from '@react-navigation/drawer';
+import CustomDrawer from '../../components/CustomDrawer';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {moderateScale, scale} from 'react-native-size-matters';
+import {useSelector} from 'react-redux';
+import {StyleSheet} from 'react-native';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
   const isDarkMode = useSelector(state => state.theme.isDarkMode);
-  const styles = StyleSheet.create({
+
+  const lightStyles = StyleSheet.create({
     container: {
-      backgroundColor: isDarkMode ? '#000' : '#fff',
-      color: isDarkMode ? '#fff' : '#000',
+      backgroundColor: '#ffffff',
+      color: '#000000',
+    },
+  });
+
+  const darkStyles = StyleSheet.create({
+    container: {
+      backgroundColor: '#000000',
+      color: '#ffffff',
     },
   });
 
   return (
     <Drawer.Navigator
       screenOptions={{
-        statusBarColor: colors.mainThemesColor,
-      }}>
+        statusBarColor: isDarkMode
+          ? darkStyles.container
+          : lightStyles.container,
+        drawerActiveBackgroundColor: '#5294ff',
+        drawerActiveTintColor: isDarkMode ? '#ffffff' : '#000000',
+        drawerInactiveTintColor: isDarkMode ? '#ffffff' : '#000000',
+      }}
+      drawerContent={props => <CustomDrawer {...props} />}>
       <Drawer.Screen
-        name="Main Home"
+        name="Products"
         component={BottomTabNavigator}
         options={{
           headerShown: false,
-          headerTintColor: colors.mainThemesColor,
-          statusBarColor: colors.mainThemesColor,
+          drawerIcon: ({color}) => (
+            <Ionicons name="home-outline" size={20} color={color} />
+          ),
         }}
       />
       <Drawer.Screen
@@ -42,7 +55,9 @@ const DrawerNavigator = () => {
         component={MapScreen}
         options={{
           headerShown: false,
-          headerTintColor: colors.mainThemesColor,
+          drawerIcon: ({color}) => (
+            <Ionicons name="map-outline" size={20} color={color} />
+          ),
         }}
       />
     </Drawer.Navigator>
