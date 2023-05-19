@@ -97,15 +97,15 @@ const MapScreen = ({navigation}) => {
               styles.container,
               isDarkMode ? darkStyles.container : lightStyles.container,
             ]}>
-            <View style={{marginTop: moderateScale(30)}}>
-              <CustomHeaderComponents
-                back={t('common:Back')}
-                label={t('common:MapView')}
-                onPress={() => {
-                  navigation.goBack();
-                }}
-              />
-            </View>
+            <CustomHeaderComponents
+              paddingTop={moderateScale(34)}
+              back={t('common:Back')}
+              label={t('common:MapView')}
+              onPress={() => {
+                navigation.goBack();
+              }}
+            />
+
             <MapView
               mapType="standard"
               ref={mapRef}

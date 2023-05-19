@@ -35,7 +35,7 @@ const DrawerNavigator = () => {
         statusBarColor: isDarkMode
           ? darkStyles.container
           : lightStyles.container,
-        drawerActiveBackgroundColor: '#5294ff',
+        drawerActiveBackgroundColor: '#258',
         drawerActiveTintColor: isDarkMode ? '#ffffff' : '#000000',
         drawerInactiveTintColor: isDarkMode ? '#ffffff' : '#000000',
       }}
@@ -44,6 +44,10 @@ const DrawerNavigator = () => {
         name="Products"
         component={BottomTabNavigator}
         options={{
+          drawerLabelStyle: {
+            fontFamily: 'NunitoSans-SemiBold',
+            fontWeight: 'bold',
+          },
           headerShown: false,
           drawerIcon: ({color}) => (
             <Ionicons name="home-outline" size={20} color={color} />
@@ -54,6 +58,10 @@ const DrawerNavigator = () => {
         name={navigationStrings.MAP}
         component={MapScreen}
         options={{
+          drawerLabelStyle: {
+            fontFamily: 'NunitoSans-SemiBold',
+            fontWeight: 'bold',
+          },
           headerShown: false,
           drawerIcon: ({color}) => (
             <Ionicons name="map-outline" size={20} color={color} />

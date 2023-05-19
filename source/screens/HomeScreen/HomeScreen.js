@@ -158,7 +158,7 @@ const HomeScreen = ({navigation}) => {
             isDarkMode ? darkStyles.container : lightStyles.container,
           ]}>
           <CustomHeaderComponents
-            paddingTop={moderateScale(50)}
+            paddingTop={moderateScale(32)}
             back={t('common:Back')}
             label={t('common:ShopList')}
             onPress={() => {

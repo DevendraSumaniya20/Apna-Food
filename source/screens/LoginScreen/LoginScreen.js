@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
+  Image,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import ImagePath from '../../constant/ImagePath';
@@ -141,6 +142,7 @@ const LoginScreen = ({navigation}) => {
               )}
             </TouchableOpacity>
           </View>
+
           <View style={styles.mainStyle}>
             <View style={styles.TextinputWithLabelView}>
               <TextinputWithLabel

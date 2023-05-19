@@ -41,7 +41,6 @@ const CustomDrawer = props => {
           <DrawerItemList {...props} />
         </View>
       </DrawerContentScrollView>
-      <View></View>
     </View>
   );
 };
@@ -52,9 +51,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: moderateScale(5),
+    fontFamily: 'NunitoSans-SemiBold',
   },
   DrawerItemListStyleView: {
     flex: 1,
     paddingTop: moderateScale(10),
+    fontFamily: 'NunitoSans-SemiBold',
   },
 });
