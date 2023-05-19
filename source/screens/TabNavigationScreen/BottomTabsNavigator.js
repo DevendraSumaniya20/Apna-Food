@@ -2,11 +2,11 @@ import React from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {moderateScale} from 'react-native-size-matters';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import colors from '../../assets/color/colors';
 import HomeScreen from '../HomeScreen';
 import MapScreen from '../MapScreen';
 import {useSelector} from 'react-redux';
 import {StyleSheet} from 'react-native';
+import navigationStrings from '../../constant/navigationStrings';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -33,7 +33,7 @@ const BottomTabNavigator = () => {
         },
       ]}>
       <Tab.Screen
-        name="TabHome"
+        name={navigationStrings.HOME}
         component={HomeScreen}
         options={{
           tabBarIcon: ({color}) => (
@@ -42,7 +42,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Map"
+        name={navigationStrings.MAP}
         component={MapScreen}
         options={{
           tabBarIcon: ({color}) => (

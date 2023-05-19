@@ -106,7 +106,7 @@ const MapScreen = () => {
               />
             </View>
             <MapView
-              mapType="satellite"
+              mapType="standard"
               ref={mapRef}
               provider="google"
               style={styles.map}

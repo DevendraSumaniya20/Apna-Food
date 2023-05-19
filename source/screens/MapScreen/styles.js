@@ -1,20 +1,19 @@
 import {scale, moderateScale} from 'react-native-size-matters';
 import colors from '../../assets/color/colors';
 import {StyleSheet} from 'react-native';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    ...StyleSheet.absoluteFillObject,
   },
   map: {
-    ...StyleSheet.absoluteFillObject,
+    width: '100%',
+    height: '100%',
   },
   loading: {
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   buttonContainer: {
     position: 'absolute',
     bottom: moderateScale(20),

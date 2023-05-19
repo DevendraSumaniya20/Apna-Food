@@ -14,6 +14,7 @@ import colors from '../assets/color/colors';
 import BottomTabNavigator from '../screens/TabNavigationScreen/BottomTabsNavigator';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import SignUpScreen from '../screens/SignUpScreen/SignUpScreen';
+import DrawerNavigator from '../screens/DrawerNavigationScreen /DrawerNavigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ const Navigation = () => {
   return (
     <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator
+        initialRouteName="Home"
         screenOptions={{
           statusBarColor: colors.mainThemesColor,
         }}>
@@ -34,7 +36,7 @@ const Navigation = () => {
         />
         <Stack.Screen
           name={navigationStrings.HOME}
-          component={BottomTabNavigator}
+          component={DrawerNavigator}
           options={{
             headerShown: false,
             headerTintColor: colors.mainThemesColor,

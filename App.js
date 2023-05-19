@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import {StatusBar, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 import Navigation from './source/navigation/Navigation';
