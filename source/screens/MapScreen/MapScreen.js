@@ -16,8 +16,9 @@ import Geolocation from '@react-native-community/geolocation';
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
+import navigationStrings from '../../constant/navigationStrings';
 
-const MapScreen = () => {
+const MapScreen = ({navigation}) => {
   const [region, setRegion] = useState({});
   const [currentLocation, setCurrentLocation] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
@@ -101,7 +102,7 @@ const MapScreen = () => {
                 back={t('common:Back')}
                 label={t('common:MapView')}
                 onPress={() => {
-                  navigation.navigate(navigationStrings.LOGIN);
+                  navigation.goBack();
                 }}
               />
             </View>

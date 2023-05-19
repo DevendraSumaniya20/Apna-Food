@@ -7,6 +7,10 @@ import {useSelector} from 'react-redux';
 import BottomTabNavigator from '../TabNavigationScreen/BottomTabsNavigator';
 import colors from '../../assets/color/colors';
 import navigationStrings from '../../constant/navigationStrings';
+import {
+  DrawerContentScrollView,
+  DrawerItemList,
+} from '@react-navigation/drawer';
 
 const Drawer = createDrawerNavigator();
 
@@ -25,7 +29,7 @@ const DrawerNavigator = () => {
         statusBarColor: colors.mainThemesColor,
       }}>
       <Drawer.Screen
-        name={navigationStrings.BOTTOMTABNAVIGATOR}
+        name="Main Home"
         component={BottomTabNavigator}
         options={{
           headerShown: false,
