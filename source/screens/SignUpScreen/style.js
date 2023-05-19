@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
   },
   arSliderTextAlign: {
     textAlign: 'right',
+    fontFamily: 'NunitoSans-SemiBold',
   },
   SignUpView: {
     alignItems: 'center',
@@ -24,6 +25,7 @@ const styles = StyleSheet.create({
   WelcomeTextView: {
     paddingTop: moderateScale(22),
     alignItems: 'center',
+    fontFamily: 'NunitoSans-SemiBold',
   },
   WelcomeText: {
     fontSize: scale(20),
@@ -34,6 +36,7 @@ const styles = StyleSheet.create({
   buttonStyle: {
     paddingTop: moderateScale(30),
     paddingHorizontal: '5%',
+    fontFamily: 'NunitoSans-SemiBold',
   },
   errorStyle: {
     fontSize: scale(13),

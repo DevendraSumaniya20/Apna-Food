@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
   },
   arSliderTextAlign: {
     textAlign: 'right',
+    fontFamily: 'NunitoSans-SemiBold',
   },
 
   isDarkModeView: {
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     fontSize: scale(16),
     color: colors.mainThemesColor,
     textTransform: 'capitalize',
-    fontFamily: 'Montserrat',
+    fontFamily: 'NunitoSans-SemiBold',
   },
   errorStyle: {
     fontSize: scale(13),
@@ -68,12 +69,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.mainThemesColor,
     textAlign: 'center',
+    fontFamily: 'NunitoSans-SemiBold',
   },
   text: {
     fontSize: scale(16),
     color: 'black',
     paddingVertical: moderateScale(5),
     textAlign: 'center',
+    fontFamily: 'NunitoSans-SemiBold',
   },
   darkMode: {
     backgroundColor: '#000',

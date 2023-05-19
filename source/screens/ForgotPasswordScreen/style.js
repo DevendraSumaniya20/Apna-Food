@@ -29,7 +29,9 @@ const styles = StyleSheet.create({
     fontFamily: 'NunitoSans-Bold',
   },
 
-  ForgotPasswordView: {},
+  ForgotPasswordView: {
+    fontFamily: 'NunitoSans-SemiBold',
+  },
   ForgotPasswordTextDesc: {
     color: colors.black,
     lineHeight: moderateScale(20),
@@ -49,6 +51,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: moderateScale(10),
     width: moderateScale(320),
+    fontFamily: 'NunitoSans-SemiBold',
   },
 
   errorStyleView: {

@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     marginBottom: moderateScale(8),
     borderWidth: moderateScale(1),
     alignItems: 'center',
+    fontFamily: 'NunitoSans-SemiBold',
   },
 
   flatlistSubMain: {
@@ -41,12 +42,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: scale(16),
     color: 'red',
+    fontFamily: 'NunitoSans-SemiBold',
   },
   flatlistColumn: {
     flexDirection: 'row',
   },
   offlineText: {
     marginBottom: moderateScale(16),
+    fontFamily: 'NunitoSans-SemiBold',
   },
 
   flatListTitle: {
@@ -84,10 +87,12 @@ const styles = StyleSheet.create({
   onlineMessageText: {
     fontSize: scale(12),
     textAlign: 'center',
+    fontFamily: 'NunitoSans-SemiBold',
   },
   offlineMessageText: {
     fontSize: scale(14),
     textAlign: 'center',
+    fontFamily: 'NunitoSans-SemiBold',
   },
 });
 
