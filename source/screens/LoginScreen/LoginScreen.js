@@ -8,7 +8,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
-  Image,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import ImagePath from '../../constant/ImagePath';

@@ -42,7 +42,7 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>YOUR TEXT</string>
 	<key>NSCameraUsageDescription</key>
-	<string>YOUR TEXT</string>
+	<string> Apna_Food want to use your camera </string>
 	<key>NSContactsUsageDescription</key>
 	<string>YOUR TEXT</string>
 	<key>NSExceptionDomains</key>
@@ -69,13 +69,17 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your message to users regarding location usage</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>YOUR TEXT</string>
+	<string>
+	Apna_Food want to accees your devices microPhone
+	</string>
 	<key>NSMotionUsageDescription</key>
 	<string>YOUR TEXT</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>YOUR TEXT</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>YOUR TEXT</string>
+	<string>
+	Apna Food want to access your camera.
+	</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>YOUR TEXT</string>
 	<key>NSSiriUsageDescription</key>
