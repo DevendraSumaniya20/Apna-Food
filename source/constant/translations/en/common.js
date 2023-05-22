@@ -34,4 +34,5 @@ export default {
   usernameError: 'Enter the username ',
   usernameMaxlength: `Please enter some less character ${usernameMaxLength} username `,
   SignUpWelcomeText: `It's Free and anyone can join`,
+  Extra: 'Extra',
 };

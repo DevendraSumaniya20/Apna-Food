@@ -306,6 +306,14 @@ const LoginScreen = ({navigation}) => {
               </View>
             </TouchableOpacity>
           </View>
+          <View>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate(navigationStrings.EXTRASCREEN);
+              }}>
+              <Text>Go to ExtraScreen</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </KeyboardAvoidingView>
     </>
