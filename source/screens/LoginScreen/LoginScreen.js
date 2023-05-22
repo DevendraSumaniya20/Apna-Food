@@ -21,6 +21,7 @@ import styles from './style';
 import {useSelector, useDispatch} from 'react-redux';
 import {toggleTheme} from '../../store/themeSlice';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {Moon, Sun} from '../../constant/iconPath';
 
 const LoginScreen = ({navigation}) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -128,16 +129,16 @@ const LoginScreen = ({navigation}) => {
             }}>
             <TouchableOpacity onPress={handleToggle}>
               {isDarkMode ? (
-                <Ionicons
-                  name="moon-outline"
-                  color={isDarkMode ? '#fff' : '#000'}
-                  size={30}
+                <Moon
+                  height={30}
+                  width={30}
+                  fill={isDarkMode ? '#fff' : '#000'}
                 />
               ) : (
-                <Ionicons
-                  name="sunny-outline"
-                  color={isDarkMode ? '#fff' : '#000'}
-                  size={30}
+                <Sun
+                  height={30}
+                  width={30}
+                  fill={isDarkMode ? '#000' : '#fff'}
                 />
               )}
             </TouchableOpacity>

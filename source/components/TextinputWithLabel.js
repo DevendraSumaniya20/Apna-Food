@@ -10,7 +10,6 @@ import {
 import React from 'react';
 import {useSelector} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import colors from '../assets/color/colors';
 
 const TextinputWithLabel = ({
   label,
