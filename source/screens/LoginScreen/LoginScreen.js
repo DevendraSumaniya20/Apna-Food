@@ -306,12 +306,18 @@ const LoginScreen = ({navigation}) => {
               </View>
             </TouchableOpacity>
           </View>
-          <View>
+          <View
+            style={[isDarkMode ? darkStyles.container : lightStyles.container]}>
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate(navigationStrings.EXTRASCREEN);
               }}>
-              <Text>Go to ExtraScreen</Text>
+              <Text
+                style={[
+                  isDarkMode ? darkStyles.container : lightStyles.container,
+                ]}>
+                Go to ExtraScreen
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
