@@ -43,6 +43,64 @@ const DemoSectionlist = () => {
     setFilteredData(filterData);
   }, [search, products]);
 
+  const groupProductsByCategory = () => {
+    const groupedData = {};
+
+    filteredData.forEach(product => {
+      if (!groupedData[product.category]) {
+        groupedData[product.category] = [];
+      }
+
+      groupedData[product.category].push(product);
+    });
+
+    const sections = Object.keys(groupedData).map(category => ({
+      title: category,
+      data: groupedData[category],
+    }));
+
+    return sections;
+  };
+
+  const renderSectionHeader = ({section}) => (
+    <Text style={styles.sectionHeader}>{section.title}</Text>
+  );
+
+  const renderListItem = ({item}) => (
+    <View
+      style={[
+        styles.item,
+        isDarkMode ? styles.darkContainer : styles.lightContainer,
+      ]}>
+      <View
+        style={[
+          styles.imageMainView,
+          isDarkMode ? styles.darkContainer : styles.lightContainer,
+        ]}>
+        <Image
+          source={{uri: item.image}}
+          style={styles.image}
+          resizeMode="contain"
+        />
+      </View>
+
+      <Text
+        style={[
+          styles.data,
+          isDarkMode ? styles.darkContainer : styles.lightContainer,
+        ]}>
+        {item.title}
+      </Text>
+      <Text
+        style={[
+          styles.data,
+          isDarkMode ? styles.darkContainer : styles.lightContainer,
+        ]}>
+        {item.price}
+      </Text>
+    </View>
+  );
+
   const lightStyles = StyleSheet.create({
     container: {
       backgroundColor: '#ffffff',
@@ -89,48 +147,16 @@ const DemoSectionlist = () => {
 
       {filteredData.length > 0 ? (
         <SectionList
-          sections={[{data: filteredData}]}
+          sections={groupProductsByCategory()}
           keyExtractor={(item, index) => item.id.toString() + index}
-          renderItem={({item}) => (
-            <View
-              style={[
-                styles.item,
-                isDarkMode ? darkStyles.container : lightStyles.container,
-              ]}>
-              <View
-                style={[
-                  styles.imageMainView,
-                  isDarkMode ? darkStyles.container : lightStyles.container,
-                ]}>
-                <Image
-                  source={{uri: item.image}}
-                  style={styles.image}
-                  resizeMode="contain"
-                />
-              </View>
-
-              <Text
-                style={[
-                  styles.data,
-                  isDarkMode ? darkStyles.container : lightStyles.container,
-                ]}>
-                {item.title}
-              </Text>
-              <Text
-                style={[
-                  styles.data,
-                  isDarkMode ? darkStyles.container : lightStyles.container,
-                ]}>
-                {item.price}
-              </Text>
-            </View>
-          )}
+          renderSectionHeader={renderSectionHeader}
+          renderItem={renderListItem}
         />
       ) : (
         <View
           style={[
             styles.loadingContainer,
-            isDarkMode ? darkStyles.container : lightStyles.container,
+            isDarkMode ? styles.darkContainer : styles.lightContainer,
           ]}>
           <Text>No data found.</Text>
         </View>
@@ -145,7 +171,6 @@ const styles = StyleSheet.create({
   },
   item: {
     padding: moderateScale(16),
-
     marginHorizontal: moderateScale(15),
     marginVertical: moderateScale(15),
     borderRadius: moderateScale(10),
@@ -172,6 +197,23 @@ const styles = StyleSheet.create({
     width: scale(60),
     height: scale(60),
     marginBottom: moderateScale(10),
+  },
+  lightContainer: {
+    backgroundColor: '#ffffff',
+    color: '#000000',
+    borderColor: '#000000',
+  },
+  darkContainer: {
+    backgroundColor: '#000000',
+    color: '#ffffff',
+    borderColor: '#fff',
+  },
+  sectionHeader: {
+    fontSize: scale(16),
+    fontWeight: 'bold',
+    paddingVertical: moderateScale(10),
+    paddingHorizontal: moderateScale(15),
+    backgroundColor: '#f0f0f0',
   },
 });
 
