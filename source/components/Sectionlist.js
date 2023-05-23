@@ -10,8 +10,10 @@ import {
   ActivityIndicator,
   Image,
 } from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {moderateScale, scale} from 'react-native-size-matters';
 import {useSelector} from 'react-redux';
+import {Search} from '../constant/iconPath';
 
 const DemoSectionlist = () => {
   const [search, setSearch] = useState('');

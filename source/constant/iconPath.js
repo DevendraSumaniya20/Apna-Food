@@ -5,5 +5,6 @@ import Map from '../assets/icons/map.svg';
 import Moon from '../assets/icons/moon.svg';
 import Sun from '../assets/icons/sun.svg';
 import EyeMain from '../assets/icons/eyeMain.svg';
+import Search from '../assets/icons/Search.svg';
 
-export {EyeHide, EyeOpen, Home, Moon, Map, Sun, EyeMain};
+export {EyeHide, EyeOpen, Home, Moon, Map, Sun, EyeMain, Search};
