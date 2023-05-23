@@ -9,6 +9,7 @@ import {
   TextInput,
   ActivityIndicator,
   Image,
+  Alert,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {moderateScale, scale} from 'react-native-size-matters';
@@ -169,6 +170,10 @@ const DemoSectionlist = () => {
           keyExtractor={(item, index) => item.id.toString() + index}
           renderSectionHeader={renderSectionHeader}
           renderItem={renderListItem}
+          stickySectionHeadersEnabled
+          onEndReached={() => {
+            Alert.alert('Please Wait untill data is Loaded');
+          }}
         />
       ) : (
         <View
