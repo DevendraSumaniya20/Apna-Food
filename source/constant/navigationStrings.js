@@ -6,4 +6,5 @@ export default {
   FORGOTPASSWORD: 'ForgotPassword',
   SIGNUP: 'Signup',
   EXTRASCREEN: 'ExtraScreen',
+  EXTRASCREEN2: 'ExtraScreen2',
 };

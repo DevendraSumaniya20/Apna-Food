@@ -16,6 +16,7 @@ import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import SignUpScreen from '../screens/SignUpScreen/SignUpScreen';
 import DrawerNavigator from '../screens/DrawerNavigationScreen /DrawerNavigator';
 import ExtraScreen from '../screens/ExtraScreen';
+import ExtraScreen2 from '../screens/ExtraScreen/ExtraScreen2';
 
 const Stack = createNativeStackNavigator();
 
@@ -72,6 +73,14 @@ const Navigation = () => {
         <Stack.Screen
           name={navigationStrings.EXTRASCREEN}
           component={ExtraScreen}
+          options={{
+            headerShown: false,
+            headerTintColor: colors.mainThemesColor,
+          }}
+        />
+        <Stack.Screen
+          name={navigationStrings.EXTRASCREEN2}
+          component={ExtraScreen2}
           options={{
             headerShown: false,
             headerTintColor: colors.mainThemesColor,

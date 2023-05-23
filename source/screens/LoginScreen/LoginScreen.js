@@ -19,7 +19,6 @@ import {useTranslation} from 'react-i18next';
 import styles from './style';
 import {useSelector, useDispatch} from 'react-redux';
 import {toggleTheme} from '../../store/themeSlice';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Moon, Sun} from '../../constant/iconPath';
 
 const LoginScreen = ({navigation}) => {
@@ -310,13 +309,13 @@ const LoginScreen = ({navigation}) => {
             style={[isDarkMode ? darkStyles.container : lightStyles.container]}>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate(navigationStrings.EXTRASCREEN);
+                navigation.navigate(navigationStrings.EXTRASCREEN2);
               }}>
               <Text
                 style={[
                   isDarkMode ? darkStyles.container : lightStyles.container,
                 ]}>
-                Go to ExtraScreen
+                Go to ExtraScreen2
               </Text>
             </TouchableOpacity>
           </View>
