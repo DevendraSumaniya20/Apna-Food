@@ -20,6 +20,8 @@ import styles from './style';
 import {useSelector, useDispatch} from 'react-redux';
 import {toggleTheme} from '../../store/themeSlice';
 import {Moon, Sun} from '../../constant/iconPath';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const LoginScreen = ({navigation}) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -306,17 +308,35 @@ const LoginScreen = ({navigation}) => {
             </TouchableOpacity>
           </View>
           <View
-            style={[isDarkMode ? darkStyles.container : lightStyles.container]}>
+            style={[
+              isDarkMode ? darkStyles.container : lightStyles.container,
+              {
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+              },
+            ]}>
             <TouchableOpacity
+              style={isDarkMode ? darkStyles.container : lightStyles.container}
+              onPress={() => {
+                navigation.navigate(navigationStrings.EXTRASCREEN);
+              }}>
+              <MaterialCommunityIcons
+                name="gift-open-outline"
+                size={30}
+                color={isDarkMode ? '#fff' : '#000'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={isDarkMode ? darkStyles.container : lightStyles.container}
               onPress={() => {
                 navigation.navigate(navigationStrings.EXTRASCREEN2);
               }}>
-              <Text
-                style={[
-                  isDarkMode ? darkStyles.container : lightStyles.container,
-                ]}>
-                Go to ExtraScreen2
-              </Text>
+              <Ionicons
+                name="gift-outline"
+                size={30}
+                color={isDarkMode ? '#fff' : '#000'}
+              />
             </TouchableOpacity>
           </View>
         </View>
