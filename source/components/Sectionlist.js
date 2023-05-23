@@ -63,19 +63,31 @@ const DemoSectionlist = () => {
   };
 
   const renderSectionHeader = ({section}) => (
-    <Text style={styles.sectionHeader}>{section.title}</Text>
+    <View
+      style={[
+        styles.sectionHeaderView,
+        isDarkMode ? darkStyles.container : lightStyles.container,
+      ]}>
+      <Text
+        style={[
+          styles.sectionHeader,
+          isDarkMode ? darkStyles.container : lightStyles.container,
+        ]}>
+        {section.title}
+      </Text>
+    </View>
   );
 
   const renderListItem = ({item}) => (
     <View
       style={[
         styles.item,
-        isDarkMode ? styles.darkContainer : styles.lightContainer,
+        isDarkMode ? darkStyles.container : lightStyles.container,
       ]}>
       <View
         style={[
           styles.imageMainView,
-          isDarkMode ? styles.darkContainer : styles.lightContainer,
+          isDarkMode ? darkStyles.container : lightStyles.container,
         ]}>
         <Image
           source={{uri: item.image}}
@@ -87,14 +99,14 @@ const DemoSectionlist = () => {
       <Text
         style={[
           styles.data,
-          isDarkMode ? styles.darkContainer : styles.lightContainer,
+          isDarkMode ? darkStyles.container : lightStyles.container,
         ]}>
         {item.title}
       </Text>
       <Text
         style={[
           styles.data,
-          isDarkMode ? styles.darkContainer : styles.lightContainer,
+          isDarkMode ? darkStyles.container : lightStyles.container,
         ]}>
         {item.price}
       </Text>
@@ -119,8 +131,12 @@ const DemoSectionlist = () => {
 
   if (isLoading) {
     return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#000000" />
+      <View
+        style={[
+          styles.loadingContainer,
+          isDarkMode ? darkStyles.container : lightStyles.container,
+        ]}>
+        <ActivityIndicator size="large" />
       </View>
     );
   }
@@ -156,7 +172,7 @@ const DemoSectionlist = () => {
         <View
           style={[
             styles.loadingContainer,
-            isDarkMode ? styles.darkContainer : styles.lightContainer,
+            isDarkMode ? darkStyles.container : lightStyles.container,
           ]}>
           <Text>No data found.</Text>
         </View>
@@ -198,22 +214,20 @@ const styles = StyleSheet.create({
     height: scale(60),
     marginBottom: moderateScale(10),
   },
-  lightContainer: {
-    backgroundColor: '#ffffff',
-    color: '#000000',
-    borderColor: '#000000',
-  },
-  darkContainer: {
-    backgroundColor: '#000000',
-    color: '#ffffff',
-    borderColor: '#fff',
-  },
+
   sectionHeader: {
-    fontSize: scale(16),
-    fontWeight: 'bold',
-    paddingVertical: moderateScale(10),
-    paddingHorizontal: moderateScale(15),
-    backgroundColor: '#f0f0f0',
+    textAlign: 'center',
+    textTransform: 'capitalize',
+    fontSize: scale(20),
+    fontWeight: '500',
+    fontFamily: 'NunitoSans-SemiBold',
+  },
+  sectionHeaderView: {
+    borderColor: '#258',
+    borderBottomWidth: 1,
+    marginHorizontal: '5%',
+    marginVertical: '5%',
+    paddingBottom: moderateScale(10),
   },
 });
 
