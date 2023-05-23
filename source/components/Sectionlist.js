@@ -201,9 +201,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   data: {
-    fontSize: scale(14),
-    fontWeight: '400',
+    fontSize: scale(16),
+    fontWeight: '500',
     textAlign: 'center',
+    marginTop: moderateScale(20),
   },
   loadingContainer: {
     flex: 1,
