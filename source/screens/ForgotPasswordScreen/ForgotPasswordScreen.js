@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import styles from './style';
-import colors from '../../assets/color/colors';
 import ButtonCustomComponents from '../../components/ButtonCustomComponents';
 
 import navigationStrings from '../../constant/navigationStrings';
@@ -62,14 +61,16 @@ const ForgotPasswordScreen = ({navigation}) => {
 
   return (
     <>
-      <KeyboardAvoidingView style={{flex: 1}}>
+      <KeyboardAvoidingView
+        style={{flex: 1}}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <View
           style={[
             styles.main,
             isDarkMode ? darkStyles.container : lightStyles.container,
           ]}>
           <CustomHeaderComponents
-            paddingTop={moderateScale(50)}
+            paddingTop={moderateScale(40)}
             back={t('common:Back')}
             onPress={() => {
               navigation.navigate(navigationStrings.LOGIN);

@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   forgotPasswordView: {
     alignItems: 'center',
-    paddingTop: moderateScale(60),
+    paddingTop: moderateScale(30),
   },
   forgotImg: {
     width: moderateScale(200),
@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
   ForgotPasswordText: {
     fontSize: scale(30),
     alignSelf: 'center',
-    color: colors.mainThemesColor,
     fontWeight: `bold`,
     fontFamily: 'NunitoSans-Bold',
   },
@@ -33,7 +32,6 @@ const styles = StyleSheet.create({
     fontFamily: 'NunitoSans-SemiBold',
   },
   ForgotPasswordTextDesc: {
-    color: colors.black,
     lineHeight: moderateScale(20),
     textAlign: 'center',
   },
@@ -43,19 +41,17 @@ const styles = StyleSheet.create({
   },
 
   MainContentView: {
-    paddingTop: moderateScale(30),
+    paddingTop: moderateScale(25),
   },
 
   textInputView: {
-    borderColor: colors.blackOpacity10,
     borderWidth: 1,
     borderRadius: moderateScale(10),
-    width: moderateScale(320),
     fontFamily: 'NunitoSans-SemiBold',
   },
 
   errorStyleView: {
-    marginTop: moderateScale(8),
+    marginTop: moderateScale(4),
     marginBottom: moderateScale(20),
   },
 
@@ -64,6 +60,9 @@ const styles = StyleSheet.create({
     color: '#ff0000',
     marginTop: moderateScale(4),
     fontFamily: 'NunitoSans-SemiBold',
+  },
+  buttonStyle: {
+    marginTop: moderateScale(1),
   },
 });
 

@@ -16,7 +16,7 @@ import {useTranslation} from 'react-i18next';
 import {openDatabase} from 'react-native-sqlite-storage';
 import NetInfo from '@react-native-community/netinfo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {moderateScale} from 'react-native-size-matters';
+import {moderateScale, scale} from 'react-native-size-matters';
 import axios from 'axios';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 const db = openDatabase({
@@ -260,6 +260,34 @@ const HomeScreen = ({navigation}) => {
                               ]}>
                               ${item.price}
                             </Text>
+                          </View>
+                          <View
+                            style={{
+                              flexDirection: 'row-reverse',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                            }}>
+                            <TouchableOpacity
+                              style={{
+                                padding: moderateScale(10),
+                                borderRadius: moderateScale(10),
+                                borderWidth: 1,
+                                backgroundColor: '#568547',
+                              }}
+                              onPress={() => {
+                                navigation.navigate(
+                                  navigationStrings.CHECKOUT,
+                                  {
+                                    itemTitle: item.title,
+                                    itemPrice: item.price,
+                                  },
+                                );
+                              }}>
+                              <Text
+                                style={{fontSize: scale(16), color: '#fff'}}>
+                                Add to Cart
+                              </Text>
+                            </TouchableOpacity>
                           </View>
                         </View>
                       </View>
