@@ -61,8 +61,13 @@ const styles = StyleSheet.create({
     fontSize: scale(14),
     fontFamily: 'NunitoSans-Bold',
   },
+  flatListAddView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: moderateScale(15),
+  },
   flatListMainTitle: {
-    marginTop: moderateScale(12),
     fontFamily: 'NunitoSans-Bold',
   },
   offlineMessageContainer: {
@@ -93,6 +98,14 @@ const styles = StyleSheet.create({
     fontSize: scale(14),
     textAlign: 'center',
     fontFamily: 'NunitoSans-SemiBold',
+  },
+  addtocartTouchable: {
+    padding: moderateScale(10),
+    borderWidth: 1,
+    borderRadius: moderateScale(10),
+  },
+  addtocartText: {
+    fontSize: scale(14),
   },
 });
 

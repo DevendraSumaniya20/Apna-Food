@@ -246,48 +246,64 @@ const HomeScreen = ({navigation}) => {
 
                           <View
                             style={[
+                              styles.flatListAddView,
                               isDarkMode
                                 ? darkStyles.container
                                 : lightStyles.container,
-                              styles.flatListMainTitle,
                             ]}>
-                            <Text
+                            <View
                               style={[
                                 isDarkMode
                                   ? darkStyles.container
                                   : lightStyles.container,
-                                styles.flatListPrice,
+                                styles.flatListMainTitle,
                               ]}>
-                              ${item.price}
-                            </Text>
-                          </View>
-                          <View
-                            style={{
-                              flexDirection: 'row-reverse',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                            }}>
-                            <TouchableOpacity
-                              style={{
-                                padding: moderateScale(10),
-                                borderRadius: moderateScale(10),
-                                borderWidth: 1,
-                                backgroundColor: '#568547',
-                              }}
-                              onPress={() => {
-                                navigation.navigate(
-                                  navigationStrings.CHECKOUT,
-                                  {
-                                    itemTitle: item.title,
-                                    itemPrice: item.price,
-                                  },
-                                );
-                              }}>
                               <Text
-                                style={{fontSize: scale(16), color: '#fff'}}>
-                                Add to Cart
+                                style={[
+                                  isDarkMode
+                                    ? darkStyles.container
+                                    : lightStyles.container,
+                                  styles.flatListPrice,
+                                ]}>
+                                ${item.price}
                               </Text>
-                            </TouchableOpacity>
+                            </View>
+                            <View
+                              style={[
+                                isDarkMode
+                                  ? darkStyles.container
+                                  : lightStyles.container,
+                              ]}>
+                              <TouchableOpacity
+                                style={[
+                                  styles.addtocartTouchable,
+                                  isDarkMode
+                                    ? darkStyles.container
+                                    : lightStyles.container,
+                                  {
+                                    borderColor: isDarkMode ? '#fff' : '#000',
+                                  },
+                                ]}
+                                onPress={() => {
+                                  navigation.navigate(
+                                    navigationStrings.CHECKOUT,
+                                    {
+                                      itemTitle: item.title,
+                                      itemPrice: item.price,
+                                    },
+                                  );
+                                }}>
+                                <Text
+                                  style={[
+                                    styles.addtocartText,
+                                    isDarkMode
+                                      ? darkStyles.container
+                                      : lightStyles.container,
+                                  ]}>
+                                  Add to Cart
+                                </Text>
+                              </TouchableOpacity>
+                            </View>
                           </View>
                         </View>
                       </View>
