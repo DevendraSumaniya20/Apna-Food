@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   SafeAreaView,
+  Image,
 } from 'react-native';
 import React from 'react';
 import {useRoute} from '@react-navigation/native';
@@ -21,6 +22,7 @@ const CheckOutScreen = ({navigation}) => {
   const route = useRoute();
   const itemTitle = route.params?.itemTitle || '';
   const itemPrice = route.params?.itemPrice || '';
+  const itemImage = route.params?.itemImage || '';
 
   const lightStyles = StyleSheet.create({
     container: {
@@ -44,7 +46,7 @@ const CheckOutScreen = ({navigation}) => {
       image: require('../../assets/images/PayMentLogo.png'),
       currency: 'INR',
       key: 'rzp_test_Lm7ibPqVuPkBtp',
-      amount: `500`,
+      amount: `5000`,
       name: 'Apna food',
       order_id: '',
       prefill: {
@@ -52,7 +54,7 @@ const CheckOutScreen = ({navigation}) => {
         contact: '9876541232',
         name: 'Devendra sumaniya',
       },
-      theme: {color: '#584742'},
+      theme: {color: '#258'},
     };
 
     RazorpayCheckout.open(options)
@@ -83,6 +85,17 @@ const CheckOutScreen = ({navigation}) => {
           styles.PaymentTitleView,
           isDarkMode ? darkStyles.container : lightStyles.container,
         ]}>
+        <View
+          style={[
+            styles.PaymentImageView,
+            isDarkMode ? darkStyles.container : lightStyles.container,
+          ]}>
+          <Image
+            resizeMode="contain"
+            source={{uri: itemImage}}
+            style={styles.PaymentImage}
+          />
+        </View>
         <Text
           style={[
             styles.PaymentTitleText,

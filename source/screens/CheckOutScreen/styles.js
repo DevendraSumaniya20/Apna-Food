@@ -6,6 +6,21 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
   },
+
+  PaymentImageView: {
+    width: scale(80),
+    height: scale(80),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    padding: moderateScale(30),
+    borderRadius: scale(10),
+  },
+  PaymentImage: {
+    width: scale(60),
+    height: scale(60),
+  },
+
   PaymentTitleView: {
     alignItems: 'center',
     paddingTop: moderateScale(10),

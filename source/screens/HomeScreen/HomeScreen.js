@@ -290,6 +290,7 @@ const HomeScreen = ({navigation}) => {
                                     {
                                       itemTitle: item.title,
                                       itemPrice: item.price,
+                                      itemImage: item.image,
                                     },
                                   );
                                 }}>
