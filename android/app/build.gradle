@@ -151,7 +151,8 @@ android {
 }
 
 dependencies {
-   implementation platform('com.google.firebase:firebase-bom:32.0.0')
+    implementation 'com.razorpay:checkout:1.6.11'
+    implementation platform('com.google.firebase:firebase-bom:32.0.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation project(':react-native-sqlite-storage')
     implementation project(':react-native-restart')

@@ -62,6 +62,19 @@ const styles = StyleSheet.create({
     fontSize: scale(18),
     fontWeight: 'bold',
   },
+  cardContainer: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    padding: 16,
+    marginHorizontal: 16,
+    marginVertical: 12,
+    elevation: 3,
+  },
+  cardText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#000000',
+  },
 });
 
 export default styles;

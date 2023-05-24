@@ -136,6 +136,12 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+	<string>tez</string>
+    <string>phonepe</string>
+    <string>paytmmp</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

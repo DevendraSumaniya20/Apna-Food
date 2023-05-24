@@ -6,8 +6,9 @@ import {
   View,
   SafeAreaView,
   Image,
+  TextInput,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {useRoute} from '@react-navigation/native';
 import {moderateScale} from 'react-native-size-matters';
 import RazorpayCheckout from 'react-native-razorpay';
@@ -17,6 +18,8 @@ import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import navigationStrings from '../../constant/navigationStrings';
 
 const CheckOutScreen = ({navigation}) => {
+  const [phoneNumber, setPhoneNumber] = useState();
+
   const isDarkMode = useSelector(state => state.theme.isDarkMode);
 
   const route = useRoute();
@@ -50,11 +53,11 @@ const CheckOutScreen = ({navigation}) => {
       name: 'Apna food',
       order_id: '',
       prefill: {
-        email: 'Devendra2525@gmail.com',
-        contact: '9876541232',
-        name: 'Devendra sumaniya',
+        email: 'rajeshmanek712@gmail.com',
+        contact: '6585471418',
+        name: 'Rajesh Manek',
       },
-      theme: {color: '#258'},
+      theme: {color: isDarkMode ? '#000' : '#fff'},
     };
 
     RazorpayCheckout.open(options)
