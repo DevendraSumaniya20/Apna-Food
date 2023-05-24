@@ -55,7 +55,7 @@ const CheckOutScreen = ({navigation}) => {
       prefill: {
         email: 'rajeshmanek712@gmail.com',
         contact: '6585471418',
-        name: 'Rajesh Manek',
+        name: 'Devendra Sumaniya',
       },
       theme: {color: isDarkMode ? '#000' : '#fff'},
     };
