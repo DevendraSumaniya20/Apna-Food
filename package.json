@@ -21,6 +21,7 @@
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
     "@reduxjs/toolkit": "^1.9.5",
+    "@stripe/stripe-react-native": "^0.27.2",
     "axios": "^1.4.0",
     "i18next": "^22.5.0",
     "react": "18.2.0",

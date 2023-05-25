@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import {
   Alert,
   StyleSheet,
@@ -6,20 +7,17 @@ import {
   View,
   SafeAreaView,
   Image,
-  TextInput,
 } from 'react-native';
-import React, {useState} from 'react';
 import {useRoute} from '@react-navigation/native';
 import {moderateScale} from 'react-native-size-matters';
-import RazorpayCheckout from 'react-native-razorpay';
 import {useSelector} from 'react-redux';
-import styles from './styles';
+import {CardField, useStripe} from '@stripe/stripe-react-native';
+
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import navigationStrings from '../../constant/navigationStrings';
+import styles from './styles';
 
 const CheckOutScreen = ({navigation}) => {
-  const [phoneNumber, setPhoneNumber] = useState();
-
   const isDarkMode = useSelector(state => state.theme.isDarkMode);
 
   const route = useRoute();
@@ -43,30 +41,23 @@ const CheckOutScreen = ({navigation}) => {
     },
   });
 
-  const CheckOutPayment = () => {
-    var options = {
-      description: 'Credits towards consultation',
-      image: require('../../assets/images/PayMentLogo.png'),
-      currency: 'INR',
-      key: 'rzp_test_Lm7ibPqVuPkBtp',
-      amount: `5000`,
-      name: 'Apna food',
-      order_id: '',
-      prefill: {
-        email: 'rajeshmanek712@gmail.com',
-        contact: '6585471418',
-        name: 'Devendra Sumaniya',
-      },
-      theme: {color: isDarkMode ? '#000' : '#fff'},
-    };
+  const {confirmPayment} = useStripe();
 
-    RazorpayCheckout.open(options)
-      .then(data => {
-        Alert.alert(`Success: ${data.razorpay_payment_id}`);
-      })
-      .catch(error => {
-        Alert.alert(`Error: ${error.code} | ${error.description}`);
+  const CheckOutPayment = async () => {
+    try {
+      const {error} = await confirmPayment({
+        clientSecret: '',
+        paymentMethodId: '',
       });
+
+      if (error) {
+        Alert.alert('Payment Failed', error.message);
+      } else {
+        Alert.alert('Payment Successful');
+      }
+    } catch (error) {
+      Alert.alert('Payment Error', error.message);
+    }
   };
 
   return (
@@ -120,21 +111,28 @@ const CheckOutScreen = ({navigation}) => {
           ${itemPrice}
         </Text>
       </View>
-      <View
+      <CardField
+        postalCodeEnabled={false}
+        placeholder={{
+          number: '4242 4242 424',
+        }}
+        cardStyle={{
+          backgroundColor: isDarkMode ? '#000000' : '#ffffff',
+          textColor: isDarkMode ? '#ffffff' : '#000000',
+        }}
         style={[
           styles.PaymentTouchableView,
           isDarkMode ? darkStyles.container : lightStyles.container,
-        ]}>
-        <TouchableOpacity onPress={CheckOutPayment}>
-          <Text
-            style={[
-              styles.PayNowText,
-              isDarkMode ? darkStyles.container : lightStyles.container,
-            ]}>
-            Pay Now
-          </Text>
-        </TouchableOpacity>
-      </View>
+        ]}></CardField>
+      <TouchableOpacity onPress={CheckOutPayment}>
+        <Text
+          style={[
+            styles.PayNowText,
+            isDarkMode ? darkStyles.container : lightStyles.container,
+          ]}>
+          Pay Now
+        </Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
