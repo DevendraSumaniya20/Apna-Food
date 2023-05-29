@@ -1,139 +1,105 @@
-import React, {useState} from 'react';
+import {CardField, useStripe, createToken} from '@stripe/stripe-react-native';
+
 import {
   Alert,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
-  SafeAreaView,
+  TouchableOpacity,
   Image,
 } from 'react-native';
-import {useRoute} from '@react-navigation/native';
+import React, {useState} from 'react';
 import {moderateScale} from 'react-native-size-matters';
-import {useSelector} from 'react-redux';
-import {CardField, useStripe} from '@stripe/stripe-react-native';
-
+import ButtonCustomComponents from '../../components/ButtonCustomComponents';
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import navigationStrings from '../../constant/navigationStrings';
-import styles from './styles';
+import createPaymentIntent from '../../apis/StripeAPI';
 
-const CheckOutScreen = ({navigation}) => {
-  const isDarkMode = useSelector(state => state.theme.isDarkMode);
+const CheckOutScreen = ({navigation, route}) => {
+  const {itemTitle, itemPrice, itemImage} = route.params;
 
-  const route = useRoute();
-  const itemTitle = route.params?.itemTitle || '';
-  const itemPrice = route.params?.itemPrice || '';
-  const itemImage = route.params?.itemImage || '';
-
-  const lightStyles = StyleSheet.create({
-    container: {
-      backgroundColor: '#ffffff',
-      color: '#000000',
-      borderColor: '#000000',
-    },
-  });
-
-  const darkStyles = StyleSheet.create({
-    container: {
-      backgroundColor: '#000000',
-      color: '#ffffff',
-      borderColor: '#ffffff',
-    },
-  });
+  const [cardInfo, setCardInfo] = useState(null);
 
   const {confirmPayment} = useStripe();
 
-  const CheckOutPayment = async () => {
-    try {
-      const {error} = await confirmPayment({
-        clientSecret: '',
-        paymentMethodId: '',
-      });
+  const fetchCardDetails = cardDetails => {
+    if (cardDetails.complete) {
+      setCardInfo(cardDetails);
+    } else {
+      setCardInfo(null);
+    }
+  };
 
-      if (error) {
-        Alert.alert('Payment Failed', error.message);
-      } else {
-        Alert.alert('Payment Successful');
+  const onPay = async () => {
+    let apidata = {
+      amount: 50,
+      currency: 'INR',
+    };
+    try {
+      const res = await createPaymentIntent(apidata);
+      console.log('Payment is successful', res);
+
+      if (res?.data?.paymentIntent) {
+        let confirmPaymentIntent = confirmPayment(res?.data?.paymentIntent, {
+          paymentMethodType: 'Card',
+        });
+        console.log('confirm Payment is successful', confirmPaymentIntent);
+        Alert.alert('Payment is successfully added');
       }
     } catch (error) {
-      Alert.alert('Payment Error', error.message);
+      console.log('Error while adding the payment', error);
     }
   };
 
   return (
-    <SafeAreaView
-      style={[
-        styles.main,
-        isDarkMode ? darkStyles.container : lightStyles.container,
-      ]}>
+    <View style={{flex: 1}}>
       <CustomHeaderComponents
-        paddingTop={moderateScale(32)}
-        back={'Back'}
-        label={'Payment Details'}
+        back={'back'}
+        label={'Payment'}
+        paddingTop={moderateScale(40)}
         onPress={() => {
           navigation.navigate(navigationStrings.HOME);
         }}
       />
-      <View
-        style={[
-          styles.PaymentTitleView,
-          isDarkMode ? darkStyles.container : lightStyles.container,
-        ]}>
-        <View
-          style={[
-            styles.PaymentImageView,
-            isDarkMode ? darkStyles.container : lightStyles.container,
-          ]}>
-          <Image
-            resizeMode="contain"
-            source={{uri: itemImage}}
-            style={styles.PaymentImage}
-          />
-        </View>
-        <Text
-          style={[
-            styles.PaymentTitleText,
-            isDarkMode ? darkStyles.container : lightStyles.container,
-          ]}>
-          {itemTitle}
-        </Text>
+
+      <View>
+        <Text>Item Title: {itemTitle}</Text>
+        <Text>Item Price: {itemPrice}</Text>
+        <Image source={{uri: itemImage}} />
       </View>
-      <View
-        style={[
-          styles.PaymentPriceView,
-          isDarkMode ? darkStyles.container : lightStyles.container,
-        ]}>
-        <Text
-          style={[
-            styles.PaymentPriceText,
-            isDarkMode ? darkStyles.container : lightStyles.container,
-          ]}>
-          ${itemPrice}
-        </Text>
+      <View style={{paddingTop: moderateScale(25)}}>
+        <CardField
+          postalCodeEnabled={false}
+          placeholders={{
+            number: '4242 4242 4242 4242',
+          }}
+          cardStyle={{
+            backgroundColor: '#FFFFFF',
+            color: '#000000',
+            borderColor: '#ff0000',
+            borderWidth: 1,
+            borderRadius: 20,
+            fontSize: 16,
+            fontFamily: 'Arial',
+            fontWeight: 'bold',
+            placeholderColor: '#999999',
+          }}
+          style={{
+            width: '100%',
+            height: 50,
+            marginVertical: 30,
+          }}
+          onCardChange={cardDetails => {
+            fetchCardDetails(cardDetails);
+          }}
+        />
       </View>
-      <CardField
-        postalCodeEnabled={false}
-        placeholder={{
-          number: '4242 4242 424',
-        }}
-        cardStyle={{
-          backgroundColor: isDarkMode ? '#000000' : '#ffffff',
-          textColor: isDarkMode ? '#ffffff' : '#000000',
-        }}
-        style={[
-          styles.PaymentTouchableView,
-          isDarkMode ? darkStyles.container : lightStyles.container,
-        ]}></CardField>
-      <TouchableOpacity onPress={CheckOutPayment}>
-        <Text
-          style={[
-            styles.PayNowText,
-            isDarkMode ? darkStyles.container : lightStyles.container,
-          ]}>
-          Pay Now
-        </Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+      <ButtonCustomComponents
+        buttonText={'Pay'}
+        onPress={onPay}
+        disabled={!cardInfo}
+      />
+    </View>
   );
 };
 

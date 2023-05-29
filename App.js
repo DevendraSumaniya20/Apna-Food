@@ -5,6 +5,8 @@ import Navigation from './source/navigation/Navigation';
 import SplashScreen from 'react-native-splash-screen';
 import './source/constant/DCSLocalize';
 import {useSelector} from 'react-redux';
+import {StripeProvider} from '@stripe/stripe-react-native';
+import {STRIPE_PUBLISHABLE_KEY} from '@env';
 
 const App = () => {
   const isDarkMode = useSelector(state => state.theme.isDarkMode);
@@ -14,13 +16,15 @@ const App = () => {
   }, []);
 
   return (
-    <View style={[styles.main]}>
-      <StatusBar
-        backgroundColor={isDarkMode ? 'black' : 'white'}
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-      />
-      <Navigation />
-    </View>
+    <StripeProvider publishableKey={STRIPE_PUBLISHABLE_KEY}>
+      <View style={[styles.main]}>
+        <StatusBar
+          backgroundColor={isDarkMode ? 'black' : 'white'}
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        />
+        <Navigation />
+      </View>
+    </StripeProvider>
   );
 };
 

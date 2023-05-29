@@ -75,6 +75,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000000',
   },
+  payNowTouchable: {
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: moderateScale(10),
+    paddingVertical: moderateScale(10),
+  },
 });
 
 export default styles;

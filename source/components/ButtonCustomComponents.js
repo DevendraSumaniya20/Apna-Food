@@ -11,14 +11,16 @@ const ButtonCustomComponents = ({
   fontWeight = '800',
   fontSize = scale(16),
   onPress = () => {},
+  disabled,
 }) => {
   const isDarkMode = useSelector(state => state.theme.isDarkMode);
 
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} disabled={disabled}>
       <View
         style={[
           styles.buttonStyle,
+
           buttonStyle,
           isDarkMode
             ? {backgroundColor: '#fff', color: '#000'}
