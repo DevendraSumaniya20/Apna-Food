@@ -1,85 +1,46 @@
 import {moderateScale, scale} from 'react-native-size-matters';
-
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  main: {
+  container: {
     flex: 1,
   },
-
-  PaymentImageView: {
-    width: scale(80),
-    height: scale(80),
+  DisplayDetailsView: {
+    marginVertical: moderateScale(5),
+    marginHorizontal: moderateScale(5),
     alignItems: 'center',
-    justifyContent: 'center',
     borderWidth: 1,
-    padding: moderateScale(30),
-    borderRadius: scale(10),
+    padding: moderateScale(25),
+    borderRadius: moderateScale(8),
   },
-  PaymentImage: {
-    width: scale(60),
-    height: scale(60),
-  },
-
-  PaymentTitleView: {
-    alignItems: 'center',
-    paddingTop: moderateScale(10),
-    marginHorizontal: moderateScale(20),
-    marginVertical: moderateScale(20),
-    borderWidth: 1,
-    borderRadius: moderateScale(20),
-    paddingHorizontal: moderateScale(20),
-    paddingVertical: moderateScale(10),
-    marginTop: moderateScale(60),
-  },
-  PaymentTitleText: {
-    fontSize: scale(18),
-  },
-  PaymentPriceView: {
-    alignItems: 'center',
-    paddingTop: moderateScale(10),
-    marginHorizontal: moderateScale(20),
-    marginVertical: moderateScale(20),
-    borderWidth: 1,
-    borderRadius: moderateScale(10),
-    paddingHorizontal: moderateScale(20),
-    paddingVertical: moderateScale(10),
-  },
-  PaymentPriceText: {
-    fontSize: scale(14),
-  },
-  PaymentTouchableView: {
-    alignItems: 'center',
-    marginHorizontal: moderateScale(20),
-    marginVertical: moderateScale(20),
-    borderWidth: 1,
-    borderRadius: moderateScale(10),
-    paddingHorizontal: moderateScale(20),
-    paddingVertical: moderateScale(20),
-    marginTop: moderateScale(180),
-  },
-  PayNowText: {
+  itemTitle: {
     fontSize: scale(18),
     fontWeight: 'bold',
+    paddingBottom: moderateScale(25),
+    marginTop: moderateScale(10),
   },
-  cardContainer: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 10,
-    padding: 16,
-    marginHorizontal: 16,
-    marginVertical: 12,
-    elevation: 3,
+  itemPrice: {
+    fontSize: scale(16),
+    fontWeight: '700',
   },
-  cardText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#000000',
+  itemImage: {
+    height: moderateScale(100),
+    width: moderateScale(100),
   },
-  payNowTouchable: {
-    alignItems: 'center',
+
+  cardField: {
+    marginHorizontal: moderateScale(5),
+    marginVertical: moderateScale(5),
+    borderBottomWidth: 1,
+    padding: moderateScale(25),
+  },
+  cardView: {
     borderWidth: 1,
+    marginBottom: moderateScale(30),
+    marginTop: moderateScale(30),
+    marginHorizontal: moderateScale(5),
+    marginVertical: moderateScale(5),
     borderRadius: moderateScale(10),
-    paddingVertical: moderateScale(10),
   },
 });
 

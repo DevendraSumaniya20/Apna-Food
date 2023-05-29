@@ -1,19 +1,14 @@
-import {CardField, useStripe, createToken} from '@stripe/stripe-react-native';
-
-import {
-  Alert,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
 import React, {useState} from 'react';
-import {moderateScale} from 'react-native-size-matters';
+import {useSelector} from 'react-redux';
+import {Alert, StyleSheet, Text, View, Image} from 'react-native';
+import {moderateScale, scale} from 'react-native-size-matters';
+import {CardField, useStripe} from '@stripe/stripe-react-native';
+
 import ButtonCustomComponents from '../../components/ButtonCustomComponents';
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import navigationStrings from '../../constant/navigationStrings';
 import createPaymentIntent from '../../apis/StripeAPI';
+import styles from './styles';
 
 const CheckOutScreen = ({navigation, route}) => {
   const {itemTitle, itemPrice, itemImage} = route.params;
@@ -21,6 +16,24 @@ const CheckOutScreen = ({navigation, route}) => {
   const [cardInfo, setCardInfo] = useState(null);
 
   const {confirmPayment} = useStripe();
+
+  const isDarkMode = useSelector(state => state.theme.isDarkMode);
+
+  const lightStyles = StyleSheet.create({
+    container: {
+      backgroundColor: '#ffffff',
+      color: '#000000',
+      borderColor: '#000000',
+    },
+  });
+
+  const darkStyles = StyleSheet.create({
+    container: {
+      backgroundColor: '#000000',
+      color: '#ffffff',
+      borderColor: '#ffffff',
+    },
+  });
 
   const fetchCardDetails = cardDetails => {
     if (cardDetails.complete) {
@@ -32,7 +45,7 @@ const CheckOutScreen = ({navigation, route}) => {
 
   const onPay = async () => {
     let apidata = {
-      amount: 50,
+      amount: 50 * 100,
       currency: 'INR',
     };
     try {
@@ -52,7 +65,11 @@ const CheckOutScreen = ({navigation, route}) => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View
+      style={[
+        styles.container,
+        isDarkMode ? darkStyles.container : lightStyles.container,
+      ]}>
       <CustomHeaderComponents
         back={'back'}
         label={'Payment'}
@@ -62,38 +79,60 @@ const CheckOutScreen = ({navigation, route}) => {
         }}
       />
 
-      <View>
-        <Text>Item Title: {itemTitle}</Text>
-        <Text>Item Price: {itemPrice}</Text>
-        <Image source={{uri: itemImage}} />
+      <View
+        style={[
+          styles.DisplayDetailsView,
+          isDarkMode ? darkStyles.container : lightStyles.container,
+        ]}>
+        <Image
+          source={{uri: itemImage}}
+          style={styles.itemImage}
+          resizeMode="contain"
+        />
+        <Text
+          style={[
+            styles.itemTitle,
+            isDarkMode ? darkStyles.container : lightStyles.container,
+          ]}>
+          {itemTitle}
+        </Text>
+        <Text
+          style={[
+            styles.itemPrice,
+            isDarkMode ? darkStyles.container : lightStyles.container,
+          ]}>
+          {itemPrice}
+        </Text>
       </View>
-      <View style={{paddingTop: moderateScale(25)}}>
+      <View
+        style={[
+          styles.cardView,
+          isDarkMode ? darkStyles.container : lightStyles.container,
+        ]}>
         <CardField
           postalCodeEnabled={false}
           placeholders={{
             number: '4242 4242 4242 4242',
           }}
           cardStyle={{
-            backgroundColor: '#FFFFFF',
-            color: '#000000',
-            borderColor: '#ff0000',
-            borderWidth: 1,
-            borderRadius: 20,
-            fontSize: 16,
-            fontFamily: 'Arial',
-            fontWeight: 'bold',
-            placeholderColor: '#999999',
+            textColor: isDarkMode ? '#ffffff' : '#000000',
+            cursorColor: isDarkMode ? '#ffffff' : '#000000',
+            backgroundColor: isDarkMode ? '#000000' : '#ffffff',
+            fontSize: scale(18),
+            fontWeight: '500',
+            placeholderColor: isDarkMode ? '#ffffff' : '#000000',
+            textErrorColor: '#ff0000',
+            borderColor: isDarkMode ? '#ffffff' : '#000000',
+            fontFamily: 'NunitoSans-SemiBold',
           }}
-          style={{
-            width: '100%',
-            height: 50,
-            marginVertical: 30,
-          }}
-          onCardChange={cardDetails => {
-            fetchCardDetails(cardDetails);
-          }}
+          style={[
+            styles.cardField,
+            isDarkMode ? darkStyles.container : lightStyles.container,
+          ]}
+          onCardChange={fetchCardDetails}
         />
       </View>
+
       <ButtonCustomComponents
         buttonText={'Pay'}
         onPress={onPay}
