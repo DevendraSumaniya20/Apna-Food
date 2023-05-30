@@ -5,6 +5,7 @@ import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 const styles = StyleSheet.create({
   main: {
     flex: 1,
+    justifyContent: 'center',
   },
   arSliderTextAlign: {
     textAlign: 'right',
@@ -31,7 +32,6 @@ const styles = StyleSheet.create({
   },
   forgotText: {
     fontSize: scale(16),
-    color: colors.mainThemesColor,
     fontFamily: 'NunitoSans-Bold',
   },
   bottomView: {
@@ -43,14 +43,12 @@ const styles = StyleSheet.create({
 
   newAccountText: {
     fontSize: scale(14),
-    color: colors.blackOpacity80,
     fontWeight: '500',
     fontFamily: 'NunitoSans-ExtraLightItalic',
   },
   signUpText: {
     fontWeight: '600',
     fontSize: scale(16),
-    color: colors.mainThemesColor,
     textTransform: 'capitalize',
     fontFamily: 'NunitoSans-SemiBold',
   },
@@ -67,7 +65,6 @@ const styles = StyleSheet.create({
   selectedText: {
     fontSize: moderateScale(16),
     fontWeight: 'bold',
-    color: colors.mainThemesColor,
     textAlign: 'center',
     fontFamily: 'NunitoSans-SemiBold',
   },

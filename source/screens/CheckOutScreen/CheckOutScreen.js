@@ -110,25 +110,27 @@ const CheckOutScreen = ({navigation, route}) => {
           isDarkMode ? darkStyles.container : lightStyles.container,
         ]}>
         <CardField
+          style={[
+            styles.cardField,
+            isDarkMode ? darkStyles.container : lightStyles.container,
+          ]}
           postalCodeEnabled={false}
           placeholders={{
             number: '4242 4242 4242 4242',
+            cvc: '123',
+            expiry: 'MM / YY',
           }}
           cardStyle={{
             textColor: isDarkMode ? '#ffffff' : '#000000',
             cursorColor: isDarkMode ? '#ffffff' : '#000000',
             backgroundColor: isDarkMode ? '#000000' : '#ffffff',
-            fontSize: scale(18),
+            fontSize: scale(14),
             fontWeight: '500',
             placeholderColor: isDarkMode ? '#ffffff' : '#000000',
             textErrorColor: '#ff0000',
             borderColor: isDarkMode ? '#ffffff' : '#000000',
             fontFamily: 'NunitoSans-SemiBold',
           }}
-          style={[
-            styles.cardField,
-            isDarkMode ? darkStyles.container : lightStyles.container,
-          ]}
           onCardChange={fetchCardDetails}
         />
       </View>

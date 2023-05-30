@@ -29,18 +29,12 @@ const styles = StyleSheet.create({
   },
 
   cardField: {
-    marginHorizontal: moderateScale(5),
-    marginVertical: moderateScale(5),
-    borderBottomWidth: 1,
-    padding: moderateScale(25),
+    padding: moderateScale(20),
   },
   cardView: {
-    borderWidth: 1,
+    borderBottomWidth: 1,
     marginBottom: moderateScale(30),
     marginTop: moderateScale(30),
-    marginHorizontal: moderateScale(5),
-    marginVertical: moderateScale(5),
-    borderRadius: moderateScale(10),
   },
 });
 
