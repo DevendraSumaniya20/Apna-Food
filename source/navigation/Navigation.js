@@ -11,13 +11,13 @@ import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import MapScreen from '../screens/MapScreen/MapScreen';
 import navigationStrings from '../constant/navigationStrings';
 import colors from '../assets/color/colors';
-import BottomTabNavigator from '../screens/TabNavigationScreen/BottomTabsNavigator';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import SignUpScreen from '../screens/SignUpScreen/SignUpScreen';
 import DrawerNavigator from '../screens/DrawerNavigationScreen /DrawerNavigator';
 import ExtraScreen from '../screens/ExtraScreen';
 import ExtraScreen2 from '../screens/ExtraScreen/ExtraScreen2';
 import CheckOutScreen from '../screens/CheckOutScreen';
+import FirebaseScreen from '../screens/Firabse/FirebaseScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -90,6 +90,14 @@ const Navigation = () => {
         <Stack.Screen
           name={navigationStrings.CHECKOUT}
           component={CheckOutScreen}
+          options={{
+            headerShown: false,
+            headerTintColor: colors.mainThemesColor,
+          }}
+        />
+        <Stack.Screen
+          name={navigationStrings.FIREBASE}
+          component={FirebaseScreen}
           options={{
             headerShown: false,
             headerTintColor: colors.mainThemesColor,

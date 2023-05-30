@@ -135,11 +135,22 @@ const CheckOutScreen = ({navigation, route}) => {
         />
       </View>
 
-      <ButtonCustomComponents
-        buttonText={'Pay'}
-        onPress={onPay}
-        disabled={!cardInfo}
-      />
+      <View>
+        <ButtonCustomComponents
+          buttonText={'Pay'}
+          onPress={onPay}
+          disabled={!cardInfo}
+        />
+      </View>
+
+      <View style={{marginTop: moderateScale(50)}}>
+        <ButtonCustomComponents
+          buttonText={'Go to Firebase'}
+          onPress={() => {
+            navigation.navigate(navigationStrings.FIREBASE);
+          }}
+        />
+      </View>
     </View>
   );
 };

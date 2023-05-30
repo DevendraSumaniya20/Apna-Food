@@ -3,6 +3,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <React/RCTConvert.h>
 #import <React/RCTBundleURLProvider.h>
+#import <Firebase.h>
 
 
 
@@ -11,6 +12,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
  
+  [FIRApp configure];
   [GMSServices provideAPIKey:@"AIzaSyAPbxsTh6PW6oq3uZlkGNVrpZtC3qintN0"];
 
   

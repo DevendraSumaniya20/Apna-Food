@@ -3,6 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '13.0'
 prepare_react_native_project!
+# $RNFirebaseAsStaticFramework = true
 # If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
 # because `react-native-flipper` depends on (FlipperKit,...) that will be excluded
 #
@@ -25,10 +26,9 @@ end
 
 target 'Apna_Food' do
   config = use_native_modules!
-  
+  use_frameworks! :linkage => :static
 
-  
-
+  # use_frameworks! :linkage => :static
   # Flags change depending on the env values.
   flags = get_default_flags()
 
@@ -53,7 +53,13 @@ target 'Apna_Food' do
     # Pods for testing
   end
 
+  pod 'Firebase', :modular_headers => true
+  pod 'FirebaseCoreInternal', :modular_headers => true
+  pod 'GoogleUtilities', :modular_headers => true
+  pod 'FirebaseCore', :modular_headers => true
 
+
+   
     pod 'Google-Maps-iOS-Utils', :git => 'https://github.com/Simon-TechForm/google-maps-ios-utils.git', :branch => 'feat/support-apple-silicon'
     rn_maps_path = '../node_modules/react-native-maps'
     pod 'react-native-google-maps', :path => rn_maps_path
@@ -68,4 +74,3 @@ target 'Apna_Food' do
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end
-

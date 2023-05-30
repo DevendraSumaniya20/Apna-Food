@@ -8,4 +8,5 @@ export default {
   EXTRASCREEN: 'ExtraScreen',
   EXTRASCREEN2: 'ExtraScreen2',
   CHECKOUT: 'Checkout',
+  FIREBASE: 'Firebase',
 };
