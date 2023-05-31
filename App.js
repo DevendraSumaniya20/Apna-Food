@@ -7,7 +7,8 @@ import './source/constant/DCSLocalize';
 import {useSelector} from 'react-redux';
 import {StripeProvider} from '@stripe/stripe-react-native';
 import {STRIPE_PUBLISHABLE_KEY} from '@env';
-import {firebase} from '@react-native-firebase/app';
+import {requestUserPermission} from './source/utils/FirebasePushNotification/FirebasePushNotification';
+
 const App = () => {
   const isDarkMode = useSelector(state => state.theme.isDarkMode);
 
