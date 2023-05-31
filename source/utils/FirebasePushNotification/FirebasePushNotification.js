@@ -1,6 +1,23 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import messaging from '@react-native-firebase/messaging';
 
+const getFCMToken = async () => {
+  let fcmToken = await AsyncStorage.getItem('fcmToken');
+  console.log(fcmToken, 'this is the old token');
+
+  if (!fcmToken) {
+    try {
+      const newToken = await messaging().getToken();
+      if (newToken) {
+        console.log(newToken, 'New token');
+        await AsyncStorage.setItem('fcmToken', newToken);
+      }
+    } catch (error) {
+      console.log(error, 'error occurred while setting the token');
+    }
+  }
+};
+
 export async function requestUserPermission() {
   const authStatus = await messaging().requestPermission();
   const enabled =
@@ -12,20 +29,3 @@ export async function requestUserPermission() {
     getFCMToken();
   }
 }
-
-const getFCMToken = async () => {
-  let fcmToken = await AsyncStorage.getItem('fcmToken');
-  console.log(fcmToken, 'this is old token');
-
-  if (!fcmToken) {
-    try {
-      const fcmToken = await messaging().getToken();
-      if (fcmToken) {
-        console.log(fcmToken, 'New token');
-        await AsyncStorage.setItem('fcmToken', fcmToken);
-      }
-    } catch (error) {
-      console.log(error, 'error is while set the token');
-    }
-  }
-};

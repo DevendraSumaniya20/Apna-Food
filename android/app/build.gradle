@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: "com.facebook.react"
-apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services' 
 
 import com.android.build.OutputFile
 
@@ -151,9 +151,9 @@ android {
 }
 
 dependencies {
+    // implementation platform('com.google.firebase:firebase-bom:32.1.0')
+    // implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.razorpay:checkout:1.6.11'
-    implementation platform('com.google.firebase:firebase-bom:32.1.0')
-    implementation 'com.google.firebase:firebase-analytics'
     implementation project(':react-native-sqlite-storage')
     implementation project(':react-native-restart')
     implementation project(':react-native-splash-screen')
@@ -184,4 +184,5 @@ apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 configurations.all {
     exclude group: 'com.example', module: 'example-module'
 }
+
 
