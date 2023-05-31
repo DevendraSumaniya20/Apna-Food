@@ -1,20 +1,21 @@
 #import "AppDelegate.h"
+#import <Firebase.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import <CoreLocation/CoreLocation.h>
 #import <React/RCTConvert.h>
 #import <React/RCTBundleURLProvider.h>
-#import <Firebase.h>
+
 
 
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
- 
-  [FIRApp configure];
+{  
+
   [GMSServices provideAPIKey:@"AIzaSyAPbxsTh6PW6oq3uZlkGNVrpZtC3qintN0"];
 
+  [FIRApp configure];
   
   self.moduleName = @"Apna_Food";
   self.initialProps = @{};

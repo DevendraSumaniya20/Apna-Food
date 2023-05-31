@@ -1,7 +1,8 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
-
+$RNFirebaseAsStaticFramework = true
 platform :ios, '13.0'
+use_frameworks! :linkage => :static
 prepare_react_native_project!
 # $RNFirebaseAsStaticFramework = true
 # If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
@@ -22,13 +23,11 @@ if linkage != nil
 end
 
   
-  
+
 
 target 'Apna_Food' do
   config = use_native_modules!
   use_frameworks! :linkage => :static
-
-  # use_frameworks! :linkage => :static
   # Flags change depending on the env values.
   flags = get_default_flags()
 
@@ -43,7 +42,7 @@ target 'Apna_Food' do
     #
     # Note that if you have use_frameworks! enabled, Flipper will not work and
     # you should disable the next line.
-    :flipper_configuration => flipper_config,
+    # :flipper_configuration => flipper_config,
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
@@ -52,12 +51,6 @@ target 'Apna_Food' do
     inherit! :complete
     # Pods for testing
   end
-
-  pod 'Firebase', :modular_headers => true
-  pod 'FirebaseCoreInternal', :modular_headers => true
-  pod 'GoogleUtilities', :modular_headers => true
-  pod 'FirebaseCore', :modular_headers => true
-
 
    
     pod 'Google-Maps-iOS-Utils', :git => 'https://github.com/Simon-TechForm/google-maps-ios-utils.git', :branch => 'feat/support-apple-silicon'
