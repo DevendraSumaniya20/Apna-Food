@@ -66,17 +66,12 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+// Define the FLIPPER_VERSION variable
+def FLIPPER_VERSION = "0.93.0" // Replace with the latest Flipper version
 /**
  * The preferred build flavor of JavaScriptCore (JSC)
  *
  * For example, to use the international variant, you can use:
- * `def jscFlavor = 'org.webkit:android-jsc-intl:+'`
- *
- * The international variant includes ICU i18n library and necessary data
- * allowing to use e.g. `Date.toLocaleString` and `String.localeCompare` that
- * give correct results when using with locales other than en-US. Note that
- * this variant is about 6MiB larger per architecture than default.
- */
 def jscFlavor = 'org.webkit:android-jsc:+'
 
 /**
@@ -151,19 +146,16 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.firebase:firebase-analytics'
     implementation platform('com.google.firebase:firebase-bom:32.1.0')
-    implementation project(path: ":@react-native-firebase_messaging")
+    implementation 'com.google.firebase:firebase-messaging:21.1.0'
     implementation 'com.razorpay:checkout:1.6.11'
     implementation project(':react-native-sqlite-storage')
     implementation project(':react-native-restart')
     implementation project(':react-native-splash-screen')
     implementation ('com.google.android.gms:play-services-maps:17.0.0')
-    // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
     implementation project(':react-native-vector-icons')
-
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
@@ -177,6 +169,9 @@ dependencies {
         implementation jscFlavor
     }
 }
+configurations.all {
+    exclude group: 'com.google.firebase', module: 'firebase-iid'
+}
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
 
@@ -185,5 +180,10 @@ apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 configurations.all {
     exclude group: 'com.example', module: 'example-module'
 }
+
+// Add the following block at the end of your build.gradle file
+
+// Apply the Google services plugin
+apply plugin: 'com.google.gms.google-services'
 
 
