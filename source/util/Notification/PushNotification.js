@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {messaging} from '@react-native-firebase/messaging';
+import messaging from '@react-native-firebase/messaging';
 
 const getFCMToken = async () => {
   try {

@@ -7,14 +7,15 @@ import './source/constant/DCSLocalize';
 import {useSelector} from 'react-redux';
 import {StripeProvider} from '@stripe/stripe-react-native';
 import {STRIPE_PUBLISHABLE_KEY} from '@env';
-import {requestUserPermission} from './source/utils/FirebasePushNotification/FirebasePushNotification';
+
+import {requestUserPermission} from './source/util/Notification/PushNotification';
 
 const App = () => {
   const isDarkMode = useSelector(state => state.theme.isDarkMode);
 
   useEffect(() => {
-    SplashScreen.hide();
     requestUserPermission();
+    SplashScreen.hide();
   }, []);
 
   return (

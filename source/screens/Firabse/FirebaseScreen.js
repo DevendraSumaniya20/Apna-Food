@@ -2,6 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import CustomHeaderComponents from '../../components/CustomHeaderComponents';
 import navigationStrings from '../../constant/navigationStrings';
+import {scale} from 'react-native-size-matters';
 
 const FirebaseScreen = ({navigation}) => {
   return (
@@ -13,7 +14,9 @@ const FirebaseScreen = ({navigation}) => {
           navigation.navigate(navigationStrings.HOME);
         }}
       />
-      <Text>FirebaseScreen</Text>
+      <Text style={{fontSize: scale(50), color: '#854712'}}>
+        FirebaseScreen
+      </Text>
     </View>
   );
 };
