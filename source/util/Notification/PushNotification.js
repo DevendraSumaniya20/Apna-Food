@@ -21,6 +21,30 @@ const getFCMToken = async () => {
   }
 };
 
+const onNotificationOpenedApp = async () => {
+  try {
+    messaging().onNotificationOpenedApp(remoteMessage => {
+      console.log(
+        'Notification caused app to open from background state:',
+        remoteMessage.notification,
+      );
+    });
+
+    messaging()
+      .getInitialNotification()
+      .then(remoteMessage => {
+        if (remoteMessage) {
+          console.log(
+            'Notification caused app to open from quit state:',
+            remoteMessage.notification,
+          );
+        }
+      });
+  } catch (error) {
+    console.log(error, 'An error occurred while onNotificationOpenedApp Open ');
+  }
+};
+
 export const requestUserPermission = async () => {
   try {
     const authStatus = await messaging().requestPermission();
