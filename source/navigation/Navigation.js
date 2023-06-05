@@ -26,7 +26,7 @@ const Navigation = () => {
   return (
     <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Login"
         screenOptions={{
           statusBarColor: colors.mainThemesColor,
         }}>

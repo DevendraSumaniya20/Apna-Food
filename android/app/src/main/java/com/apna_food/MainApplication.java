@@ -1,20 +1,22 @@
 package com.app.apna_food;
 
 import android.app.Application;
+
+import com.apna_food.CustomModulePackage;
+import com.apna_food.VoiceChangingPackage;
+import com.facebook.react.BuildConfig;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
-import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
-import java.util.List;
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
+import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
 
-  private final ReactNativeHost mReactNativeHost = new DefaultReactNativeHost(this) {
+  // Create an instance of ReactNativeHost
+  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
@@ -22,24 +24,19 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      @SuppressWarnings("UnnecessaryLocalVariable")
+      // Get the default list of React packages
       List<ReactPackage> packages = new PackageList(this).getPackages();
+
+      // Add your custom module package to the list
+      packages.add(new CustomModulePackage());
+      packages.add(new VoiceChangingPackage());
+
       return packages;
     }
 
     @Override
     protected String getJSMainModuleName() {
       return "index";
-    }
-
-    @Override
-    protected boolean isNewArchEnabled() {
-      return BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
-    }
-
-    @Override
-    protected Boolean isHermesEnabled() {
-      return BuildConfig.IS_HERMES_ENABLED;
     }
   };
 
@@ -51,12 +48,8 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+
+    // Initialize the SoLoader
     SoLoader.init(this, /* native exopackage */ false);
-    if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
-      // If you opted-in for the New Architecture, we load the native entry point for
-      // this app.
-      DefaultNewArchitectureEntryPoint.load();
-    }
-    ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
 }
