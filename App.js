@@ -8,15 +8,11 @@ import {useSelector} from 'react-redux';
 import {StripeProvider} from '@stripe/stripe-react-native';
 import {STRIPE_PUBLISHABLE_KEY} from '@env';
 import {requestUserPermission} from './source/util/Notification/PushNotification';
-import CustomeModule from './CustomModule';
 
 const App = () => {
   const isDarkMode = useSelector(state => state.theme.isDarkMode);
 
   useEffect(() => {
-    if (Platform.OS === 'android') {
-      CustomeModule.show();
-    }
     requestUserPermission();
     SplashScreen.hide();
   }, []);
@@ -28,16 +24,7 @@ const App = () => {
           backgroundColor={isDarkMode ? 'black' : 'white'}
           barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         />
-        {/* <Text
-          style={{
-            fontSize: scale(20),
-            fontWeight: 'bold',
-            color: '#34de00',
-            marginTop: moderateScale(15),
-            textAlign: 'center',
-          }}>
-          {deviceID}
-        </Text> */}
+
         <Navigation />
       </View>
     </StripeProvider>
