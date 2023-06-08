@@ -1,8 +1,8 @@
 package com.app.apna_food;
 
 import android.app.Application;
+
 import com.apna_food.CustomModulePackage;
-import com.apna_food.VoiceChangingPackage;
 import com.facebook.react.BuildConfig;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
@@ -28,9 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
 
       // Add your custom module package to the list
       packages.add(new CustomModulePackage());
-
-      
-      packages.add(new VoiceChangingPackage());
+      packages.add(new MusicPlayerPackage());
 
       return packages;
     }
