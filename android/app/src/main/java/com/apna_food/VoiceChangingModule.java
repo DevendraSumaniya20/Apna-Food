@@ -1,9 +1,8 @@
 package com.apna_food;
 
-
-
+import android.media.AudioAttributes;
 import android.media.MediaPlayer;
-import android.media.PlaybackParams;
+import android.net.Uri;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
@@ -12,9 +11,14 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
+import java.io.IOException;
+
 public class VoiceChangingModule extends ReactContextBaseJavaModule {
 
-    VoiceChangingModule(ReactApplicationContext context) {
+    private static final String TAG = "VoiceChangingModule";
+    private MediaPlayer mediaPlayer;
+
+    public VoiceChangingModule(ReactApplicationContext context) {
         super(context);
     }
 
@@ -23,67 +27,47 @@ public class VoiceChangingModule extends ReactContextBaseJavaModule {
         return "VoiceChangingModule";
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @ReactMethod
-    public void changeVoiceToAlien(String file) {
-        MediaPlayer mp = new MediaPlayer();
-        PlaybackParams playbackParams = new PlaybackParams();
-        playbackParams.setPitch(Float.parseFloat(String.valueOf(0.6f)));
+    public void playAudio(String audioTrackURL) {
         try {
-            mp.setDataSource(file);
-            mp.prepare();
-            mp.setPlaybackParams(playbackParams);
-            mp.start();
-        } catch (Exception e) {
+            Uri uri = Uri.parse(audioTrackURL);
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+                mediaPlayer.reset();
+                mediaPlayer.release();
+            }
+            mediaPlayer = new MediaPlayer();
+            mediaPlayer.setAudioAttributes(new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .build());
+            mediaPlayer.setDataSource(getReactApplicationContext(), uri);
+            mediaPlayer.prepareAsync();
+            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mediaPlayer.start();
+                }
+            });
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @ReactMethod
-    public void changeVoiceToChild(String file) {
-        MediaPlayer mp = new MediaPlayer();
-        PlaybackParams playbackParams = new PlaybackParams();
-        playbackParams.setPitch(Float.parseFloat(String.valueOf(1.8f)));
-        try {
-            mp.setDataSource(file);
-            mp.prepare();
-            mp.setPlaybackParams(playbackParams);
-            mp.start();
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void pauseAudio() {
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @ReactMethod
-    public void speedUpVoice(String file) {
-        MediaPlayer mp = new MediaPlayer();
-        PlaybackParams playbackParams = new PlaybackParams();
-        playbackParams.setSpeed(Float.parseFloat(String.valueOf(2.5)));
-        try {
-            mp.setDataSource(file);
-            mp.prepare();
-            mp.setPlaybackParams(playbackParams);
-            mp.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @ReactMethod
-    public void slowDownVoice(String file) {
-        MediaPlayer mp = new MediaPlayer();
-        PlaybackParams playbackParams = new PlaybackParams();
-        playbackParams.setSpeed(Float.parseFloat(String.valueOf(0.4)));
-        try {
-            mp.setDataSource(file);
-            mp.prepare();
-            mp.setPlaybackParams(playbackParams);
-            mp.start();
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void stopAudio() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.reset();
+            mediaPlayer.release();
+            mediaPlayer = null;
         }
     }
 }

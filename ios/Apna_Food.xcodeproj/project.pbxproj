@@ -59,6 +59,7 @@
 		0F09ECB32A274B200019121B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0F1599652A03B57E00324402 /* GoogleMaps.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleMaps.xcframework; path = Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.xcframework; sourceTree = "<group>"; };
 		0FA7B52C2A0E2BDF00E85908 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		0FCDC7142A306237003C4732 /* Apna_Food.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Apna_Food.entitlements; path = Apna_Food/Apna_Food.entitlements; sourceTree = "<group>"; };
 		0FD65630D5834A40AAD922C1 /* FiraMono-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraMono-Regular.ttf"; path = "../source/assets/fonts/FiraMono-Regular.ttf"; sourceTree = "<group>"; };
 		0FDB64AD2A03CF270044CFAE /* libreact-native-maps.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-maps.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* Apna_Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Apna_Food.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +137,7 @@
 		13B07FAE1A68108700A75B9A /* Apna_Food */ = {
 			isa = PBXGroup;
 			children = (
+				0FCDC7142A306237003C4732 /* Apna_Food.entitlements */,
 				0F09ECB32A274B200019121B /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -292,7 +294,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1430;
 					};
 				};
 			};
@@ -607,10 +609,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Apna_Food/Apna_Food.entitlements;
 				CURRENT_PROJECT_VERSION = 0;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Apna_Food/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -623,6 +627,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.app.apna-food";
 				PRODUCT_NAME = Apna_Food;
+				SWIFT_OBJC_BRIDGING_HEADER = "Apna_Food-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -635,9 +640,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Apna_Food/Apna_Food.entitlements;
 				CURRENT_PROJECT_VERSION = 0;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Apna_Food/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -650,6 +657,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.app.apna-food";
 				PRODUCT_NAME = Apna_Food;
+				SWIFT_OBJC_BRIDGING_HEADER = "Apna_Food-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

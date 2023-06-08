@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {
   Text,
   StatusBar,
@@ -6,102 +6,72 @@ import {
   StyleSheet,
   Platform,
   TouchableOpacity,
-  Image,
 } from 'react-native';
 import {NativeModules} from 'react-native';
-import Video from 'react-native-video';
 
 const {VoiceChangingModule} = NativeModules;
 
 const FirebaseScreen = () => {
-  const audioTrackURL = 'https://youtube.com/shorts/zmeCCpybfqE?feature=share';
+  const audioTrackURL =
+    'https://www.youtube.com/watch?v=25ROFXjoaAU&ab_channel=7clouds';
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioPlayerRef = useRef(null);
 
-  const changeToAlein = async () => {
+  const playAudio = async () => {
     if (Platform.OS === 'android') {
-      await VoiceChangingModule.changeVoiceToAlien(audioTrackURL);
-      console.log('changeToAlein is working');
+      await VoiceChangingModule.playAudio(audioTrackURL);
+      setIsPlaying(true);
+      audioPlayerRef.current = true;
     }
   };
 
-  const changeToChild = async () => {
-    if (Platform.OS === 'android') {
-      await VoiceChangingModule.changeVoiceToChild(audioTrackURL);
-      console.log('changeToChild is working');
+  const pauseAudio = () => {
+    if (Platform.OS === 'android' && isPlaying) {
+      VoiceChangingModule.pauseAudio();
+      setIsPlaying(false);
+      audioPlayerRef.current = false;
     }
   };
 
-  const changeToFast = async () => {
-    if (Platform.OS === 'android') {
-      await VoiceChangingModule.speedUpVoice(audioTrackURL);
-      console.log('changeToFast is working');
-    }
-  };
-
-  const changeToSlow = async () => {
-    if (Platform.OS === 'android') {
-      await VoiceChangingModule.slowDownVoice(audioTrackURL);
-      console.log('changeToSlow is working');
+  const stopAudio = () => {
+    if (Platform.OS === 'android' && isPlaying) {
+      VoiceChangingModule.stopAudio();
+      setIsPlaying(false);
+      audioPlayerRef.current = null;
     }
   };
 
   useEffect(() => {
     console.log('Audio playback triggered');
+
+    return () => {
+      if (isPlaying) {
+        VoiceChangingModule.stopAudio();
+        setIsPlaying(false);
+        audioPlayerRef.current = null;
+      }
+    };
   }, []);
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor={'#e4e5ea'} />
+      <StatusBar barStyle="dark-content" backgroundColor="#e4e5ea" />
       <Text style={styles.title}>Voice Changer</Text>
       <Text style={styles.title}>Change Voice Effects</Text>
-      <Video
-        source={{uri: audioTrackURL}}
-        style={styles.audioPlayer}
-        controls={true}
-        paused={true}
-        repeat={true}
-      />
+
       <View style={styles.iconsContainer}>
-        <TouchableOpacity onPress={() => changeToAlein()}>
-          <Image
-            source={{
-              uri: 'https://icons.iconarchive.com/icons/google/noto-emoji-smileys/256/10101-alien-icon.png',
-            }}
-            resizeMode={'contain'}
-            style={styles.icon}
-          />
-          <Text>Alien</Text>
+        <TouchableOpacity onPress={playAudio} style={styles.icon}>
+          <Text>Play</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => changeToChild()}>
-          <Image
-            source={{
-              uri: 'https://pics.freeicons.io/uploads/icons/png/2793494581535699799-512.png',
-            }}
-            resizeMode={'contain'}
-            style={styles.icon}
-          />
-          <Text>Child</Text>
+        <TouchableOpacity onPress={pauseAudio} style={styles.icon}>
+          <Text>Pause</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => changeToFast()}>
-          <Image
-            source={{
-              uri: 'https://www.pngjoy.com/pngl/346/6457386_black-arrows-fast-forward-symbol-transparent-png-download.png',
-            }}
-            resizeMode={'contain'}
-            style={styles.icon}
-          />
-          <Text>Fast</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => changeToSlow()}>
-          <Image
-            source={{
-              uri: 'https://img.pngio.com/action-motion-play-slow-icon-slow-motion-png-512_512.png',
-            }}
-            resizeMode={'contain'}
-            style={styles.icon}
-          />
-          <Text>Slow</Text>
+        <TouchableOpacity onPress={stopAudio} style={styles.icon}>
+          <Text>Stop</Text>
         </TouchableOpacity>
       </View>
+
+      <Text style={styles.statusText}>{isPlaying ? 'Playing' : 'Paused'}</Text>
     </View>
   );
 };
@@ -111,6 +81,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#e4e5ea',
     flex: 1,
     paddingTop: 50,
+    alignItems: 'center',
   },
   title: {
     fontSize: 20,
@@ -123,16 +94,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     width: '100%',
     paddingHorizontal: 50,
+    marginBottom: 20,
   },
   icon: {
     height: 40,
     width: 40,
     marginBottom: 15,
   },
-  audioPlayer: {
-    width: '100%',
-    height: 200,
-    marginTop: 20,
+  statusText: {
+    fontSize: 16,
+    color: '#000',
+    fontWeight: 'bold',
   },
 });
 
