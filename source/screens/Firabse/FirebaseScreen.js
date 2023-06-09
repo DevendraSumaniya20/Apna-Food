@@ -21,6 +21,26 @@ const FirebaseScreen = () => {
     MusicPlayer.stop();
   };
 
+  const changeVoiceToAlien = () => {
+    const fileName = 'android_11';
+    MusicPlayer.changeVoiceToAlien(fileName);
+  };
+
+  const changeVoiceToChild = () => {
+    const fileName = 'android_11';
+    MusicPlayer.changeVoiceToChild(fileName);
+  };
+
+  const speedUpVoice = () => {
+    const fileName = 'android_11';
+    MusicPlayer.speedUpVoice(fileName);
+  };
+
+  const slowDownVoice = () => {
+    const fileName = 'android_11';
+    MusicPlayer.slowDownVoice(fileName);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.subView}>
@@ -30,8 +50,37 @@ const FirebaseScreen = () => {
       <View style={styles.subView}>
         <ButtonCustomComponents onPress={pauseMusic} buttonText="Pause" />
       </View>
+
       <View style={styles.subView}>
         <ButtonCustomComponents onPress={stopMusic} buttonText="Stop" />
+      </View>
+
+      <View style={styles.subView}>
+        <ButtonCustomComponents
+          onPress={changeVoiceToAlien}
+          buttonText="Change Voice to Alien"
+        />
+      </View>
+
+      <View style={styles.subView}>
+        <ButtonCustomComponents
+          onPress={changeVoiceToChild}
+          buttonText="Change Voice to Child"
+        />
+      </View>
+
+      <View style={styles.subView}>
+        <ButtonCustomComponents
+          onPress={speedUpVoice}
+          buttonText="Speed Up Voice"
+        />
+      </View>
+
+      <View style={styles.subView}>
+        <ButtonCustomComponents
+          onPress={slowDownVoice}
+          buttonText="Slow Down Voice"
+        />
       </View>
     </View>
   );
