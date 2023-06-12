@@ -18,6 +18,7 @@ import ExtraScreen from '../screens/ExtraScreen';
 import ExtraScreen2 from '../screens/ExtraScreen/ExtraScreen2';
 import CheckOutScreen from '../screens/CheckOutScreen';
 import FirebaseScreen from '../screens/Firabse/FirebaseScreen';
+import ExtraScreen3 from '../screens/ExtraScreen/ExtraScreen3';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,7 +27,7 @@ const Navigation = () => {
   return (
     <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator
-        initialRouteName="Firebase"
+        initialRouteName="ExtraScreen3"
         screenOptions={{
           statusBarColor: colors.mainThemesColor,
         }}>
@@ -82,6 +83,14 @@ const Navigation = () => {
         <Stack.Screen
           name={navigationStrings.EXTRASCREEN2}
           component={ExtraScreen2}
+          options={{
+            headerShown: false,
+            headerTintColor: colors.mainThemesColor,
+          }}
+        />
+        <Stack.Screen
+          name={navigationStrings.EXTRASCREEN3}
+          component={ExtraScreen3}
           options={{
             headerShown: false,
             headerTintColor: colors.mainThemesColor,
