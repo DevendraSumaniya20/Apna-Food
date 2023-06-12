@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  SafeAreaView,
-  Platform,
-} from 'react-native';
+import {View, SafeAreaView, Platform} from 'react-native';
 import {NativeModules} from 'react-native';
 import ButtonCustomComponents from '../../components/ButtonCustomComponents';
 
@@ -13,39 +7,46 @@ import styles from './styles';
 
 const MusicPlayer = NativeModules.MusicPlayer;
 
-const FirebaseScreen = () => {
+const MusicPlayerScreen = () => {
   const playMusic = () => {
     const fileName = 'android_11';
     Platform.OS === 'android' ? MusicPlayer.play(fileName) : MusicPlayer.play();
   };
 
   const pauseMusic = () => {
-    MusicPlayer.pause();
+    Platform.OS === 'android' ? MusicPlayer.pause() : MusicPlayer.pause();
   };
 
   const stopMusic = () => {
-    MusicPlayer.stop();
+    Platform.OS === 'android' ? MusicPlayer.stop() : MusicPlayer.stop();
   };
 
   const changeVoiceToAlien = () => {
     const fileName = 'android_11';
-
-    MusicPlayer.changeVoiceToAlien(fileName);
+    Platform.OS === 'android'
+      ? MusicPlayer.changeVoiceToAlien(fileName)
+      : MusicPlayer.changeVoiceToAlien();
   };
 
   const changeVoiceToChild = () => {
     const fileName = 'android_11';
-    MusicPlayer.changeVoiceToChild(fileName);
+    Platform.OS === 'android'
+      ? MusicPlayer.changeVoiceToChild(fileName)
+      : MusicPlayer.changeVoiceToChild();
   };
 
   const speedUpVoice = () => {
     const fileName = 'android_11';
-    MusicPlayer.speedUpVoice(fileName);
+    Platform.OS === 'android'
+      ? MusicPlayer.speedUpVoice(fileName)
+      : MusicPlayer.speedUpVoice();
   };
 
   const slowDownVoice = () => {
     const fileName = 'android_11';
-    MusicPlayer.slowDownVoice(fileName);
+    Platform.OS === 'android'
+      ? MusicPlayer.slowDownVoice(fileName)
+      : MusicPlayer.slowDownVoice();
   };
 
   return (
@@ -95,4 +96,4 @@ const FirebaseScreen = () => {
   );
 };
 
-export default FirebaseScreen;
+export default MusicPlayerScreen;

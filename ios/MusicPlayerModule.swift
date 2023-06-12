@@ -11,13 +11,33 @@ import AVFoundation
 @objc(MusicPlayerModule)
 class MusicPlayerModule: NSObject {
   
+  static var shared: MusicPlayerModule?
+  
   var player: AVAudioPlayer?
   
   @objc
-  func play() {
+  static func requiresMainQueueSetup() -> Bool {
+    return true
+  }
+  
+  @objc
+  static func moduleName() -> String {
+    return "MusicPlayer"
+  }
+  
+  @objc
+  func play(_ fileName: String? = nil) {
     stop()
     
-    guard let url = Bundle.main.url(forResource: "android_11", withExtension: "mp3") else { return }
+    var resourceURL: URL?
+    
+    if let fileName = fileName {
+      resourceURL = Bundle.main.url(forResource: fileName, withExtension: "mp3")
+    } else {
+      resourceURL = Bundle.main.url(forResource: "android_11", withExtension: "mp3")
+    }
+    
+    guard let url = resourceURL else { return }
     
     do {
       self.player = try AVAudioPlayer(contentsOf: url)
@@ -39,10 +59,18 @@ class MusicPlayerModule: NSObject {
   }
   
   @objc
-  func changeVoiceToAlien() {
+  func changeVoiceToAlien(_ fileName: String? = nil) {
     stop()
     
-    guard let url = Bundle.main.url(forResource: "android_11", withExtension: "mp3") else { return }
+    var resourceURL: URL?
+    
+    if let fileName = fileName {
+      resourceURL = Bundle.main.url(forResource: fileName, withExtension: "mp3")
+    } else {
+      resourceURL = Bundle.main.url(forResource: "android_11", withExtension: "mp3")
+    }
+    
+    guard let url = resourceURL else { return }
     
     do {
       self.player = try AVAudioPlayer(contentsOf: url)
@@ -55,10 +83,18 @@ class MusicPlayerModule: NSObject {
   }
   
   @objc
-  func changeVoiceToChild() {
+  func changeVoiceToChild(_ fileName: String? = nil) {
     stop()
     
-    guard let url = Bundle.main.url(forResource: "android_11", withExtension: "mp3") else { return }
+    var resourceURL: URL?
+    
+    if let fileName = fileName {
+      resourceURL = Bundle.main.url(forResource: fileName, withExtension: "mp3")
+    } else {
+      resourceURL = Bundle.main.url(forResource: "android_11", withExtension: "mp3")
+    }
+    
+    guard let url = resourceURL else { return }
     
     do {
       self.player = try AVAudioPlayer(contentsOf: url)
@@ -71,10 +107,18 @@ class MusicPlayerModule: NSObject {
   }
   
   @objc
-  func speedUpVoice() {
+  func speedUpVoice(_ fileName: String? = nil) {
     stop()
     
-    guard let url = Bundle.main.url(forResource: "android_11", withExtension: "mp3") else { return }
+    var resourceURL: URL?
+    
+    if let fileName = fileName {
+      resourceURL = Bundle.main.url(forResource: fileName, withExtension: "mp3")
+    } else {
+      resourceURL = Bundle.main.url(forResource: "android_11", withExtension: "mp3")
+    }
+    
+    guard let url = resourceURL else { return }
     
     do {
       self.player = try AVAudioPlayer(contentsOf: url)
@@ -87,10 +131,18 @@ class MusicPlayerModule: NSObject {
   }
   
   @objc
-  func slowDownVoice() {
+  func slowDownVoice(_ fileName: String? = nil) {
     stop()
     
-    guard let url = Bundle.main.url(forResource: "android_11", withExtension: "mp3") else { return }
+    var resourceURL: URL?
+    
+    if let fileName = fileName {
+      resourceURL = Bundle.main.url(forResource: fileName, withExtension: "mp3")
+    } else {
+      resourceURL = Bundle.main.url(forResource: "android_11", withExtension: "mp3")
+    }
+    
+    guard let url = resourceURL else { return }
     
     do {
       self.player = try AVAudioPlayer(contentsOf: url)
@@ -101,9 +153,4 @@ class MusicPlayerModule: NSObject {
       print("Error playing audio")
     }
   }
-  
-  @objc
-  static func requiresMainQueueSetup() -> Bool {
-    return true
-  }
-} 
+}

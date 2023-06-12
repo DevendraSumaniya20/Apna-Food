@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* Apna_FoodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* Apna_FoodTests.m */; };
 		0F09ECB42A274B200019121B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F09ECB32A274B200019121B /* GoogleService-Info.plist */; };
+		0F269BEF2A36FD18008D8949 /* Apna_Food-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F269BEE2A36FD18008D8949 /* Apna_Food-Bridging-Header.h */; };
 		0F66191C2A33574800738E66 /* android_11.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0F66191B2A33574800738E66 /* android_11.mp3 */; };
 		0F6619212A336DBC00738E66 /* MusicPlayerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6619202A336DBC00738E66 /* MusicPlayerModule.swift */; };
 		0F6619232A336DD600738E66 /* MusicPlayerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6619222A336DD600738E66 /* MusicPlayerModule.m */; };
@@ -61,6 +62,7 @@
 		0BAC99895CEF4F99AE347FB9 /* NunitoSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-Bold.ttf"; path = "../source/assets/fonts/NunitoSans-Bold.ttf"; sourceTree = "<group>"; };
 		0F09ECB32A274B200019121B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0F1599652A03B57E00324402 /* GoogleMaps.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleMaps.xcframework; path = Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.xcframework; sourceTree = "<group>"; };
+		0F269BEE2A36FD18008D8949 /* Apna_Food-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Apna_Food-Bridging-Header.h"; sourceTree = "<group>"; };
 		0F66191B2A33574800738E66 /* android_11.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = android_11.mp3; sourceTree = "<group>"; };
 		0F6619202A336DBC00738E66 /* MusicPlayerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerModule.swift; sourceTree = "<group>"; };
 		0F6619222A336DD600738E66 /* MusicPlayerModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPlayerModule.m; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 				0F6619202A336DBC00738E66 /* MusicPlayerModule.swift */,
 				0F6619222A336DD600738E66 /* MusicPlayerModule.m */,
+				0F269BEE2A36FD18008D8949 /* Apna_Food-Bridging-Header.h */,
 			);
 			name = Apna_Food;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F269BEF2A36FD18008D8949 /* Apna_Food-Bridging-Header.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
