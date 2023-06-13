@@ -4,14 +4,10 @@ import {
   RTCPeerConnection,
   RTCView,
   mediaDevices,
-  registerGlobals,
-  RTCIceCandidate,
   RTCSessionDescription,
-  MediaStream,
-  MediaStreamTrack,
-  ScreenCapturePickerView,
 } from 'react-native-webrtc';
 import io from 'socket.io-client';
+import styles from './style';
 
 const socket = io('http://localhost:8081'); // Replace with the appropriate server URL
 
@@ -209,29 +205,5 @@ const ExtraScreen3 = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  videoContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  localVideo: {
-    width: '100%',
-    height: 300,
-    marginBottom: 10,
-  },
-  remoteVideo: {
-    width: '100%',
-    height: 300,
-    marginBottom: 10,
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-  },
-});
 
 export default ExtraScreen3;

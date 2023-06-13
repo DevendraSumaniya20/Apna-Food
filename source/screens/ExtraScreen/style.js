@@ -99,6 +99,28 @@ const styles = StyleSheet.create({
     fontSize: scale(16),
     fontFamily: 'NunitoSans-Bold',
   },
+
+  videoContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  localVideo: {
+    width: '100%',
+    height: 300,
+    marginBottom: 10,
+  },
+  remoteVideo: {
+    width: '100%',
+    height: 300,
+    marginBottom: 10,
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+  },
 });
 
 export default styles;
