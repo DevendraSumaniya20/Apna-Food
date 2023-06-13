@@ -58,11 +58,14 @@
     "react-native-svg-transformer": "^1.0.0",
     "react-native-vector-icons": "^9.2.0",
     "react-native-video": "^5.2.1",
+    "react-native-webrtc": "^111.0.1",
     "react-native-webview": "^12.1.0",
     "react-redux": "^8.0.7",
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.2.3",
+    "socket.io": "^4.6.2",
+    "socket.io-client": "^4.6.2",
     "stripe": "^12.7.0"
   },
   "devDependencies": {
