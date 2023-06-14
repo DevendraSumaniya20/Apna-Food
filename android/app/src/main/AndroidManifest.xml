@@ -2,6 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"  
 pakage="com.app.apna_food">
 
+
+
+<uses-feature android:name="android.hardware.camera" />
+<uses-feature android:name="android.hardware.camera.autofocus" />
+<uses-feature android:name="android.hardware.audio.output" />
+<uses-feature android:name="android.hardware.microphone" />
+
+
+<uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
+
+
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
   <uses-permission android:name="android.permission.ACCEPT_HANDOVER" />
   <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -51,6 +68,12 @@ pakage="com.app.apna_food">
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+
+      <service
+	android:name="app.notifee.core.ForegroundService"
+	android:foregroundServiceType="mediaProjection|camera|microphone" />
+
+  
     <meta-data
      android:name="com.google.android.geo.API_KEY"
      android:value="AIzaSyBdKu1FNWX4wwkKTqG6y68jOZphmh9qrfg"/>

@@ -1,8 +1,6 @@
-const http = require('http');
-const socketIO = require('socket.io');
-
-const server = http.createServer();
-const io = socketIO(server);
+const app = require('express')();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
 const activeMeetings = {};
 
@@ -22,16 +20,25 @@ io.on('connection', socket => {
     // Add participant to active meeting
     activeMeetings[meetingId].participants.push(socket.id);
 
+    // Emit the list of participants to the joined participant
     socket.emit('participants', activeMeetings[meetingId].participants);
+
+    // Broadcast the list of participants to all participants in the meeting
+    io.to(meetingId).emit(
+      'participants',
+      activeMeetings[meetingId].participants,
+    );
     socket.to(meetingId).emit('userJoined', socket.id);
   });
 
   socket.on('offer', (offerDescription, senderId, meetingId) => {
+    // Broadcast the offer to all participants in the meeting except the sender
     socket.to(meetingId).emit('offer', offerDescription, senderId);
   });
 
   socket.on('answer', (answerDescription, senderId, meetingId) => {
-    socket.to(meetingId).emit('answer', answerDescription, senderId);
+    // Broadcast the answer to the specific participant who sent the offer
+    socket.to(senderId).emit('answer', answerDescription, socket.id);
   });
 
   socket.on('disconnect', () => {
@@ -46,6 +53,9 @@ io.on('connection', socket => {
         activeMeetings[room].participants = activeMeetings[
           room
         ].participants.filter(participantId => participantId !== socket.id);
+
+        // Broadcast the updated list of participants to all participants in the meeting
+        io.to(room).emit('participants', activeMeetings[room].participants);
       }
     });
   });

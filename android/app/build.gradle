@@ -85,6 +85,13 @@ def reactNativeArchitectures() {
 }
 
 android {
+
+compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
     ndkVersion rootProject.ext.ndkVersion
 
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -170,6 +177,10 @@ dependencies {
         implementation jscFlavor
     }
 }
+
+
+
+
 configurations.all {
     exclude group: 'com.google.firebase', module: 'firebase-iid'
 }

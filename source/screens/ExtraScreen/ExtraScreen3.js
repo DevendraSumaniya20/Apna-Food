@@ -1,5 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Button, TextInput} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  TextInput,
+  Text,
+} from 'react-native';
 import {
   RTCPeerConnection,
   RTCView,
@@ -9,7 +15,7 @@ import {
 import io from 'socket.io-client';
 import styles from './style';
 
-const socket = io('http://localhost:8081'); // Replace with the appropriate server URL
+const socket = io('http://YOUR_SERVER_IP:3000'); // Replace 'YOUR_SERVER_IP' with the IP address or hostname of your socket server
 
 const ExtraScreen3 = () => {
   const [localStream, setLocalStream] = useState(null);
@@ -47,21 +53,16 @@ const ExtraScreen3 = () => {
         });
       }
 
-      peerConnection.ontrack = event => {
-        const remoteStream = event.streams[0];
-        setRemoteStreams(prevStreams => [...prevStreams, remoteStream]);
-      };
-
       const offer = await peerConnection.createOffer();
       await peerConnection.setLocalDescription(offer);
 
       const offerDescription = peerConnection.localDescription;
 
-      console.log('Offer:', offerDescription);
-      console.log('Meeting ID:', meetingId);
+      // Emit the 'join' event to the socket server
+      socket.emit('join', meetingId);
 
       // Emit the 'offer' event to the socket server
-      socket.emit('offer', offerDescription, meetingId);
+      socket.emit('offer', offerDescription, socket.id, meetingId);
 
       // Set the call status to active
       setCallActive(true);
@@ -92,7 +93,8 @@ const ExtraScreen3 = () => {
   }, []);
 
   const joinMeeting = () => {
-    if (connected) {
+    if (meetingId.trim() !== '') {
+      // Emit the 'join' event to the socket server with the meeting ID
       socket.emit('join', meetingId);
     }
   };
@@ -111,20 +113,13 @@ const ExtraScreen3 = () => {
           });
         }
 
-        peerConnection.ontrack = event => {
-          const remoteStream = event.streams[0];
-          setRemoteStreams(prevStreams => [...prevStreams, remoteStream]);
-        };
-
         const answer = await peerConnection.createAnswer();
         await peerConnection.setLocalDescription(answer);
 
         const answerDescription = peerConnection.localDescription;
-        console.log('Answer:', answerDescription);
-        console.log('Sender ID:', senderId);
 
         // Emit the 'answer' event to the socket server
-        socket.emit('answer', answerDescription, senderId);
+        socket.emit('answer', answerDescription, senderId, meetingId);
 
         // Set the call status to active
         setCallActive(true);
@@ -141,7 +136,7 @@ const ExtraScreen3 = () => {
   }, []);
 
   useEffect(() => {
-    const handleAnswer = async answerDescription => {
+    const handleAnswer = async (answerDescription, senderId) => {
       try {
         const peerConnection = new RTCPeerConnection();
 
@@ -168,7 +163,8 @@ const ExtraScreen3 = () => {
 
   return (
     <View>
-      <View style={styles.videoContainer}>
+      {/* Video container */}
+      <View>
         {localStream && (
           <RTCView style={styles.localVideo} streamURL={localStream.toURL()} />
         )}
@@ -181,27 +177,48 @@ const ExtraScreen3 = () => {
         ))}
       </View>
 
+      {/* Meeting ID input */}
       <TextInput
         style={styles.input}
         onChangeText={text => setMeetingId(text)}
         value={meetingId}
         placeholder="Enter Meeting ID"
         autoCapitalize="none"
-        autoComplete="off"
+        autoCompleteType="off"
         autoCorrect={false}
       />
-      <Button
-        title="Start Call"
+
+      {/* Start Call button */}
+      <TouchableOpacity
+        style={styles.ButtonStyles}
         onPress={startCall}
-        disabled={!localStream || callActive}
-      />
-      <Button title="Generate Random ID" onPress={generateRandomId} />
-      <Button title="End Call" onPress={endCall} />
-      <Button
-        title="Join Meeting"
+        disabled={!localStream || callActive}>
+        <Text style={styles.buttonTextVideoCall}>Start Call</Text>
+      </TouchableOpacity>
+
+      {/* Generate Random ID button */}
+      <TouchableOpacity
+        style={styles.ButtonStyles}
+        onPress={generateRandomId}
+        disabled={callActive}>
+        <Text style={styles.buttonTextVideoCall}>Generate Random ID</Text>
+      </TouchableOpacity>
+
+      {/* End Call button */}
+      <TouchableOpacity
+        style={styles.ButtonStyles}
+        onPress={endCall}
+        disabled={!callActive}>
+        <Text style={styles.buttonTextVideoCall}>End Call</Text>
+      </TouchableOpacity>
+
+      {/* Join Meeting button */}
+      <TouchableOpacity
+        style={styles.ButtonStyles}
         onPress={joinMeeting}
-        disabled={!connected}
-      />
+        disabled={!meetingId.trim()}>
+        <Text style={styles.buttonTextVideoCall}>Join Meeting</Text>
+      </TouchableOpacity>
     </View>
   );
 };
