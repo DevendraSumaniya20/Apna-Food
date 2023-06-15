@@ -14,7 +14,6 @@ import ImagePath from '../../constant/ImagePath';
 import TextinputWithLabel from '../../components/TextinputWithLabel';
 import ButtonCustomComponents from '../../components/ButtonCustomComponents';
 import navigationStrings from '../../constant/navigationStrings';
-import {moderateScale} from 'react-native-size-matters';
 import {useTranslation} from 'react-i18next';
 import styles from './style';
 import {useSelector, useDispatch} from 'react-redux';
@@ -22,6 +21,8 @@ import {toggleTheme} from '../../store/themeSlice';
 import {Moon, Sun} from '../../constant/iconPath';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import auth from '@react-native-firebase/auth';
+import {moderateScale} from 'react-native-size-matters';
 
 const LoginScreen = ({navigation}) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -94,18 +95,34 @@ const LoginScreen = ({navigation}) => {
       setEmailError(t('common:EmailLength'));
     } else if (!password) {
       setPasswordError(t('common:PasswordError'));
-    } else if (password.length < 5) {
+    } else if (password.length < 3) {
       setPasswordError(t('common:PasswordLessCharacters'));
     } else if (!passwordRegex.test(password)) {
       setPasswordError(t('common:PasswordRegex'));
     } else if (password.length > passwordMaxLength) {
       setPasswordError(t('common:PasswordLength'));
-    } else if (email === 'Devendra@gmail.com' && password === 'D123456789@d') {
-      setEmailError('');
-      setPasswordError('');
-      navigation.navigate(navigationStrings.HOME);
+    } else {
+      login();
     }
   };
+  const login = async () => {
+    try {
+      const response = await auth().signInWithEmailAndPassword(email, password);
+
+      console.log('Login successful:', response.user);
+
+      navigation.navigate(navigationStrings.HOME);
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  };
+
+  useEffect(() => {
+    const user = auth().currentUser;
+    if (user) {
+      navigation.navigate(navigationStrings.HOME);
+    }
+  }, []);
 
   return (
     <>

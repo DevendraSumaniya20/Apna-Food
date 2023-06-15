@@ -16,6 +16,8 @@ import ButtonCustomComponents from '../../components/ButtonCustomComponents';
 import navigationStrings from '../../constant/navigationStrings';
 import ImagePath from '../../constant/ImagePath';
 
+import firebase from '../../auth/FirebaseAuth';
+
 const SignUpScreen = ({navigation}) => {
   const [isAr, setIsAr] = useState(false);
   const [email, setEmail] = useState();
@@ -43,7 +45,19 @@ const SignUpScreen = ({navigation}) => {
     },
   });
 
-  const LoginValidation = () => {
+  if (!firebase.apps.length) {
+    firebase.initializeApp({
+      apiKey: 'AIzaSyAXhdAy3iEt_HdNAW4RnYa3DN_1E7Ki-lI',
+      authDomain: 'apna-food-c8049.firebaseapp.com',
+      projectId: 'apna-food-c8049',
+      storageBucket: 'apna-food-c8049.appspot.com',
+      messagingSenderId: '80890309219',
+      appId: '1:80890309219:web:5f80ac9abf90d4e6b26656',
+      measurementId: 'G-2HZPMWP96H',
+    });
+  }
+
+  const LoginValidation = async () => {
     const emailRegex = /\S+@\S+\.\S+/;
     const passwordRegex =
       /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}/;
@@ -63,7 +77,7 @@ const SignUpScreen = ({navigation}) => {
       setEmailError(t('common:EmailLength'));
     } else if (!password) {
       setPasswordError(t('common:PasswordError'));
-    } else if (password.length < 8) {
+    } else if (password.length < 3) {
       setPasswordError(t('common:PasswordLessCharacters'));
     } else if (!passwordRegex.test(password)) {
       setPasswordError(t('common:PasswordRegex'));
@@ -73,15 +87,18 @@ const SignUpScreen = ({navigation}) => {
       setUsernameError(t('common:usernameError'));
     } else if (username.length > usernameMaxLength) {
       setUsernameError(t('common:usernameMaxlength'));
-    } else if (
-      email === 'Devendra@gmail.com' &&
-      password === 'D123456789@d' &&
-      username === 'Devendra Sumaniya'
-    ) {
-      setEmailError('');
-      setPasswordError('');
-      setUsernameError('');
-      navigation.navigate(navigationStrings.HOME);
+    } else {
+      try {
+        const userCredential = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password);
+
+        const {user} = userCredential;
+        console.log('User registered:', user);
+        navigation.navigate(navigationStrings.HOME);
+      } catch (error) {
+        console.log('User registration error:', error);
+      }
     }
   };
 
