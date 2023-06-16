@@ -190,9 +190,7 @@ const LoginScreen = ({navigation}) => {
                       styles.successStyle,
                       isAr && styles.arSliderTextAlign,
                       isDarkMode ? '#000' : '#fff',
-                    ]}>
-                    {''}
-                  </Text>
+                    ]}></Text>
                 )}
               </View>
 
