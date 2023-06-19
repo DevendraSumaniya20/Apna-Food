@@ -18,7 +18,10 @@ import ExtraScreen from '../screens/ExtraScreen';
 import ExtraScreen2 from '../screens/ExtraScreen/ExtraScreen2';
 import CheckOutScreen from '../screens/CheckOutScreen';
 import FirebaseScreen from '../screens/Firabse/FirebaseScreen';
-import ExtraScreen3 from '../screens/ExtraScreen/ExtraScreen3';
+import CallScreen from '../screens/ExtraScreen/CallScreen';
+import JoinScreen from '../screens/ExtraScreen/JoinScreen';
+import RoomScreen from '../screens/ExtraScreen/RoomScreen';
+import VideoCallScreen from '../screens/ExtraScreen/VideoCallScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +30,7 @@ const Navigation = () => {
   return (
     <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator
-        initialRouteName="ExtraScreen3"
+        initialRouteName="VideoCallScreen"
         screenOptions={{
           statusBarColor: colors.mainThemesColor,
         }}>
@@ -43,7 +46,7 @@ const Navigation = () => {
           component={DrawerNavigator}
           options={{
             headerShown: false,
-            headerTintColor: colors.mainThemesColor,
+
             statusBarColor: colors.mainThemesColor,
           }}
         />
@@ -52,7 +55,6 @@ const Navigation = () => {
           component={MapScreen}
           options={{
             headerShown: false,
-            headerTintColor: colors.mainThemesColor,
           }}
         />
 
@@ -61,7 +63,6 @@ const Navigation = () => {
           component={ForgotPasswordScreen}
           options={{
             headerShown: false,
-            headerTintColor: colors.mainThemesColor,
           }}
         />
         <Stack.Screen
@@ -69,7 +70,6 @@ const Navigation = () => {
           component={SignUpScreen}
           options={{
             headerShown: false,
-            headerTintColor: colors.mainThemesColor,
           }}
         />
         <Stack.Screen
@@ -77,7 +77,6 @@ const Navigation = () => {
           component={ExtraScreen}
           options={{
             headerShown: false,
-            headerTintColor: colors.mainThemesColor,
           }}
         />
         <Stack.Screen
@@ -85,23 +84,14 @@ const Navigation = () => {
           component={ExtraScreen2}
           options={{
             headerShown: false,
-            headerTintColor: colors.mainThemesColor,
           }}
         />
-        <Stack.Screen
-          name={navigationStrings.EXTRASCREEN3}
-          component={ExtraScreen3}
-          options={{
-            headerShown: false,
-            headerTintColor: colors.mainThemesColor,
-          }}
-        />
+
         <Stack.Screen
           name={navigationStrings.CHECKOUT}
           component={CheckOutScreen}
           options={{
             headerShown: false,
-            headerTintColor: colors.mainThemesColor,
           }}
         />
         <Stack.Screen
@@ -109,7 +99,34 @@ const Navigation = () => {
           component={FirebaseScreen}
           options={{
             headerShown: false,
-            headerTintColor: colors.mainThemesColor,
+          }}
+        />
+        <Stack.Screen
+          name={navigationStrings.CALLSCREEN}
+          component={CallScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name={navigationStrings.JOINSCREEN}
+          component={JoinScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name={navigationStrings.ROOMSCREEN}
+          component={RoomScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name={navigationStrings.VIDEOCALLSCREEN}
+          component={VideoCallScreen}
+          options={{
+            headerShown: false,
           }}
         />
       </Stack.Navigator>

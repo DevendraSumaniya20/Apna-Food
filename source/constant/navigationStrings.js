@@ -7,7 +7,10 @@ export default {
   SIGNUP: 'Signup',
   EXTRASCREEN: 'ExtraScreen',
   EXTRASCREEN2: 'ExtraScreen2',
-  EXTRASCREEN3: 'ExtraScreen3',
   CHECKOUT: 'Checkout',
   FIREBASE: 'Firebase',
+  CALLSCREEN: 'CallScreen',
+  JOINSCREEN: 'JoinScreen',
+  ROOMSCREEN: 'RoomScreen',
+  VIDEOCALLSCREEN: 'VideoCallScreen',
 };
