@@ -1,199 +1,132 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Button, TextInput, StyleSheet, Alert} from 'react-native';
-import {RTCPeerConnection, mediaDevices} from 'react-native-webrtc';
-import database from '@react-native-firebase/database';
-import auth from '@react-native-firebase/auth';
-import {useTranslation} from 'react-i18next';
-import CustomHeaderComponents from '../../components/CustomHeaderComponents';
-import {moderateScale} from 'react-native-size-matters';
-import navigationStrings from '../../constant/navigationStrings';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  TextInput,
+} from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 
 const VideoCallScreen = ({navigation}) => {
-  const {t} = useTranslation();
-
-  const [peerConnection, setPeerConnection] = useState(null);
-  const [localStream, setLocalStream] = useState(null);
-  const [remoteStream, setRemoteStream] = useState(null);
-  const [callId, setCallId] = useState(null);
-  const [meetingId, setMeetingId] = useState(null);
-  const [inputText, setInputText] = useState('');
-
-  useEffect(() => {
-    initializeWebRTC();
-    checkExistingMeeting();
-  }, []);
-
-  const initializeWebRTC = async () => {
-    const configuration = {
-      iceServers: [{urls: 'stun:stun.l.google.com:19302'}],
-    };
-    const pc = new RTCPeerConnection(configuration);
-
-    const stream = await mediaDevices.getUserMedia({audio: true, video: true});
-
-    stream.getTracks().forEach(track => {
-      pc.addTrack(track, stream);
-    });
-
-    pc.onicecandidate = event => {
-      if (event.candidate) {
-        sendSignalingMessage(event.candidate.toJSON());
-      }
-    };
-
-    pc.ontrack = event => {
-      setRemoteStream(event.streams[0]);
-    };
-
-    setPeerConnection(pc);
-    setLocalStream(stream);
-  };
-
-  const sendSignalingMessage = message => {
-    const currentUserId = auth().currentUser.uid;
-    const signalingRef = database().ref(`signalingMessages/${currentUserId}`);
-
-    signalingRef.push(message);
-  };
+  const [meetingId, setMeetingId] = useState('');
+  const [inputMeetingId, setInputMeetingId] = useState('');
 
   const generateMeetingId = () => {
-    const meetingId = Math.random().toString(36).substring(2, 8);
-    setMeetingId(meetingId);
-    startCall(meetingId);
+    const randomId = Math.random().toString(36).substr(2, 6);
+    setMeetingId(randomId);
   };
 
-  const startCall = meetingId => {
-    const meetingsRef = database().ref('meetings');
-    const newMeetingRef = meetingsRef.child(meetingId);
-    const participantRef = newMeetingRef.child('participants');
-    const userId = auth().currentUser.uid;
-    const userRef = participantRef.child(userId);
-    userRef
-      .set(true)
-      .then(() => {
-        newMeetingRef.set({
-          meetingId,
-          status: 'ongoing',
-          callerUserId: userId,
-        });
-        listenForMeetingUpdates(meetingId);
-        setCallId(meetingId);
+  const startCall = async () => {
+    if (!meetingId) {
+      generateMeetingId();
+    }
+
+    if (meetingId) {
+      try {
+        await firestore()
+          .collection('meetings')
+          .doc(meetingId)
+          .set({started: true});
         navigation.navigate('JoinScreen', {meetingId: meetingId});
-      })
-      .catch(error => {
-        Alert.alert('Error', 'Failed to start the meeting. Please try again.');
-      });
-  };
-
-  const joinMeeting = () => {
-    if (inputText) {
-      const meetingRef = database().ref('meetings').child(inputText);
-      meetingRef.once('value', snapshot => {
-        const meetingData = snapshot.val();
-        if (meetingData && meetingData.status === 'ongoing') {
-          const participantRef = meetingRef.child('participants');
-          const userId = auth().currentUser.uid;
-          const userRef = participantRef.child(userId);
-          userRef
-            .set(true)
-            .then(() => {
-              navigation.navigate('JoinScreen', {meetingId: inputText});
-            })
-            .catch(error => {
-              Alert.alert(
-                'Error',
-                'Failed to join the meeting. Please try again.',
-              );
-            });
-        } else {
-          Alert.alert('Error', 'Invalid meeting ID or the meeting has ended.');
-        }
-      });
+      } catch (error) {
+        console.log('Error starting call:', error);
+      }
     }
   };
 
-  const checkExistingMeeting = () => {
-    const meetingRef = database().ref('meetings').child(inputText);
-    meetingRef.once('value', snapshot => {
-      const meetingData = snapshot.val();
-      if (meetingData && meetingData.status === 'ongoing') {
-        setMeetingId(inputText);
-        listenForMeetingUpdates(inputText);
+  const joinCall = async () => {
+    if (inputMeetingId) {
+      try {
+        const meetingRef = firestore()
+          .collection('meetings')
+          .doc(inputMeetingId);
+        const meetingSnapshot = await meetingRef.get();
+
+        if (meetingSnapshot.exists && meetingSnapshot.data().started) {
+          navigation.navigate('JoinScreen', {meetingId: inputMeetingId});
+        } else {
+          console.log('Meeting does not exist or has not started yet.');
+        }
+      } catch (error) {
+        console.log('Error joining call:', error);
       }
-    });
+    }
   };
 
-  const listenForMeetingUpdates = meetingId => {
-    const meetingRef = database().ref(`meetings/${meetingId}`);
-    meetingRef.on('value', snapshot => {
-      const meetingData = snapshot.val();
-      if (meetingData && meetingData.status === 'ended') {
-        endCall();
+  const endCall = async () => {
+    if (meetingId) {
+      try {
+        await firestore().collection('meetings').doc(meetingId).delete();
+        setMeetingId('');
+      } catch (error) {
+        console.log('Error ending call:', error);
       }
-    });
+    }
   };
 
-  const endCall = () => {
-    const meetingRef = database().ref(`meetings/${callId}`);
-    const participantRef = meetingRef.child('participants');
-    const userId = auth().currentUser.uid;
-    const userRef = participantRef.child(userId);
-    userRef
-      .remove()
-      .then(() => {
-        meetingRef.remove();
-        peerConnection.close();
-        localStream.release();
-        setPeerConnection(null);
-        setLocalStream(null);
-        setRemoteStream(null);
-        setCallId(null);
-      })
-      .catch(error => {
-        Alert.alert('Error', 'Failed to end the meeting. Please try again.');
-      });
-  };
+  useEffect(() => {
+    return () => {
+      endCall();
+    };
+  }, []);
 
   return (
-    <View>
-      <CustomHeaderComponents
-        paddingTop={moderateScale(50)}
-        back={t('common:Back')}
-        label={t('common:SignUp')}
-        onPress={() => {
-          navigation.navigate(navigationStrings.LOGIN);
-        }}
-      />
-
-      <Button title="Generate Meeting ID" onPress={generateMeetingId} />
-      {meetingId && <Text>Meeting ID: {meetingId}</Text>}
+    <SafeAreaView style={styles.container}>
+      <TouchableOpacity style={styles.button} onPress={generateMeetingId}>
+        <Text style={styles.buttonText}>Generate Meeting ID</Text>
+      </TouchableOpacity>
+      <Text style={styles.meetingIdText}>{meetingId}</Text>
       <TextInput
-        placeholder="Enter Meeting ID"
-        value={inputText}
-        onChangeText={setInputText}
         style={styles.input}
+        placeholder="Enter Meeting ID"
+        value={inputMeetingId}
+        onChangeText={setInputMeetingId}
+        autoCapitalize="none"
+        autoCompleteType="off"
+        autoCorrect={false}
       />
-      <Button
-        title="Start Call"
-        onPress={startCall}
-        disabled={!meetingId || callId !== null}
-      />
-      <Button
-        title="Join Meeting"
-        onPress={joinMeeting}
-        disabled={!inputText || callId !== null}
-      />
-      <Button title="End Call" onPress={endCall} disabled={callId === null} />
-    </View>
+      <TouchableOpacity style={styles.button} onPress={startCall}>
+        <Text style={styles.buttonText}>Start Call</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={joinCall}>
+        <Text style={styles.buttonText}>Join Call</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={endCall}>
+        <Text style={styles.buttonText}>End Call</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    backgroundColor: '#2196F3',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 4,
+    marginBottom: 8,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  meetingIdText: {
+    fontSize: 16,
+    marginBottom: 16,
+  },
   input: {
     borderWidth: 1,
-    padding: 10,
-    marginVertical: 10,
+    borderColor: '#000',
     width: '80%',
+    paddingHorizontal: 8,
+    marginBottom: 8,
   },
 });
 
