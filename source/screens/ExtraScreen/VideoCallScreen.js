@@ -24,11 +24,13 @@ const VideoCallScreen = ({navigation}) => {
 
     if (meetingId) {
       try {
-        await firestore()
-          .collection('meetings')
-          .doc(meetingId)
-          .set({started: true});
-        navigation.navigate('JoinScreen', {meetingId: meetingId});
+        await firestore().collection('meetings').doc(meetingId).set({
+          started: true,
+        });
+
+        navigation.navigate('JoinScreen', {
+          meetingId: meetingId,
+        });
       } catch (error) {
         console.log('Error starting call:', error);
       }
@@ -44,7 +46,9 @@ const VideoCallScreen = ({navigation}) => {
         const meetingSnapshot = await meetingRef.get();
 
         if (meetingSnapshot.exists && meetingSnapshot.data().started) {
-          navigation.navigate('JoinScreen', {meetingId: inputMeetingId});
+          navigation.navigate('JoinScreen', {
+            meetingId: inputMeetingId,
+          });
         } else {
           console.log('Meeting does not exist or has not started yet.');
         }
@@ -86,6 +90,7 @@ const VideoCallScreen = ({navigation}) => {
         autoCompleteType="off"
         autoCorrect={false}
       />
+
       <TouchableOpacity style={styles.button} onPress={startCall}>
         <Text style={styles.buttonText}>Start Call</Text>
       </TouchableOpacity>

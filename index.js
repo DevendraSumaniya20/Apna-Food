@@ -23,6 +23,7 @@ messaging().setBackgroundMessageHandler(async remoteMessage => {
 const firebaseConfig = {
   apiKey: 'AIzaSyAXhdAy3iEt_HdNAW4RnYa3DN_1E7Ki-lI',
   authDomain: 'apna-food-c8049.firebaseapp.com',
+  // databaseURL: 'https://apna-food-c8049-default-rtdb.firebaseio.com',
   projectId: 'apna-food-c8049',
   storageBucket: 'apna-food-c8049.appspot.com',
   messagingSenderId: '80890309219',
@@ -31,7 +32,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
 
 const ApnaFood = () => {
   return (
