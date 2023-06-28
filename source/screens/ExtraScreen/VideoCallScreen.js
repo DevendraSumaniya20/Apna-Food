@@ -26,6 +26,7 @@ const VideoCallScreen = ({navigation}) => {
       try {
         await firestore().collection('meetings').doc(meetingId).set({
           started: true,
+          participants: [], // Initialize an empty array
         });
 
         navigation.navigate('JoinScreen', {
@@ -46,6 +47,10 @@ const VideoCallScreen = ({navigation}) => {
         const meetingSnapshot = await meetingRef.get();
 
         if (meetingSnapshot.exists && meetingSnapshot.data().started) {
+          const participants = meetingSnapshot.data().participants || [];
+          participants.push(inputMeetingId); // Add participant to the meeting
+          await meetingRef.update({participants});
+
           navigation.navigate('JoinScreen', {
             meetingId: inputMeetingId,
           });

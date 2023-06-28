@@ -1,59 +1,81 @@
 const express = require('express');
 const app = express();
-const http = require('http').createServer(app);
+const http = require('http').Server(app);
 const io = require('socket.io')(http);
-const firebase = require('firebase/app');
+const admin = require('firebase-admin');
+const serviceAccount = require('./apna-food-c8049-firebase-adminsdk-gp9po-70363e3d4c.json');
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyAXhdAy3iEt_HdNAW4RnYa3DN_1E7Ki-lI',
-  authDomain: 'apna-food-c8049.firebaseapp.com',
-  projectId: 'apna-food-c8049',
-  storageBucket: 'apna-food-c8049.appspot.com',
-  messagingSenderId: '80890309219',
-  appId: '1:80890309219:web:5f80ac9abf90d4e6b26656',
-  measurementId: 'G-2HZPMWP96H',
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
-io.on('connection', socket => {
-  socket.on('joinCall', meetingID => {
-    socket.join(meetingID);
-  });
-
-  socket.on('offer', async (meetingID, offer) => {
-    await saveMessageToFirestore(meetingID, 'offer', offer);
-    io.to(meetingID).emit('offer', offer);
-  });
-
-  socket.on('answer', async (meetingID, answer) => {
-    await saveMessageToFirestore(meetingID, 'answer', answer);
-    io.to(meetingID).emit('answer', answer);
-  });
-
-  socket.on('candidate', async (meetingID, candidate) => {
-    await saveMessageToFirestore(meetingID, 'candidate', candidate);
-    io.to(meetingID).emit('candidate', candidate);
-  });
-
-  socket.on('disconnect', () => {});
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://apna-food-c8049-default-rtdb.firebaseio.com', // Replace with your own Firebase Realtime Database URL
 });
 
-async function saveMessageToFirestore(meetingID, type, message) {
-  try {
-    await db.collection('messages').doc(meetingID).collection('messages').add({
-      type,
-      message,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    });
-  } catch (error) {
-    console.error('Error saving message to Firestore:', error);
-  }
-}
+const participants = {};
 
-const port = 8080;
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
 
-http.listen(port, () => {
-  console.log(`Signaling server is running on http://localhost:${port}`);
+io.on('connection', socket => {
+  console.log('A user connected');
+
+  // Handle joinCall event
+  socket.on('joinCall', meetingID => {
+    console.log(`User joined call with meeting ID: ${meetingID}`);
+    socket.join(meetingID);
+
+    if (!participants[meetingID]) {
+      participants[meetingID] = [];
+    }
+
+    participants[meetingID].push(socket.id);
+
+    io.to(meetingID).emit('participants', participants[meetingID]);
+  });
+
+  // Handle offer event
+  socket.on('offer', ({meetingID, participantID, description}) => {
+    console.log(
+      `Received offer from participant ${participantID} in call ${meetingID}`,
+    );
+    socket.to(meetingID).emit('offer', {meetingID, participantID, description});
+  });
+
+  // Handle answer event
+  socket.on('answer', ({meetingID, participantID, description}) => {
+    console.log(
+      `Received answer from participant ${participantID} in call ${meetingID}`,
+    );
+    socket
+      .to(meetingID)
+      .emit('answer', {meetingID, participantID, description});
+  });
+
+  // Handle candidate event
+  socket.on('candidate', ({meetingID, participantID, candidate}) => {
+    console.log(
+      `Received ICE candidate from participant ${participantID} in call ${meetingID}`,
+    );
+    socket
+      .to(meetingID)
+      .emit('candidate', {meetingID, participantID, candidate});
+  });
+
+  socket.on('disconnect', () => {
+    console.log('A user disconnected');
+
+    // Remove the disconnected participant from the participants list
+    for (const meetingID in participants) {
+      const index = participants[meetingID].indexOf(socket.id);
+      if (index !== -1) {
+        participants[meetingID].splice(index, 1);
+        io.to(meetingID).emit('participants', participants[meetingID]);
+        break;
+      }
+    }
+  });
+});
+
+http.listen(8080, () => {
+  console.log('http://localhost:8080');
 });
