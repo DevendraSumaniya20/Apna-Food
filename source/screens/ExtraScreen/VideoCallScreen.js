@@ -26,11 +26,12 @@ const VideoCallScreen = ({navigation}) => {
       try {
         await firestore().collection('meetings').doc(meetingId).set({
           started: true,
-          participants: [], // Initialize an empty array
+          participants: [],
         });
 
         navigation.navigate('JoinScreen', {
           meetingId: meetingId,
+          isHost: true,
         });
       } catch (error) {
         console.log('Error starting call:', error);
@@ -48,11 +49,12 @@ const VideoCallScreen = ({navigation}) => {
 
         if (meetingSnapshot.exists && meetingSnapshot.data().started) {
           const participants = meetingSnapshot.data().participants || [];
-          participants.push(inputMeetingId); // Add participant to the meeting
+          participants.push({meetingId: inputMeetingId});
           await meetingRef.update({participants});
 
           navigation.navigate('JoinScreen', {
             meetingId: inputMeetingId,
+            isHost: false,
           });
         } else {
           console.log('Meeting does not exist or has not started yet.');
