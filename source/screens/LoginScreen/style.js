@@ -17,6 +17,8 @@ const styles = StyleSheet.create({
   },
   imageBackground: {
     height: moderateScale(200),
+    borderRadius: moderateScale(20),
+    borderWidth: 1,
   },
   mainStyle: {
     paddingHorizontal: '5%',

@@ -160,7 +160,6 @@ const LoginScreen = ({navigation}) => {
               )}
             </TouchableOpacity>
           </View>
-
           <View style={styles.mainStyle}>
             <View style={styles.TextinputWithLabelView}>
               <TextinputWithLabel
@@ -173,7 +172,6 @@ const LoginScreen = ({navigation}) => {
                   ...(isAr && {textAlign: 'right'}),
                 }}
               />
-
               <View>
                 {emailError ? (
                   <Text
